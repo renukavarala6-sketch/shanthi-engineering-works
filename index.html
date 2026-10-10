@@ -1,200 +1,337 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shanthi Engineering Works and Consultants</title>
-  <meta name="description" content="Shanthi Engineering Works and Consultants - engineering, industrial and safety equipment. Contact us for product enquiries.">
-  <style>
-    :root{--navy:#092b50;--blue:#145da0;--red:#e63946;--light:#f3f7fb;--ink:#203047;--muted:#5b6b7d}
-    *{box-sizing:border-box;scroll-behavior:smooth}
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.6}
-    header{background:var(--navy);color:#fff;padding:14px 5%;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;position:sticky;top:0;z-index:10;box-shadow:0 3px 12px #0002}
-    .brand{display:flex;align-items:center;gap:12px;min-width:240px}
-    .brand img{height:58px;width:68px;object-fit:contain;background:#fff;border-radius:8px;padding:4px}
-    .brand h2{font-size:clamp(16px,2vw,23px);line-height:1.2;margin:0}
-    .brand small{display:block;color:#d9e7f5;font-size:12px;margin-top:4px}
-    nav{display:flex;gap:16px;flex-wrap:wrap}
-    nav a{color:#fff;text-decoration:none;font-weight:700;font-size:14px}
-    nav a:hover{color:#ffd166}
-    .hero{min-height:440px;display:flex;align-items:center;background:linear-gradient(90deg,rgba(4,25,48,.92),rgba(4,25,48,.56)),url('Shanthi%20Engineering%20Works%20Website%20Mockup.png') center/cover no-repeat;color:white;padding:70px 7%}
-    .hero-inner{max-width:720px}
-    .eyebrow{color:#ffd166;text-transform:uppercase;letter-spacing:2px;font-size:13px;font-weight:bold}
-    .hero h1{font-size:clamp(32px,5vw,54px);line-height:1.1;margin:12px 0}
-    .hero p{font-size:18px;max-width:620px;color:#edf4fb}
-    .btn{display:inline-block;padding:12px 20px;border-radius:6px;text-decoration:none;font-weight:bold;margin:8px 8px 0 0;border:0;cursor:pointer}
-    .btn-primary{background:var(--red);color:white}.btn-outline{border:1px solid white;color:white}
-    section{padding:64px 7%}
-    .section-head{text-align:center;max-width:760px;margin:0 auto 34px}
-    .section-head h2{color:var(--navy);font-size:32px;margin:0 0 10px}
-    .section-head p{color:var(--muted);margin:0}
-    .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;max-width:1100px;margin:auto}
-    .about-box{background:var(--light);padding:26px;border-radius:12px;border-left:5px solid var(--blue)}
-    .feature-list{padding-left:20px}
-    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1150px;margin:auto}
-    .card{background:white;border:1px solid #e1e9f1;border-radius:12px;padding:22px;box-shadow:0 5px 18px #092b500c}
-    .card .icon{font-size:27px}
-    .card h3{color:var(--navy);margin:8px 0}
-    .soft{background:var(--light)}
-    .applications{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-    .applications span{background:white;border:1px solid #dce5ef;border-radius:30px;padding:10px 16px;font-weight:bold}
-    .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:26px;max-width:1100px;margin:auto}
-    .contact-panel{background:var(--navy);color:white;border-radius:12px;padding:28px}
-    .contact-panel h3{margin-top:0}
-    .contact-panel a{color:#fff}
-    form{background:white;border:1px solid #e1e9f1;border-radius:12px;padding:26px;box-shadow:0 5px 18px #092b500c}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    label{display:block;font-weight:bold;font-size:14px;margin:0 0 6px}
-    input,select,textarea{width:100%;padding:12px;border:1px solid #cbd6e2;border-radius:6px;font:inherit;margin-bottom:16px;background:#fff}
-    input:focus,select:focus,textarea:focus{outline:2px solid #9ac5ee;border-color:var(--blue)}
-    textarea{min-height:120px;resize:vertical}
-    .form-note{font-size:12px;color:var(--muted);margin:10px 0 0}
-    footer{background:#061d36;color:#d9e7f5;text-align:center;padding:24px 6%;font-size:14px}
-    footer p{margin:4px}
-    @media(max-width:800px){header{position:static}.about-grid,.contact-grid{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{min-height:380px}}
-    @media(max-width:540px){nav{gap:10px}.cards{grid-template-columns:1fr}.form-row{grid-template-columns:1fr;gap:0}section{padding:46px 5%}.hero{padding:54px 5%}.brand img{height:50px;width:58px}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shanthi Engineering Works and Consultants</title>
+
+<style>
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Arial,sans-serif;color:#203047;background:#f5f8fc;line-height:1.6}
+header{background:#092b50;color:white;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:55px;width:auto;max-width:100px;object-fit:contain}
+header h2{font-size:21px;margin:0}
+nav{display:flex;gap:15px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-weight:bold;font-size:14px}
+nav a:hover{color:#ffc857}
+.hero{background:linear-gradient(135deg,#092b50,#176b87);color:white;text-align:center;padding:75px 6%}
+.hero h1{font-size:clamp(30px,5vw,48px);margin:0 0 15px}
+.hero p{font-size:18px}
+.btn{display:inline-block;background:#ffc857;color:#092b50;padding:12px 22px;border:0;border-radius:5px;text-decoration:none;font-weight:bold;cursor:pointer;margin-top:12px}
+section{padding:55px 6%;scroll-margin-top:20px}
+.heading{text-align:center;margin-bottom:30px}
+.heading h2{color:#123e5a;font-size:30px;margin:0}
+.heading p{color:#627184}
+.about{max-width:900px;margin:auto;text-align:center}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.card{background:white;border:1px solid #e1e7ee;border-radius:10px;overflow:hidden;box-shadow:0 5px 16px #102b4610;cursor:pointer;transition:transform .2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 20px #102b4620}
+.card img{width:100%;height:210px;object-fit:contain;background:white;padding:12px}
+.card-content{padding:17px}
+.number{color:#16819b;font-size:13px;font-weight:bold}
+.card h3{color:#145674;margin:5px 0 10px;font-size:18px}
+.card p{color:#566477;font-size:14px}
+.more{color:#087e9b;font-weight:bold;font-size:14px}
+#contact{background:#e8eff5}
+.contact-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:25px;max-width:1000px;margin:auto}
+.contact-box,.form-box{background:white;padding:25px;border-radius:10px}
+form label{display:block;font-weight:bold;margin-top:12px}
+form input,form select,form textarea{width:100%;padding:12px;margin-top:5px;border:1px solid #ccd5df;border-radius:5px;font:inherit}
+form textarea{min-height:110px;resize:vertical}
+form button{width:100%;margin-top:18px}
+footer{background:#092b50;color:white;text-align:center;padding:20px}
+.modal{display:none;position:fixed;z-index:10;inset:0;background:#0009;overflow:auto;padding:25px}
+.modal-box{background:white;max-width:650px;margin:35px auto;padding:25px;border-radius:12px;position:relative}
+.modal-box img{width:100%;height:280px;object-fit:contain}
+.close{position:absolute;right:15px;top:8px;font-size:30px;border:0;background:none;cursor:pointer}
+@media(max-width:700px){
+ header{justify-content:center;text-align:center}
+ .brand{justify-content:center}
+ nav{justify-content:center}
+ .contact-layout{grid-template-columns:1fr}
+ section{padding:40px 5%}
+}
+</style>
 </head>
+
 <body>
 <header>
   <div class="brand">
-    <img src="SEW_Logo.jpg-removebg-preview.png" alt="Shanthi Engineering Works logo">
-    <div>
-      <h2>Shanthi Engineering Works and Consultants</h2>
-      <small>Engineering • Industrial • Safety Solutions</small>
-    </div>
+    <img src="SEW_Logo.jpg-removebg-preview.png" alt="Company Logo">
+    <h2>Shanthi Engineering Works and Consultants</h2>
   </div>
-  <nav aria-label="Main navigation">
-    <a href="#home">Home</a><a href="#about">About</a><a href="#products">Products</a>
-    <a href="#applications">Applications</a><a href="#enquiry">Enquiry</a><a href="#contact">Contact</a>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact / Enquiry</a>
   </nav>
 </header>
 
 <main>
-  <section class="hero" id="home">
-    <div class="hero-inner">
-      <div class="eyebrow">Engineering and Safety Solutions</div>
-      <h1>Reliable Equipment.<br>Safer Operations.</h1>
-      <p>Explore industrial, engineering and safety equipment solutions for your project and operational needs.</p>
-      <a class="btn btn-primary" href="#products">Explore Products</a>
-      <a class="btn btn-outline" href="#enquiry">Send an Enquiry</a>
-    </div>
-  </section>
+  <div class="hero" id="home">
+    <h1>Safety &amp; Emergency Equipment</h1>
+    <p>Industrial Safety Equipment and Chlorine Emergency Protection Solutions</p>
+    <a class="btn" href="#products">Explore Our Products</a>
+  </div>
 
   <section id="about">
-    <div class="section-head"><h2>About Us</h2><p>Engineering support and equipment for industrial and safety applications.</p></div>
-    <div class="about-grid">
-      <div>
-        <h3>Shanthi Engineering Works and Consultants</h3>
-        <p>We present a range of engineering and industrial equipment for customers looking for practical equipment options and product information. Contact us with your requirements so our team can discuss suitable products and specifications.</p>
-        <ul class="feature-list"><li>Industrial and engineering equipment</li><li>Safety equipment and accessories</li><li>Product information and enquiry support</li></ul>
-      </div>
-      <div class="about-box"><h3>Have a requirement?</h3><p>Share the product name, quantity and application. Our team can follow up using the contact details you provide.</p><a class="btn btn-primary" href="#enquiry">Enquire Now</a></div>
+    <div class="heading"><h2>About Us</h2></div>
+    <div class="about">
+      <p>Welcome to Shanthi Engineering Works and Consultants. Explore our range of industrial safety equipment, chlorine leak emergency kits, respiratory protection equipment and chemical protective wear.</p>
     </div>
   </section>
 
-  <section id="products" class="soft">
-    <div class="section-head"><h2>Our Products</h2><p>Contact us for availability, specifications and pricing.</p></div>
-    <div class="cards">
-      <article class="card"><div class="icon">⚙️</div><h3>Ejector</h3><p>Equipment used in vacuum-based dosing and process systems.</p></article>
-      <article class="card"><div class="icon">📏</div><h3>Flow Meter</h3><p>For monitoring flow rates in compatible installations.</p></article>
-      <article class="card"><div class="icon">🔧</div><h3>Vacuum Regulator</h3><p>Vacuum control equipment for relevant system setups.</p></article>
-      <article class="card"><div class="icon">🛠️</div><h3>Pressure Reducing Valve</h3><p>Helps regulate pressure in compatible applications.</p></article>
-      <article class="card"><div class="icon">🎛️</div><h3>Vacuum Switch</h3><p>Switching and monitoring component for vacuum systems.</p></article>
-      <article class="card"><div class="icon">🔩</div><h3>Auxiliary Valve & Clamp</h3><p>Supporting valves, clamps and connection accessories.</p></article>
-      <article class="card"><div class="icon">🧪</div><h3>Chlorination Tank</h3><p>Equipment options for water-treatment installations.</p></article>
-      <article class="card"><div class="icon">🏭</div><h3>Floor-Mounted Chlorinator</h3><p>Chlorination equipment for suitable treatment facilities.</p></article>
-      <article class="card"><div class="icon">🔗</div><h3>Manifold & Copper Pipe</h3><p>Connection and distribution components for compatible systems.</p></article>
-      <article class="card"><div class="icon">🧯</div><h3>Fire Safety Equipment</h3><p>Safety equipment options for workplaces and facilities.</p></article>
-      <article class="card"><div class="icon">🚨</div><h3>Emergency Safety Products</h3><p>Enquire about safety and emergency equipment requirements.</p></article>
-      <article class="card"><div class="icon">📦</div><h3>Other Requirements</h3><p>Tell us what product or component you are looking for.</p></article>
+  <section id="products">
+    <div class="heading">
+      <h2>Our Products</h2>
+      <p>Select any product to view its image, description and enquiry option.</p>
     </div>
-  </section>
-
-  <section id="applications">
-    <div class="section-head"><h2>Applications</h2><p>Equipment enquiries for a range of facilities and industrial environments.</p></div>
-    <div class="applications"><span>Water Treatment</span><span>Industrial Plants</span><span>Commercial Facilities</span><span>Safety Operations</span><span>Engineering Projects</span></div>
-  </section>
-
-  <section id="enquiry" class="soft">
-    <div class="section-head"><h2>Product Enquiry</h2><p>Fill in the form below with your details and requirements.</p></div>
-    <div class="contact-grid">
-      <div class="contact-panel">
-        <h3>Let's Discuss Your Requirement</h3>
-        <p>Provide correct contact details and a short description of the product you need.</p>
-        <p><strong>Company:</strong><br>Shanthi Engineering Works and Consultants</p>
-        <p><strong>What to include:</strong></p>
-        <ul><li>Product or equipment name</li><li>Required quantity</li><li>Application or project details</li><li>Best time to contact you</li></ul>
-        <p>Submitting this form opens your email app with the enquiry prepared. You can review and send it from there.</p>
-      </div>
-      <form id="enquiryForm">
-        <div class="form-row">
-          <div><label for="name">Full Name *</label><input id="name" name="name" autocomplete="name" required placeholder="Enter your full name"></div>
-          <div><label for="phone">Phone Number *</label><input id="phone" name="phone" type="tel" autocomplete="tel" required pattern="[0-9+() -]{8,20}" placeholder="Enter phone number"></div>
-        </div>
-        <div class="form-row">
-          <div><label for="email">Email Address *</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
-          <div><label for="product">Product Interested In *</label>
-            <select id="product" name="product" required>
-              <option value="">Select a product</option>
-              <option>Ejector</option><option>Flow Meter</option><option>Vacuum Regulator</option>
-              <option>Pressure Reducing Valve</option><option>Vacuum Switch</option><option>Auxiliary Valve</option>
-              <option>Clamp</option><option>Chlorination Tank</option><option>Floor-Mounted Chlorinator</option>
-              <option>Manifold</option><option>Copper Pipe</option><option>Fire Safety Equipment</option><option>Other</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div><label for="quantity">Quantity (optional)</label><input id="quantity" name="quantity" placeholder="e.g. 2 units"></div>
-          <div><label for="city">City / Location (optional)</label><input id="city" name="city" autocomplete="address-level2" placeholder="Your city"></div>
-        </div>
-        <label for="message">Message / Requirements *</label>
-        <textarea id="message" name="message" required placeholder="Describe the product, specifications or project requirement"></textarea>
-        <button class="btn btn-primary" type="submit">Prepare Enquiry Email</button>
-        <p class="form-note">This form does not send automatically. Your email app opens so you can review and send the enquiry.</p>
-        <p id="formStatus" role="status" class="form-note"></p>
-      </form>
-    </div>
+    <div class="products" id="productList"></div>
   </section>
 
   <section id="contact">
-    <div class="section-head"><h2>Contact Us</h2><p>We welcome product and project enquiries.</p></div>
-    <div class="about-box" style="max-width:800px;margin:auto;text-align:center">
-      <h3>Shanthi Engineering Works and Consultants</h3>
-      <p>Use the Product Enquiry form to share your name, email, phone number and requirement.</p>
-      <a class="btn btn-primary" href="#enquiry">Open Enquiry Form</a>
+    <div class="heading">
+      <h2>Product Enquiry</h2>
+      <p>Send us your details and tell us which product you are interested in.</p>
+    </div>
+
+    <div class="contact-layout">
+      <div class="contact-box">
+        <h3>Contact Us</h3>
+        <p><strong>Company:</strong> Shanthi Engineering Works and Consultants</p>
+        <p><strong>Phone:</strong> Please contact the company directly</p>
+        <p><strong>Email:</strong> Company email to be added</p>
+        <p><strong>Address:</strong> Company address to be added</p>
+      </div>
+
+      <div class="form-box">
+        <h3>Enquiry Form</h3>
+        <form id="enquiryForm">
+          <label for="name">Name *</label>
+          <input id="name" name="name" required>
+
+          <label for="email">Email *</label>
+          <input id="email" name="email" type="email" required>
+
+          <label for="phone">Phone *</label>
+          <input id="phone" name="phone" type="tel" required>
+
+          <label for="product">Product Interested In *</label>
+          <select id="product" name="product" required>
+            <option value="">Select a product</option>
+          </select>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Write your enquiry here"></textarea>
+
+          <button class="btn" type="submit">Prepare Enquiry Email</button>
+          <p id="formNote" aria-live="polite"></p>
+        </form>
+      </div>
     </div>
   </section>
 </main>
 
 <footer>
-  <p><strong>Shanthi Engineering Works and Consultants</strong></p>
-  <p>Engineering • Industrial • Safety Solutions</p>
-  <p>© <span id="year"></span> Shanthi Engineering Works and Consultants. All rights reserved.</p>
+  <p>© 2026 Shanthi Engineering Works and Consultants. All rights reserved.</p>
 </footer>
+
+<div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button class="close" id="closeModal" aria-label="Close">&times;</button>
+    <img id="modalImage" src="" alt="">
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
+    <button class="btn" id="modalEnquire">Enquire About This Product</button>
+  </div>
+</div>
+
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-  document.getElementById('enquiryForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const data = new FormData(this);
-    const subject = 'Website Product Enquiry - ' + data.get('product');
-    const body = [
-      'Product Enquiry',
-      '',
-      'Full Name: ' + data.get('name'),
-      'Phone Number: ' + data.get('phone'),
-      'Email: ' + data.get('email'),
-      'Product: ' + data.get('product'),
-      'Quantity: ' + (data.get('quantity') || 'Not specified'),
-      'City / Location: ' + (data.get('city') || 'Not specified'),
-      '',
-      'Message / Requirements:',
-      data.get('message')
-    ].join('\n');
-    document.getElementById('formStatus').textContent = 'Opening your email app. Please check the recipient address in the code before using the form.';
-    /* Replace YOUR_COMPANY_EMAIL@example.com with the company's real email address before publishing. */
-    window.location.href = 'mailto:YOUR_COMPANY_EMAIL@example.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+const products = [
+  {
+    image:"product-01.png",
+    name:"100 kg Tonner Emergency Kit",
+    description:"Emergency equipment designed to help control chlorine leaks from 100 kg tonners. Use only by trained and properly equipped emergency personnel."
+  },
+  {
+    image:"product-02.png",
+    name:"900 kg Tonner Emergency Kit",
+    description:"Equipment designed to help manage chlorine leaks from 900 kg tonners by trained emergency response personnel."
+  },
+  {
+    image:"product-03.png",
+    name:"Chlorine Leak Detector",
+    description:"Detects chlorine gas and can provide an early warning when hazardous gas is present. Check the product specifications for alarm features."
+  },
+  {
+    image:"product-04.png",
+    name:"Safety Shower",
+    description:"Emergency washing equipment intended to help remove chemical contamination from the body."
+  },
+  {
+    image:"product-05.png",
+    name:"100 kg Tonner Hood",
+    description:"Hood designed for emergency leak-control applications involving 100 kg chlorine tonners. Use according to the manufacturer's instructions."
+  },
+  {
+    image:"product-06.png",
+    name:"900 kg Tonner Hood",
+    description:"Hood designed for emergency leak-control applications involving 900 kg chlorine tonners. Use according to the manufacturer's instructions."
+  },
+  {
+    image:"product-07.png",
+    name:"Safety Breathing Apparatus (SCBA)",
+    description:"Self-contained breathing apparatus intended for trained personnel working in hazardous atmospheres, subject to proper selection and use."
+  },
+  {
+    image:"product-08.png",
+    name:"Glass Fronted FRP Cabinet for Breathing Apparatus",
+    description:"FRP cabinet with a transparent front for storing and accessing breathing apparatus."
+  },
+  {
+    image:"product-09.png",
+    name:"Wind Sock",
+    description:"Wind direction indicator that can support emergency awareness and evacuation planning."
+  },
+  {
+    image:"product-10.png",
+    name:"Canister Type Respiratory Mask",
+    description:"Respiratory protection mask. The correct canister and protection level must be confirmed for the specific hazard."
+  },
+  {
+    image:"product-11.png",
+    name:"PVC Apron",
+    description:"Protective apron intended for suitable industrial tasks involving liquid splashes. Confirm chemical compatibility before use."
+  },
+  {
+    image:"product-12.png",
+    name:"PVC Full Suit",
+    description:"Protective full-body suit intended for suitable chemical splash protection, depending on its material and specifications."
+  },
+  {
+    image:"product-13.png",
+    name:"Safety Gloves",
+    description:"Protective gloves for industrial tasks. Select the glove material according to the chemicals and hazards involved."
+  },
+  {
+    image:"product-14.png",
+    name:"Safety Helmet",
+    description:"Industrial head protection designed for suitable workplace hazards."
+  },
+  {
+    image:"product-15.png",
+    name:"Safety Shoes",
+    description:"Industrial footwear designed to provide protection appropriate to the specified workplace hazards."
+  },
+  {
+    image:"product-16.png",
+    name:"Safety Goggles",
+    description:"Eye protection designed to help protect against specified workplace hazards. Select the appropriate type for the task."
+  }
+];
+
+const productList = document.getElementById("productList");
+const productSelect = document.getElementById("product");
+
+products.forEach((item,index)=>{
+  const option = document.createElement("option");
+  option.value = item.name;
+  option.textContent = item.name;
+  productSelect.appendChild(option);
+
+  const card = document.createElement("article");
+  card.className = "card";
+  card.tabIndex = 0;
+  card.setAttribute("role","button");
+  card.setAttribute("aria-label","View "+item.name);
+
+  const img = document.createElement("img");
+  img.src = item.image;
+  img.alt = item.name;
+  img.loading = "lazy";
+  img.onerror = function(){ this.alt = item.name+" image unavailable"; };
+
+  const content = document.createElement("div");
+  content.className = "card-content";
+
+  const number = document.createElement("div");
+  number.className = "number";
+  number.textContent = "PRODUCT "+String(index+1).padStart(2,"0");
+
+  const title = document.createElement("h3");
+  title.textContent = item.name;
+
+  const description = document.createElement("p");
+  description.textContent = item.description;
+
+  const more = document.createElement("span");
+  more.className = "more";
+  more.textContent = "View Details & Enquire →";
+
+  content.append(number,title,description,more);
+  card.append(img,content);
+  card.addEventListener("click",()=>openProduct(index));
+  card.addEventListener("keydown",event=>{
+    if(event.key==="Enter"||event.key===" "){
+      event.preventDefault();
+      openProduct(index);
+    }
   });
+  productList.appendChild(card);
+});
+
+const modal = document.getElementById("productModal");
+
+function openProduct(index){
+  const item = products[index];
+  document.getElementById("modalImage").src = item.image;
+  document.getElementById("modalImage").alt = item.name;
+  document.getElementById("modalTitle").textContent = item.name;
+  document.getElementById("modalDescription").textContent = item.description;
+  productSelect.value = item.name;
+  modal.style.display = "block";
+}
+
+function closeProduct(){
+  modal.style.display = "none";
+}
+
+document.getElementById("closeModal").addEventListener("click",closeProduct);
+modal.addEventListener("click",event=>{
+  if(event.target===modal) closeProduct();
+});
+document.addEventListener("keydown",event=>{
+  if(event.key==="Escape") closeProduct();
+});
+document.getElementById("modalEnquire").addEventListener("click",()=>{
+  closeProduct();
+  document.getElementById("contact").scrollIntoView({behavior:"smooth"});
+  document.getElementById("name").focus({preventScroll:true});
+});
+
+document.getElementById("enquiryForm").addEventListener("submit",event=>{
+  event.preventDefault();
+  const data = new FormData(event.target);
+  const subject = "Product Enquiry - "+data.get("product");
+  const body =
+    "Name: "+data.get("name")+"\n"+
+    "Email: "+data.get("email")+"\n"+
+    "Phone: "+data.get("phone")+"\n"+
+    "Product: "+data.get("product")+"\n"+
+    "Message: "+data.get("message");
+
+  document.getElementById("formNote").textContent =
+    "Your email app will open with the enquiry details. Please add the company's real email address before sending.";
+
+  const recipient = ""; // Add the company's official email address here
+  window.location.href =
+    "mailto:"+recipient+
+    "?subject="+encodeURIComponent(subject)+
+    "&body="+encodeURIComponent(body);
+});
 </script>
 </body>
 </html>
