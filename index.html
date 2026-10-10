@@ -2,243 +2,434 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shanthi Engineering Works</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: Arial, sans-serif;
-      color: #243247;
-      line-height: 1.7;
-      background: #f5f7fa;
-    }
-    header {
-      background: #102b46;
-      color: white;
-      padding: 20px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-    header h2 { font-size: 23px; }
-    nav { display: flex; flex-wrap: wrap; gap: 16px; }
-    nav a { color: white; text-decoration: none; font-size: 14px; }
-    nav a:hover { color: #ffc857; }
-    .hero {
-      background: linear-gradient(135deg, #102b46, #176b87);
-      color: white;
-      padding: 90px 8%;
-      text-align: center;
-    }
-    .hero h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.2; }
-    .hero p { max-width: 720px; margin: 20px auto; font-size: 18px; }
-    .btn {
-      display: inline-block;
-      background: #ffc857;
-      color: #102b46;
-      padding: 12px 24px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 12px;
-    }
-    section { padding: 60px 7%; scroll-margin-top: 20px; }
-    .section-heading { text-align: center; margin-bottom: 30px; }
-    .section-heading h2 { color: #123e5a; font-size: 30px; }
-    .section-heading p { color: #627184; margin-top: 8px; }
-    .about {
-      max-width: 900px;
-      margin: auto;
-      text-align: center;
-    }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
-      gap: 22px;
-    }
-    .card {
-      background: white;
-      border: 1px solid #e1e7ee;
-      border-radius: 10px;
-      padding: 24px;
-      box-shadow: 0 5px 16px #102b4610;
-    }
-    .card h3 { color: #145674; margin-bottom: 10px; font-size: 19px; }
-    .card p { color: #566477; font-size: 14px; }
-    .product-number {
-      color: #16819b;
-      font-weight: bold;
-      font-size: 13px;
-      margin-bottom: 8px;
-    }
-    #contact { background: #e8eff5; text-align: center; }
-    #contact p { margin: 8px 0; }
-    footer {
-      background: #102b46;
-      color: white;
-      text-align: center;
-      padding: 22px;
-      font-size: 14px;
-    }
-    @media (max-width: 600px) {
-      header { justify-content: center; text-align: center; }
-      nav { justify-content: center; }
-      .hero { padding: 65px 6%; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shanthi Engineering Works</title>
+<style>
+:root {
+  --green: #47764b;
+  --dark: #203d2b;
+  --cream: #f7f6ef;
+  --white: #ffffff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #26352b;
+  background: var(--cream);
+}
+header {
+  background: var(--white);
+  padding: 18px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #e4e8df;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo {
+  background: var(--green);
+  color: white;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 27px;
+}
+.brand h1 { margin: 0; font-size: 21px; color: var(--dark); }
+.brand p { margin: 5px 0 0; color: #6d796e; font-size: 12px; }
+nav { display: flex; gap: 20px; flex-wrap: wrap; }
+nav a {
+  color: var(--dark);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+nav a:hover { color: var(--green); }
+.hero {
+  padding: 55px 7% 48px;
+  background: linear-gradient(120deg, #e5eddf, #f7f6ef);
+}
+.hero-inner {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 30px;
+}
+.eyebrow {
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.hero h2 {
+  color: var(--dark);
+  font-size: clamp(32px, 5vw, 51px);
+  line-height: 1.12;
+  margin: 14px 0;
+}
+.hero p { color: #58675a; line-height: 1.8; }
+.hero-art {
+  min-height: 245px;
+  border-radius: 24px;
+  background: #d5e2ce;
+  display: grid;
+  place-items: center;
+  font-size: clamp(90px, 15vw, 150px);
+}
+.button {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 13px 20px;
+  background: var(--green);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+section { padding: 55px 7%; }
+.section-title { text-align: center; margin-bottom: 28px; }
+.section-title h2 { color: var(--dark); font-size: 30px; margin: 8px 0; }
+.section-title p { color: #69766a; line-height: 1.7; }
+.slider {
+  max-width: 920px;
+  margin: auto;
+  background: white;
+  border: 1px solid #e4e8df;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 14px 35px #203d2b12;
+}
+.product-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 24px;
+  background: #edf2e8;
+  color: var(--dark);
+}
+.product-top span { font-size: 13px; font-weight: bold; }
+.product-picture {
+  min-height: 270px;
+  margin: 24px 24px 0;
+  border-radius: 16px;
+  background: #f5f7f1;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.product-picture img {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+}
+.product-emoji { font-size: 115px; }
+.product-info { padding: 25px 30px 30px; }
+.product-info h3 { font-size: 27px; color: var(--dark); margin: 0 0 12px; }
+.product-info p { color: #59665a; line-height: 1.8; margin: 0; }
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  padding: 0 20px 25px;
+}
+.arrow {
+  background: var(--green);
+  border: 0;
+  color: white;
+  padding: 12px 19px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+}
+.arrow:hover { background: var(--dark); }
+#dots { display: flex; gap: 7px; flex-wrap: wrap; justify-content: center; }
+.dot {
+  border: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #c5d1c1;
+  padding: 0;
+  cursor: pointer;
+}
+.dot.active { background: var(--green); transform: scale(1.3); }
+.counter { text-align: center; color: #718071; font-size: 13px; padding-bottom: 20px; }
+.about-grid {
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.info-card {
+  padding: 23px;
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #e4e8df;
+}
+.info-card .symbol { font-size: 30px; }
+.info-card h3 { color: var(--dark); margin-bottom: 8px; }
+.info-card p { color: #657166; line-height: 1.7; font-size: 14px; }
+.contact {
+  text-align: center;
+  background: #e5eddf;
+}
+.contact h2 { color: var(--dark); }
+.contact p { line-height: 1.8; color: #58675a; }
+footer {
+  background: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 22px;
+  font-size: 13px;
+}
+@media (max-width: 700px) {
+  header { padding: 16px 5%; }
+  .brand h1 { font-size: 17px; }
+  nav { gap: 13px; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero { padding: 38px 5%; }
+  section { padding: 40px 5%; }
+  .about-grid { grid-template-columns: 1fr; }
+  .product-picture { margin: 14px 14px 0; min-height: 210px; }
+  .product-picture img { height: 220px; }
+  .product-emoji { font-size: 90px; }
+  .product-info { padding: 22px 20px; }
+  .product-info h3 { font-size: 23px; }
+  .product-top { padding: 16px; }
+  .controls { gap: 10px; }
+  .arrow { padding: 11px 13px; }
+}
+</style>
 </head>
 <body>
 
-  <header>
-    <h2>Shanthi Engineering Works</h2>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About Us</a>
-      <a href="#products">Products</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <div class="hero" id="home">
-      <h1>Shanthi Engineering Works</h1>
-      <p>Industrial Safety Equipment and Chlorine Emergency Protection Solutions</p>
-      <a class="btn" href="#products">Explore Our Products</a>
+<header>
+  <div class="brand">
+    <div class="logo">⚙️</div>
+    <div>
+      <h1>SHANTHI ENGINEERING WORKS</h1>
+      <p>Industrial Safety Equipment</p>
     </div>
+  </div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-    <section id="about">
-      <div class="section-heading">
-        <h2>About Us</h2>
-      </div>
-      <div class="about">
-        <p>
-          Welcome to Shanthi Engineering Works. Explore our range of
-          industrial safety equipment, chlorine leak emergency kits,
-          respiratory protection equipment and chemical protective wear.
-        </p>
-      </div>
-    </section>
+<div class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">Safety • Quality • Reliability</span>
+      <h2>Reliable Equipment for a Safer Industry</h2>
+      <p>Explore industrial safety equipment and chlorine leak protection products designed to support safer workplaces and emergency preparedness.</p>
+      <a class="button" href="#products">Explore Our Products →</a>
+    </div>
+    <div class="hero-art" aria-label="Industrial safety illustration">🏭</div>
+  </div>
+</div>
 
-    <section id="products">
-      <div class="section-heading">
-        <h2>Our Products</h2>
-        <p>Industrial safety and emergency protection equipment</p>
-      </div>
+<section id="products">
+  <div class="section-title">
+    <span class="eyebrow">Product Catalogue</span>
+    <h2>Our Products</h2>
+    <p>One product per slide. Use Next and Previous to view the full catalogue.</p>
+  </div>
 
-      <div class="products">
+  <div class="slider">
+    <div class="product-top">
+      <span>SHANTHI ENGINEERING WORKS</span>
+      <span id="topCount">PRODUCT 1 OF 15</span>
+    </div>
+    <div class="product-picture" id="picture">
+      <div class="product-emoji" id="emoji">🧰</div>
+    </div>
+    <div class="product-info">
+      <h3 id="productName">100 kg Tonner Emergency Kit</h3>
+      <p id="productDescription"></p>
+    </div>
+    <div class="controls">
+      <button class="arrow" id="prev" type="button">← Previous</button>
+      <div id="dots" aria-label="Choose product slide"></div>
+      <button class="arrow" id="next" type="button">Next →</button>
+    </div>
+    <div class="counter" id="counter" aria-live="polite">1 / 15</div>
+  </div>
+</section>
 
-        <article class="card">
-          <div class="product-number">PRODUCT 01</div>
-          <h3>100 kg Tonner Emergency Kit</h3>
-          <p>Designed to help control chlorine gas leaks from 100 kg tonners. Includes essential tools and sealing devices to contain leaks and minimize hazardous gas release.</p>
-        </article>
+<section id="about">
+  <div class="section-title">
+    <span class="eyebrow">Who We Are</span>
+    <h2>About Us</h2>
+    <p>Shanthi Engineering Works presents industrial safety and chlorine handling equipment for workplace protection and emergency readiness.</p>
+  </div>
+  <div class="about-grid">
+    <div class="info-card">
+      <div class="symbol">🛡️</div>
+      <h3>Safety First</h3>
+      <p>Safety-focused equipment for industrial environments and emergency response preparation.</p>
+    </div>
+    <div class="info-card">
+      <div class="symbol">⚙️</div>
+      <h3>Industrial Products</h3>
+      <p>A catalogue of protective equipment, leak-control kits and respiratory safety products.</p>
+    </div>
+    <div class="info-card">
+      <div class="symbol">🤝</div>
+      <h3>Reliable Support</h3>
+      <p>Contact our team for product details, availability and enquiries.</p>
+    </div>
+  </div>
+</section>
 
-        <article class="card">
-          <div class="product-number">PRODUCT 02</div>
-          <h3>900 kg Tonner Emergency Kit</h3>
-          <p>Designed for chlorine gas leak control on 900 kg tonners, with essential tools and sealing devices to help contain leaks and reduce hazardous gas release.</p>
-        </article>
+<section class="contact" id="contact">
+  <span class="eyebrow">Get in Touch</span>
+  <h2>Contact Us</h2>
+  <p>For product information and enquiries, contact Shanthi Engineering Works.</p>
+  <p>Please add your official phone number, email address and company address here.</p>
+</section>
 
-        <article class="card">
-          <div class="product-number">PRODUCT 03</div>
-          <h3>Chlorine Leak Detector</h3>
-          <p>Monitors chlorine gas concentration and provides audible and visual alarms when a leak is detected, supporting early warning and workplace safety.</p>
-        </article>
+<footer>
+  © 2026 Shanthi Engineering Works. All rights reserved.
+</footer>
 
-        <article class="card">
-          <div class="product-number">PRODUCT 04</div>
-          <h3>Safety Shower</h3>
-          <p>Emergency shower providing a high flow of clean water to wash chemical contaminants from personnel and support emergency decontamination.</p>
-        </article>
+<script>
+const products = [
+  {
+    name: "100 kg Tonner Emergency Kit",
+    emoji: "🧰",
+    description: "Designed to help control chlorine gas leaks from 100 kg tonners. The kit contains tools and sealing devices intended to help contain leaks and minimise gas release."
+  },
+  {
+    name: "900 kg Tonner Emergency Kit",
+    emoji: "🧰",
+    description: "An emergency leak-control kit designed for 900 kg chlorine tonners, with specialised tools and sealing equipment for trained emergency responders."
+  },
+  {
+    name: "Chlorine Leak Detector",
+    emoji: "🚨",
+    description: "Monitors chlorine concentration in the surrounding air and provides audible and visual alarms when detected levels reach configured thresholds."
+  },
+  {
+    name: "Safety Shower",
+    emoji: "🚿",
+    description: "Emergency decontamination equipment that delivers a high flow of clean water to help rinse hazardous substances from the body after exposure."
+  },
+  {
+    name: "900 kg Tonner Hood",
+    emoji: "🛢️",
+    description: "A robust hood designed as part of a chlorine tonner leak-control system to help contain certain leaks when used by trained personnel."
+  },
+  {
+    name: "100 kg Tonner Hood",
+    emoji: "🛢️",
+    description: "A protective hood intended to help temporarily contain leaks from 100 kg chlorine tonners as part of an appropriate emergency response procedure."
+  },
+  {
+    name: "Safety Breathing Apparatus (SCBA)",
+    emoji: "🫁",
+    description: "Self-contained breathing apparatus supplies breathing air to trained users in hazardous atmospheres, including oxygen-deficient or toxic environments."
+  },
+  {
+    name: "Glass Fronted FRP Cabinet",
+    emoji: "🗄️",
+    description: "A weather-resistant cabinet designed to provide organised and secure storage for breathing apparatus and related safety equipment."
+  },
+  {
+    name: "Wind Sock",
+    emoji: "🌬️",
+    description: "A visual wind-direction indicator that helps personnel assess wind direction during site safety monitoring and emergency evacuation planning."
+  },
+  {
+    name: "Canister Type Respiratory Mask",
+    emoji: "😷",
+    description: "A reusable respiratory mask designed to work with compatible replaceable filter canisters for specified airborne contaminants. Use only with suitable approved filters."
+  },
+  {
+    name: "PVC Apron",
+    emoji: "🥼",
+    description: "A protective PVC apron designed to help protect clothing and the body from chemical splashes when appropriate for the substance and task."
+  },
+  {
+    name: "PVC Full Suit",
+    emoji: "🦺",
+    description: "A full-body PVC protective suit designed to help provide coverage against specified chemical splashes when selected for the relevant hazard."
+  },
+  {
+    name: "Safety Helmet",
+    emoji: "⛑️",
+    description: "Industrial head protection designed to help reduce the risk of injury from impacts and falling objects when correctly selected and worn."
+  },
+  {
+    name: "Safety Gloves",
+    emoji: "🧤",
+    description: "Protective gloves designed for industrial tasks. Chemical compatibility and the correct glove type should be checked for each substance and application."
+  },
+  {
+    name: "Safety Shoes",
+    emoji: "🥾",
+    description: "Industrial safety footwear designed with features such as slip-resistant soles and reinforced toe protection, depending on the selected model."
+  }
+];
 
-        <article class="card">
-          <div class="product-number">PRODUCT 05</div>
-          <h3>900 kg Tonner Hood</h3>
-          <p>Robust leak control hood designed for 900 kg chlorine tonners to help contain hazardous gas leaks.</p>
-        </article>
+let current = 0;
+const nameEl = document.getElementById("productName");
+const descriptionEl = document.getElementById("productDescription");
+const emojiEl = document.getElementById("emoji");
+const pictureEl = document.getElementById("picture");
+const dotsEl = document.getElementById("dots");
 
-        <article class="card">
-          <div class="product-number">PRODUCT 06</div>
-          <h3>100 kg Tonner Hood</h3>
-          <p>Protective hood designed to temporarily seal chlorine leaks from 100 kg tonners until permanent repairs can be made.</p>
-        </article>
+function showProduct(index) {
+  current = (index + products.length) % products.length;
+  const p = products[current];
 
-        <article class="card">
-          <div class="product-number">PRODUCT 07</div>
-          <h3>Safety Breathing Apparatus (SCBA)</h3>
-          <p>Self-contained breathing apparatus supplying breathing air for use in toxic or oxygen-deficient environments by trained personnel.</p>
-        </article>
+  nameEl.textContent = p.name;
+  descriptionEl.textContent = p.description;
+  emojiEl.textContent = p.emoji;
+  document.getElementById("counter").textContent =
+    (current + 1) + " / " + products.length;
+  document.getElementById("topCount").textContent =
+    "PRODUCT " + (current + 1) + " OF " + products.length;
 
-        <article class="card">
-          <div class="product-number">PRODUCT 08</div>
-          <h3>Glass Fronted FRP Cabinet for Breathing Apparatus</h3>
-          <p>Durable FRP storage cabinet with a transparent front for secure, weather-resistant and accessible breathing apparatus storage.</p>
-        </article>
+  pictureEl.querySelectorAll("img").forEach(img => img.remove());
+  emojiEl.style.display = "block";
 
-        <article class="card">
-          <div class="product-number">PRODUCT 09</div>
-          <h3>Wind Sock</h3>
-          <p>Wind direction indicator used during gas leak emergencies to help identify wind flow and support safer evacuation planning.</p>
-        </article>
+  [...dotsEl.children].forEach((dot, i) => {
+    dot.classList.toggle("active", i === current);
+    dot.setAttribute("aria-current", i === current ? "true" : "false");
+  });
+}
 
-        <article class="card">
-          <div class="product-number">PRODUCT 10</div>
-          <h3>Canister Type Respiratory Mask</h3>
-          <p>Reusable respiratory mask with replaceable canisters, designed to protect against chlorine gas and other hazardous airborne contaminants when correctly selected and used.</p>
-        </article>
+products.forEach((p, i) => {
+  const dot = document.createElement("button");
+  dot.className = "dot";
+  dot.type = "button";
+  dot.setAttribute("aria-label", "Show product " + (i + 1) + ": " + p.name);
+  dot.addEventListener("click", () => showProduct(i));
+  dotsEl.appendChild(dot);
+});
 
-        <article class="card">
-          <div class="product-number">PRODUCT 11</div>
-          <h3>PVC Apron</h3>
-          <p>Lightweight, chemical-resistant apron designed to protect the wearer from liquid chemical splashes during handling operations.</p>
-        </article>
+document.getElementById("prev").addEventListener("click", () => {
+  showProduct(current - 1);
+});
+document.getElementById("next").addEventListener("click", () => {
+  showProduct(current + 1);
+});
 
-        <article class="card">
-          <div class="product-number">PRODUCT 12</div>
-          <h3>PVC Full Suit</h3>
-          <p>Chemical-resistant full-body suit designed to protect against hazardous chemical splashes and industrial contaminants.</p>
-        </article>
-
-        <article class="card">
-          <div class="product-number">PRODUCT 13</div>
-          <h3>Safety Helmet</h3>
-          <p>Industrial safety helmet designed to protect the head from impacts, falling objects and workplace hazards.</p>
-        </article>
-
-        <article class="card">
-          <div class="product-number">PRODUCT 14</div>
-          <h3>Safety Gloves</h3>
-          <p>Durable PVC gloves designed to provide resistance to chemicals, oils, acids and alkalis while allowing comfort and flexibility.</p>
-        </article>
-
-        <article class="card">
-          <div class="product-number">PRODUCT 15</div>
-          <h3>Safety Shoes</h3>
-          <p>Heavy-duty industrial safety shoes with slip-resistant soles and reinforced toe protection.</p>
-        </article>
-
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="section-heading">
-        <h2>Contact Us</h2>
-        <p>Contact us for product information and enquiries.</p>
-      </div>
-      <p><strong>Company:</strong> Shanthi Engineering Works</p>
-      <p><strong>Phone:</strong> To be added</p>
-      <p><strong>Email:</strong> To be added</p>
-      <p><strong>Address:</strong> To be added</p>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2026 Shanthi Engineering Works. All rights reserved.</p>
-  </footer>
-
+showProduct(0);
+</script>
 </body>
 </html>
