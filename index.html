@@ -1,200 +1,200 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shanthi Engineering Works and Consultants</title>
-
-<style>
-*{box-sizing:border-box;scroll-behavior:smooth}
-body{margin:0;font-family:Arial,sans-serif;color:#203047;background:#f5f8fc}
-header{background:#092b50;color:white;padding:18px 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-header h2{margin:0;font-size:23px}
- header > div{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-header > div img{
-  height:50px;
-  width:auto;
-}
-
-header > div h2{
-  margin:0;
-  font-size:23px;
-} 
-nav a{color:white;text-decoration:none;margin:0 9px;font-weight:bold;font-size:14px}
-.hero{position:relative;min-height:350px;background:#0b345c;color:white;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:45px 20px}
-.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.30;transition:opacity .6s}
-.hero-content{position:relative;z-index:1;max-width:800px}
-.hero h1{font-size:clamp(30px,5vw,48px);margin:0 0 14px}
-.hero p{font-size:18px;line-height:1.6}
-.btn{display:inline-block;background:#f5a623;color:#092b50;border:0;padding:13px 22px;border-radius:5px;font-weight:bold;text-decoration:none;cursor:pointer;margin:8px 5px}
-section{padding:45px 6%}
-.section-title{text-align:center;color:#092b50;font-size:30px;margin:0 0 12px}
-.intro{text-align:center;max-width:800px;margin:0 auto 25px;line-height:1.7}
-.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:25px}
-.feature{background:white;padding:22px;border-radius:10px;box-shadow:0 3px 12px #0000000c}
-.feature h3{color:#0b477b}
-.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:30px}
-.product-card{background:white;border-radius:10px;overflow:hidden;box-shadow:0 4px 14px #00000012;cursor:pointer;transition:transform .2s}
-.product-card:hover{transform:translateY(-5px)}
-.product-card img{width:100%;height:200px;object-fit:contain;background:white;padding:10px}
-.product-card h3{font-size:17px;padding:0 15px;color:#092b50}
-.product-card p{padding:0 15px 15px;color:#586779;line-height:1.5;font-size:14px}
-.detail-box{background:white;border-radius:10px;padding:25px;max-width:900px;margin:25px auto;box-shadow:0 4px 14px #00000012}
-.detail-box img{width:100%;height:340px;object-fit:contain}
-.detail-box h2{color:#092b50}
-.detail-box p{line-height:1.8}
-.hidden{display:none}
-.contact{background:#e8f1fa}
-footer{background:#092b50;color:white;text-align:center;padding:22px;line-height:1.7}
-@media(max-width:600px){header{justify-content:center;text-align:center}nav a{display:inline-block;margin:7px 5px}.hero{min-height:320px}section{padding:35px 5%}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shanthi Engineering Works and Consultants</title>
+  <meta name="description" content="Shanthi Engineering Works and Consultants - engineering, industrial and safety equipment. Contact us for product enquiries.">
+  <style>
+    :root{--navy:#092b50;--blue:#145da0;--red:#e63946;--light:#f3f7fb;--ink:#203047;--muted:#5b6b7d}
+    *{box-sizing:border-box;scroll-behavior:smooth}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.6}
+    header{background:var(--navy);color:#fff;padding:14px 5%;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;position:sticky;top:0;z-index:10;box-shadow:0 3px 12px #0002}
+    .brand{display:flex;align-items:center;gap:12px;min-width:240px}
+    .brand img{height:58px;width:68px;object-fit:contain;background:#fff;border-radius:8px;padding:4px}
+    .brand h2{font-size:clamp(16px,2vw,23px);line-height:1.2;margin:0}
+    .brand small{display:block;color:#d9e7f5;font-size:12px;margin-top:4px}
+    nav{display:flex;gap:16px;flex-wrap:wrap}
+    nav a{color:#fff;text-decoration:none;font-weight:700;font-size:14px}
+    nav a:hover{color:#ffd166}
+    .hero{min-height:440px;display:flex;align-items:center;background:linear-gradient(90deg,rgba(4,25,48,.92),rgba(4,25,48,.56)),url('Shanthi%20Engineering%20Works%20Website%20Mockup.png') center/cover no-repeat;color:white;padding:70px 7%}
+    .hero-inner{max-width:720px}
+    .eyebrow{color:#ffd166;text-transform:uppercase;letter-spacing:2px;font-size:13px;font-weight:bold}
+    .hero h1{font-size:clamp(32px,5vw,54px);line-height:1.1;margin:12px 0}
+    .hero p{font-size:18px;max-width:620px;color:#edf4fb}
+    .btn{display:inline-block;padding:12px 20px;border-radius:6px;text-decoration:none;font-weight:bold;margin:8px 8px 0 0;border:0;cursor:pointer}
+    .btn-primary{background:var(--red);color:white}.btn-outline{border:1px solid white;color:white}
+    section{padding:64px 7%}
+    .section-head{text-align:center;max-width:760px;margin:0 auto 34px}
+    .section-head h2{color:var(--navy);font-size:32px;margin:0 0 10px}
+    .section-head p{color:var(--muted);margin:0}
+    .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;max-width:1100px;margin:auto}
+    .about-box{background:var(--light);padding:26px;border-radius:12px;border-left:5px solid var(--blue)}
+    .feature-list{padding-left:20px}
+    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1150px;margin:auto}
+    .card{background:white;border:1px solid #e1e9f1;border-radius:12px;padding:22px;box-shadow:0 5px 18px #092b500c}
+    .card .icon{font-size:27px}
+    .card h3{color:var(--navy);margin:8px 0}
+    .soft{background:var(--light)}
+    .applications{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .applications span{background:white;border:1px solid #dce5ef;border-radius:30px;padding:10px 16px;font-weight:bold}
+    .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:26px;max-width:1100px;margin:auto}
+    .contact-panel{background:var(--navy);color:white;border-radius:12px;padding:28px}
+    .contact-panel h3{margin-top:0}
+    .contact-panel a{color:#fff}
+    form{background:white;border:1px solid #e1e9f1;border-radius:12px;padding:26px;box-shadow:0 5px 18px #092b500c}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    label{display:block;font-weight:bold;font-size:14px;margin:0 0 6px}
+    input,select,textarea{width:100%;padding:12px;border:1px solid #cbd6e2;border-radius:6px;font:inherit;margin-bottom:16px;background:#fff}
+    input:focus,select:focus,textarea:focus{outline:2px solid #9ac5ee;border-color:var(--blue)}
+    textarea{min-height:120px;resize:vertical}
+    .form-note{font-size:12px;color:var(--muted);margin:10px 0 0}
+    footer{background:#061d36;color:#d9e7f5;text-align:center;padding:24px 6%;font-size:14px}
+    footer p{margin:4px}
+    @media(max-width:800px){header{position:static}.about-grid,.contact-grid{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{min-height:380px}}
+    @media(max-width:540px){nav{gap:10px}.cards{grid-template-columns:1fr}.form-row{grid-template-columns:1fr;gap:0}section{padding:46px 5%}.hero{padding:54px 5%}.brand img{height:50px;width:58px}}
+  </style>
 </head>
-
 <body>
 <header>
-  <div style="display:flex; align-items:center; gap:12px;">
-    <img src="SEW_Logo.jpg-removebg-preview.png" alt="SEW Logo" style="height:50px; width:auto;">
-    <h2>Shanthi Engineering Works and Consultants</h2>
+  <div class="brand">
+    <img src="SEW_Logo.jpg-removebg-preview.png" alt="Shanthi Engineering Works logo">
+    <div>
+      <h2>Shanthi Engineering Works and Consultants</h2>
+      <small>Engineering • Industrial • Safety Solutions</small>
+    </div>
   </div>
-
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#products">Products</a>
-    <a href="#applications">Applications</a>
-    <a href="#contact">Contact</a>
+  <nav aria-label="Main navigation">
+    <a href="#home">Home</a><a href="#about">About</a><a href="#products">Products</a>
+    <a href="#applications">Applications</a><a href="#enquiry">Enquiry</a><a href="#contact">Contact</a>
   </nav>
 </header>
-<section class="hero" id="home">
-  <img id="bannerImage" src="Shanthi%20Engineering%20Works%20Website%20Mockup.png" alt="Shanthi Engineering Works banner">
-  <div class="hero-content">
-    <h1>Safety & Emergency Equipment</h1>
-    <p>Reliable safety equipment and emergency solutions for industrial environments.</p>
-    <a class="btn" href="#products">View Products</a>
-    <a class="btn" href="#contact">Contact Us</a>
-  </div>
-</section>
 
-<section id="about">
-  <h2 class="section-title">About Us</h2>
-  <p class="intro">Shanthi Engineering Works provides safety and emergency equipment designed to support workplace safety and emergency preparedness. Explore our range of industrial safety products below.</p>
-  <div class="features">
-    <div class="feature"><h3>Safety Equipment</h3><p>Equipment for industrial safety and emergency response.</p></div>
-    <div class="feature"><h3>Emergency Preparedness</h3><p>Products that support preparation for hazardous situations.</p></div>
-    <div class="feature"><h3>Industrial Solutions</h3><p>A range of equipment for different workplace requirements.</p></div>
-  </div>
-</section>
+<main>
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="eyebrow">Engineering and Safety Solutions</div>
+      <h1>Reliable Equipment.<br>Safer Operations.</h1>
+      <p>Explore industrial, engineering and safety equipment solutions for your project and operational needs.</p>
+      <a class="btn btn-primary" href="#products">Explore Products</a>
+      <a class="btn btn-outline" href="#enquiry">Send an Enquiry</a>
+    </div>
+  </section>
 
-<section id="products">
-  <h2 class="section-title">Our Products</h2>
-  <p class="intro">Select any product to view its image and details.</p>
+  <section id="about">
+    <div class="section-head"><h2>About Us</h2><p>Engineering support and equipment for industrial and safety applications.</p></div>
+    <div class="about-grid">
+      <div>
+        <h3>Shanthi Engineering Works and Consultants</h3>
+        <p>We present a range of engineering and industrial equipment for customers looking for practical equipment options and product information. Contact us with your requirements so our team can discuss suitable products and specifications.</p>
+        <ul class="feature-list"><li>Industrial and engineering equipment</li><li>Safety equipment and accessories</li><li>Product information and enquiry support</li></ul>
+      </div>
+      <div class="about-box"><h3>Have a requirement?</h3><p>Share the product name, quantity and application. Our team can follow up using the contact details you provide.</p><a class="btn btn-primary" href="#enquiry">Enquire Now</a></div>
+    </div>
+  </section>
 
-  <div id="productGrid" class="products-grid"></div>
+  <section id="products" class="soft">
+    <div class="section-head"><h2>Our Products</h2><p>Contact us for availability, specifications and pricing.</p></div>
+    <div class="cards">
+      <article class="card"><div class="icon">⚙️</div><h3>Ejector</h3><p>Equipment used in vacuum-based dosing and process systems.</p></article>
+      <article class="card"><div class="icon">📏</div><h3>Flow Meter</h3><p>For monitoring flow rates in compatible installations.</p></article>
+      <article class="card"><div class="icon">🔧</div><h3>Vacuum Regulator</h3><p>Vacuum control equipment for relevant system setups.</p></article>
+      <article class="card"><div class="icon">🛠️</div><h3>Pressure Reducing Valve</h3><p>Helps regulate pressure in compatible applications.</p></article>
+      <article class="card"><div class="icon">🎛️</div><h3>Vacuum Switch</h3><p>Switching and monitoring component for vacuum systems.</p></article>
+      <article class="card"><div class="icon">🔩</div><h3>Auxiliary Valve & Clamp</h3><p>Supporting valves, clamps and connection accessories.</p></article>
+      <article class="card"><div class="icon">🧪</div><h3>Chlorination Tank</h3><p>Equipment options for water-treatment installations.</p></article>
+      <article class="card"><div class="icon">🏭</div><h3>Floor-Mounted Chlorinator</h3><p>Chlorination equipment for suitable treatment facilities.</p></article>
+      <article class="card"><div class="icon">🔗</div><h3>Manifold & Copper Pipe</h3><p>Connection and distribution components for compatible systems.</p></article>
+      <article class="card"><div class="icon">🧯</div><h3>Fire Safety Equipment</h3><p>Safety equipment options for workplaces and facilities.</p></article>
+      <article class="card"><div class="icon">🚨</div><h3>Emergency Safety Products</h3><p>Enquire about safety and emergency equipment requirements.</p></article>
+      <article class="card"><div class="icon">📦</div><h3>Other Requirements</h3><p>Tell us what product or component you are looking for.</p></article>
+    </div>
+  </section>
 
-  <div id="productDetail" class="detail-box hidden">
-    <button class="btn" onclick="showAllProducts()">← Back to Products</button>
-    <img id="detailImage" src="" alt="Selected product">
-    <h2 id="detailName"></h2>
-    <p id="detailDescription"></p>
-    <p><strong>Company:</strong> Shanthi Engineering Works</p>
-    <a class="btn" href="#contact">Enquire About This Product</a>
-  </div>
-</section>
+  <section id="applications">
+    <div class="section-head"><h2>Applications</h2><p>Equipment enquiries for a range of facilities and industrial environments.</p></div>
+    <div class="applications"><span>Water Treatment</span><span>Industrial Plants</span><span>Commercial Facilities</span><span>Safety Operations</span><span>Engineering Projects</span></div>
+  </section>
 
-<section id="applications">
-  <h2 class="section-title">Applications</h2>
-  <p class="intro">Our product range is intended to support safety planning in industrial facilities, workplaces, and emergency response settings. Choose equipment according to the specific site requirements and applicable safety standards.</p>
-</section>
+  <section id="enquiry" class="soft">
+    <div class="section-head"><h2>Product Enquiry</h2><p>Fill in the form below with your details and requirements.</p></div>
+    <div class="contact-grid">
+      <div class="contact-panel">
+        <h3>Let's Discuss Your Requirement</h3>
+        <p>Provide correct contact details and a short description of the product you need.</p>
+        <p><strong>Company:</strong><br>Shanthi Engineering Works and Consultants</p>
+        <p><strong>What to include:</strong></p>
+        <ul><li>Product or equipment name</li><li>Required quantity</li><li>Application or project details</li><li>Best time to contact you</li></ul>
+        <p>Submitting this form opens your email app with the enquiry prepared. You can review and send it from there.</p>
+      </div>
+      <form id="enquiryForm">
+        <div class="form-row">
+          <div><label for="name">Full Name *</label><input id="name" name="name" autocomplete="name" required placeholder="Enter your full name"></div>
+          <div><label for="phone">Phone Number *</label><input id="phone" name="phone" type="tel" autocomplete="tel" required pattern="[0-9+() -]{8,20}" placeholder="Enter phone number"></div>
+        </div>
+        <div class="form-row">
+          <div><label for="email">Email Address *</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+          <div><label for="product">Product Interested In *</label>
+            <select id="product" name="product" required>
+              <option value="">Select a product</option>
+              <option>Ejector</option><option>Flow Meter</option><option>Vacuum Regulator</option>
+              <option>Pressure Reducing Valve</option><option>Vacuum Switch</option><option>Auxiliary Valve</option>
+              <option>Clamp</option><option>Chlorination Tank</option><option>Floor-Mounted Chlorinator</option>
+              <option>Manifold</option><option>Copper Pipe</option><option>Fire Safety Equipment</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div><label for="quantity">Quantity (optional)</label><input id="quantity" name="quantity" placeholder="e.g. 2 units"></div>
+          <div><label for="city">City / Location (optional)</label><input id="city" name="city" autocomplete="address-level2" placeholder="Your city"></div>
+        </div>
+        <label for="message">Message / Requirements *</label>
+        <textarea id="message" name="message" required placeholder="Describe the product, specifications or project requirement"></textarea>
+        <button class="btn btn-primary" type="submit">Prepare Enquiry Email</button>
+        <p class="form-note">This form does not send automatically. Your email app opens so you can review and send the enquiry.</p>
+        <p id="formStatus" role="status" class="form-note"></p>
+      </form>
+    </div>
+  </section>
 
-<section id="contact" class="contact">
-  <h2 class="section-title">Contact Us</h2>
-  <p class="intro">For product information and enquiries, contact Shanthi Engineering Works.</p>
-  <div style="text-align:center">
-    <p><strong>Company:</strong> Shanthi Engineering Works</p>
-    <p>Please add your official phone number, email address, and business address here.</p>
-  </div>
-</section>
+  <section id="contact">
+    <div class="section-head"><h2>Contact Us</h2><p>We welcome product and project enquiries.</p></div>
+    <div class="about-box" style="max-width:800px;margin:auto;text-align:center">
+      <h3>Shanthi Engineering Works and Consultants</h3>
+      <p>Use the Product Enquiry form to share your name, email, phone number and requirement.</p>
+      <a class="btn btn-primary" href="#enquiry">Open Enquiry Form</a>
+    </div>
+  </section>
+</main>
 
 <footer>
-  <strong>Shanthi Engineering Works</strong><br>
-  Safety & Emergency Equipment<br>
-  © <span id="year"></span> All rights reserved.
+  <p><strong>Shanthi Engineering Works and Consultants</strong></p>
+  <p>Engineering • Industrial • Safety Solutions</p>
+  <p>© <span id="year"></span> Shanthi Engineering Works and Consultants. All rights reserved.</p>
 </footer>
-
 <script>
-const products = [
- {name:"100 kg Tonner Emergency Kit",desc:"Emergency kit intended to support response procedures for incidents involving 100 kg chlorine tonners. Use only with appropriate training and site procedures."},
- {name:"900 kg Tonner Emergency Kit",desc:"Emergency kit intended for response planning involving 900 kg chlorine tonners. Selection and use must follow the manufacturer's instructions and trained emergency procedures."},
- {name:"Chlorine Leak Detector",desc:"Equipment used to detect chlorine gas leaks. Select and install a suitable detector according to the site risk assessment and manufacturer's instructions."},
- {name:"Safety Shower",desc:"Emergency washing equipment intended to help rinse hazardous substances from the body after exposure. Placement and maintenance should follow applicable safety requirements."},
- {name:"100 kg Tonner Hood",desc:"Hood equipment associated with emergency response arrangements for 100 kg chlorine tonners. Use only as part of an approved, trained response procedure."},
- {name:"900 kg Tonner Hood",desc:"Hood equipment associated with emergency response arrangements for 900 kg chlorine tonners. Follow the manufacturer's instructions and applicable safety procedures."},
- {name:"Safety Breathing Apparatus (SCBA)",desc:"Self-contained breathing apparatus provides respiratory protection when correctly selected, inspected, and used by trained personnel."},
- {name:"Glass Fronted FRP Cabinet for Breathing Apparatus",desc:"A cabinet designed to store and display breathing apparatus while helping keep equipment organized and accessible."},
- {name:"Canister Type Respiratory Mask",desc:"Respiratory protection equipment that must be selected for the specific contaminant and exposure conditions. It is not suitable for every hazardous atmosphere."},
- {name:"Wind Sock",desc:"A visual indicator of wind direction that can help personnel identify wind conditions during site safety planning and emergency response."},
- {name:"PVC Apron",desc:"Protective apron intended to help protect clothing and parts of the body from suitable splashes. Confirm chemical compatibility before use."},
- {name:"PVC Full Suit",desc:"Protective suit intended for specified splash or chemical exposure conditions. Check the product rating and chemical compatibility before use."},
- {name:"Safety Gloves",desc:"Hand protection selected for the task and hazards involved. Choose a glove material and rating compatible with the chemicals or work conditions."},
- {name:"Safety Helmet",desc:"Head protection intended for suitable workplace hazards. Select the correct helmet type and inspect it according to the manufacturer's guidance."},
- {name:"Safety Goggles",desc:"Eye protection designed to help protect against relevant workplace hazards. Select a suitable type for the specific task and exposure."},
- {name:"Safety Shoes",desc:"Protective footwear selected to suit workplace risks such as impact, slipping, or other specified hazards."}
-];
-
-const grid = document.getElementById("productGrid");
-
-products.forEach((product, index) => {
-  const number = String(index + 1).padStart(2, "0");
-  const card = document.createElement("article");
-  card.className = "product-card";
-  card.innerHTML = `
-    <img src="product-${number}.png" alt="${product.name}"
-      onerror="this.alt='Image not available';this.style.opacity='0.35'">
-    <h3>${product.name}</h3>
-    <p>${product.desc}</p>
-  `;
-  card.addEventListener("click", () => showProduct(index));
-  grid.appendChild(card);
-});
-
-function showProduct(index) {
-  const product = products[index];
-  const number = String(index + 1).padStart(2, "0");
-
-  document.getElementById("detailImage").src = `product-${number}.png`;
-  document.getElementById("detailImage").alt = product.name;
-  document.getElementById("detailName").textContent = product.name;
-  document.getElementById("detailDescription").textContent = product.desc;
-
-  grid.classList.add("hidden");
-  document.getElementById("productDetail").classList.remove("hidden");
-  document.getElementById("productDetail").scrollIntoView({behavior:"smooth"});
-}
-
-function showAllProducts() {
-  document.getElementById("productDetail").classList.add("hidden");
-  grid.classList.remove("hidden");
-  document.getElementById("products").scrollIntoView({behavior:"smooth"});
-}
-
-let bannerNumber = 1;
-setInterval(() => {
-  bannerNumber = bannerNumber >= 16 ? 1 : bannerNumber + 1;
-  const image = document.getElementById("bannerImage");
-  image.style.opacity = "0";
-  setTimeout(() => {
-    image.src = `product-${String(bannerNumber).padStart(2,"0")}.png`;
-    image.style.opacity = "0.30";
-  }, 300);
-}, 3500);
-
-document.getElementById("year").textContent = new Date().getFullYear();
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('enquiryForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const data = new FormData(this);
+    const subject = 'Website Product Enquiry - ' + data.get('product');
+    const body = [
+      'Product Enquiry',
+      '',
+      'Full Name: ' + data.get('name'),
+      'Phone Number: ' + data.get('phone'),
+      'Email: ' + data.get('email'),
+      'Product: ' + data.get('product'),
+      'Quantity: ' + (data.get('quantity') || 'Not specified'),
+      'City / Location: ' + (data.get('city') || 'Not specified'),
+      '',
+      'Message / Requirements:',
+      data.get('message')
+    ].join('\n');
+    document.getElementById('formStatus').textContent = 'Opening your email app. Please check the recipient address in the code before using the form.';
+    /* Replace YOUR_COMPANY_EMAIL@example.com with the company's real email address before publishing. */
+    window.location.href = 'mailto:YOUR_COMPANY_EMAIL@example.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
 </script>
 </body>
 </html>
