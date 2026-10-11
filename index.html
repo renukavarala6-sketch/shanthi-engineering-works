@@ -4,296 +4,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Shanthi Engineering Works and Consultants</title>
-
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
-  color: #1d2c40;
-  line-height: 1.6;
-}
-
-header {
-  background: #082b50;
-  color: white;
-  padding: 20px 6%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-nav a:hover {
-  color: #45d6e8;
-}
-
-.hero {
-  min-height: 540px;
-  padding: 70px 7%;
-  display: flex;
-  align-items: center;
-  color: white;
-  background:
-    linear-gradient(90deg, rgba(3,25,49,.94),
-    rgba(3,25,49,.48)),
-    url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1800&q=85")
-    center/cover no-repeat;
-}
-
-.hero-content {
-  max-width: 750px;
-}
-
-.hero h1 {
-  font-size: clamp(34px, 5vw, 58px);
-  line-height: 1.15;
-  margin-bottom: 20px;
-}
-
-.hero p {
-  font-size: 19px;
-  margin-bottom: 28px;
-}
-
-.btn {
-  display: inline-block;
-  background: #08a9cf;
-  color: white;
-  text-decoration: none;
-  padding: 13px 25px;
-  border-radius: 5px;
-  font-weight: bold;
-  margin: 5px;
-}
-
-.btn:hover {
-  background: #087eaa;
-}
-
-section {
-  padding: 65px 7%;
-}
-
-.section-title {
-  text-align: center;
-  color: #082b50;
-  font-size: 34px;
-  margin-bottom: 12px;
-}
-
-.section-intro {
-  text-align: center;
-  max-width: 760px;
-  margin: 0 auto 35px;
-  color: #58677b;
-}
-
-.about {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 35px;
-  align-items: center;
-}
-
-.about img {
-  width: 100%;
-  height: 360px;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-.about h3 {
-  font-size: 28px;
-  color: #082b50;
-  margin-bottom: 15px;
-}
-
-.about p {
-  margin-bottom: 14px;
-}
-
-.products {
-  background: #eaf1f8;
-}
-.product-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
-
-.product-card {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 25px;
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 5px 18px rgba(0,0,0,.09);
-  transition: transform .2s;
-  padding: 15px;
-}
-
-.product-card:hover {
-  transform: translateY(-3px);
-}
-
-.product-card img {
-  width: 280px;
-  min-width: 280px;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-  border-radius: 8px;
-}
-
-.product-card div {
-  padding: 15px;
-  flex: 1;
-}
-
-.product-card h3 {
-  color: #082b50;
-  font-size: 23px;
-  margin-bottom: 8px;
-}
-
-.product-card p {
-  color: #58677b;
-  font-size: 16px;
-}
-
-@media(max-width: 550px) {
-  .product-card {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .product-card img {
-    width: 100%;
-    min-width: 0;
-    height: 220px;
-  }
-
-  .product-card div {
-    padding: 10px;
-  }
-}
-
-.app-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.app-card {
-  background: white;
-  padding: 27px;
-  border-left: 5px solid #08a9cf;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,.06);
-}
-
-.app-card h3 {
-  color: #082b50;
-  margin-bottom: 10px;
-}
-
-.contact {
-  background: #082b50;
-  color: white;
-  text-align: center;
-}
-
-.contact .section-title {
-  color: white;
-}
-
-.contact p {
-  margin: 12px auto;
-  max-width: 700px;
-}
-
-footer {
-  background: #041b32;
-  color: white;
-  text-align: center;
-  padding: 20px;
-}
-
-@media(max-width: 850px) {
-  .about {
-    grid-template-columns: 1fr;
-  }
-
-  .product-grid,
-  .app-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  header {
-    justify-content: center;
-  }
-
-  nav {
-    justify-content: center;
-  }
-}
-
-@media(max-width: 550px) {
-  .product-grid,
-  .app-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero {
-    min-height: 460px;
-    padding: 45px 6%;
-  }
-
-  section {
-    padding: 45px 6%;
-  }
-
-  .logo {
-    text-align: center;
-  }
-}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#203047;line-height:1.6}
+header{background:#082b50;color:white;padding:15px 5%;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:15px;font-size:clamp(18px,2.5vw,27px);font-weight:bold}
+.brand img{width:75px;height:65px;object-fit:contain;background:white;border-radius:6px;padding:4px}
+nav{display:flex;gap:16px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-weight:bold}
+nav a:hover{color:#37d7ed}
+.hero{padding:75px 7%;min-height:390px;color:white;background:linear-gradient(90deg,#061b35ed,#061b3570),url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=80") center/cover}
+.hero h1{font-size:clamp(32px,5vw,55px);max-width:750px;line-height:1.15}
+.hero p{font-size:19px;max-width:650px}
+.btn{display:inline-block;background:#08a9cf;color:white;padding:11px 22px;text-decoration:none;border-radius:5px;font-weight:bold;margin:6px 5px 6px 0;border:0;cursor:pointer}
+section{padding:55px 7%}
+h2{color:#082b50}
+.section-title{text-align:center;font-size:34px;margin:0 0 12px}
+.intro{text-align:center;max-width:800px;margin:0 auto 30px;color:#56677b}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.about img{width:100%;height:300px;object-fit:cover;border-radius:10px}
+.products{background:#eaf1f8}
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.product-card{background:white;border-radius:9px;overflow:hidden;cursor:pointer;border:2px solid transparent;box-shadow:0 4px 14px #00000012;transition:.2s}
+.product-card:hover{border-color:#08a9cf;transform:translateY(-3px)}
+.product-card img{width:100%;height:190px;object-fit:contain;padding:10px;background:white;display:block}
+.product-card .info{padding:12px 15px 17px}
+.product-card h3{margin:0;color:#082b50;font-size:18px}
+.product-card p{margin:6px 0 0;font-size:14px;color:#58677b}
+.hint{text-align:center;color:#58677b;margin-bottom:24px}
+.applications{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.applications article{background:white;padding:20px;border-left:4px solid #08a9cf;border-radius:7px}
+.contact{background:#082b50;color:white;text-align:center}
+.contact h2{color:white}
+footer{background:#041b32;color:white;text-align:center;padding:15px}
+.modal{display:none;position:fixed;inset:0;z-index:99;background:#001426eF;padding:20px;overflow:auto;align-items:center;justify-content:center}
+.modal.open{display:flex}
+.modal-box{position:relative;width:min(1000px,100%);background:white;border-radius:12px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr}
+.modal-image{min-height:350px;display:flex;align-items:center;justify-content:center;padding:20px;background:#f4f7fb}
+.modal-image img{width:100%;height:100%;max-height:500px;object-fit:contain}
+.modal-info{padding:45px 30px;align-self:center}
+.modal-info h2{font-size:30px}
+.close{position:absolute;right:12px;top:10px;border:0;border-radius:50%;background:#082b50;color:white;font-size:25px;width:38px;height:38px;cursor:pointer}
+@media(max-width:900px){.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.about{grid-template-columns:1fr}.applications{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){header{justify-content:center}.brand{flex-direction:column;text-align:center}nav{justify-content:center}.product-grid,.applications{grid-template-columns:1fr}.hero{padding:45px 6%}section{padding:40px 6%}.modal-box{grid-template-columns:1fr}.modal-image{min-height:230px}.modal-info{padding:20px}}
 </style>
 </head>
-
 <body>
 
 <header>
-  <div class="logo">Shanthi Engineering Works and Consultants</div>
-
+  <div class="brand">
+    <img src="SEW_Logo.jpg-removebg-preview.png" alt="Shanthi Engineering Works Logo">
+    <span>Shanthi Engineering Works and Consultants</span>
+  </div>
   <nav>
     <a href="#home">Home</a>
     <a href="#about">About</a>
@@ -303,39 +66,20 @@ footer {
   </nav>
 </header>
 
-<main>
 <section class="hero" id="home">
-  <div class="hero-content">
-    <h1>Engineering Solutions for a Better Future</h1>
-    <p>
-      Reliable engineering equipment and industrial solutions
-      for water treatment and process applications.
-    </p>
-    <a class="btn" href="#products">Explore Products</a>
-    <a class="btn" href="#contact">Contact Us</a>
-  </div>
+  <h1>Shanthi Engineering Works and Consultants</h1>
+  <p>Engineering equipment and solutions for water treatment and industrial applications.</p>
+  <a class="btn" href="#products">Explore Products</a>
+  <a class="btn" href="#contact">Contact Us</a>
 </section>
 
 <section id="about">
   <div class="about">
-    <img
-      src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1100&q=85"
-      alt="Engineering and industrial work">
-
+    <img src="Shanthi Engineering Works Website Mockup.png" alt="Shanthi Engineering Works">
     <div>
-      <h3>About Our Company</h3>
-      <p>
-        Shanthi Engineering Works and Consultants focuses on
-        engineering equipment and industrial solutions.
-      </p>
-      <p>
-        Our website introduces equipment used in vacuum
-        chlorination systems and water treatment applications.
-      </p>
-      <p>
-        Explore our product range and contact us for further
-        information about your requirements.
-      </p>
+      <h2>About Our Company</h2>
+      <p>Shanthi Engineering Works and Consultants provides engineering equipment and solutions for industrial and water treatment applications.</p>
+      <p>Explore our products below. Click on any product to view its image and details.</p>
       <a class="btn" href="#products">View Products</a>
     </div>
   </div>
@@ -343,110 +87,106 @@ footer {
 
 <section class="products" id="products">
   <h2 class="section-title">Our Products</h2>
-  <p class="section-intro">
-    Explore equipment related to vacuum chlorination
-    and water treatment systems.
-  </p>
-
-  <div class="product-grid">
-
-    <article class="product-card">
-      <img src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=800&q=80" alt="Industrial ejector equipment">
-      <div><h3>Ejector</h3><p>Equipment used to create vacuum and transfer gas in suitable systems.</p></div>
-    </article>
-
-    <article class="product-card">
-      <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Flow measurement equipment">
-      <div><h3>Flow Meter</h3><p>Used to measure the flow rate of liquids or gases.</p></div>
-    </article>
-
-    <article class="product-card">
-      <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80" alt="Industrial vacuum equipment">
-      <div><h3>Vacuum Regulator</h3><p>Helps regulate vacuum levels in compatible equipment.</p></div>
-    </article>
-
-    <article class="product-card">
-      <img src="https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=800&q=80" alt="Pressure control engineering equipment">
-      <div><h3>Pressure Reducing Valve</h3><p>Reduces inlet pressure to a suitable downstream pressure.</p></div>
-    </article>
-
-    <article class="product-card">
-      <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=800&q=80" alt="Industrial monitoring equipment">
-      <div><h3>Vacuum Switch</h3><p>Monitors vacuum conditions and switches at a set point.</p></div>
-    </article>
-
-    <article class="product-card">
-      <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&q=80" alt="Industrial valve equipment">
-      <div><h3>Auxiliary Valve</h3><p>An additional valve used for control in compatible systems.</p></div>
-    </article>
-
-    <article class="product-card">
-      <img src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=800&q=80" alt="Industrial pipe fittings">
-      <div><h3>Clamps and Fittings</h3><p>Components used to secure compatible pipes and connections.</p></div>
-    </article>
-
-    <article class="product-card">
-      <img src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=800&q=80" alt="Industrial water treatment equipment">
-      <div><h3>Chlorination Tank</h3><p>Tank equipment for suitable water treatment applications.</p></div>
-    </article>
-
-    <article class="product-card">
-      <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=800&q=80" alt="Industrial mounted machinery">
-      <div><h3>Floor Mounted Chlorinator</h3><p>A chlorination unit designed for floor-mounted installation.</p></div>
-    </article>
-
-    <article class="product-card">
-      <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80" alt="Industrial manifold system">
-      <div><h3>Manifold</h3><p>Distributes or collects flow across multiple connections.</p></div>
-    </article>
-
-    <article class="product-card">
-      <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80" alt="Metal piping work">
-      <div><h3>Copper Pipe</h3><p>Piping material for compatible industrial installations.</p></div>
-    </article>
-
-  </div>
+  <p class="intro">Explore our products and click on an item to see the larger image and product information.</p>
+  <p class="hint">Select a product to view the image on the left and details on the right.</p>
+  <div class="product-grid" id="productGrid"></div>
 </section>
 
 <section id="applications">
   <h2 class="section-title">Applications</h2>
-  <p class="section-intro">
-    Engineering equipment supports a range of industrial
-    and water treatment requirements.
-  </p>
-
-  <div class="app-grid">
-    <div class="app-card">
-      <h3>Water Treatment</h3>
-      <p>Equipment for suitable water disinfection and treatment processes.</p>
-    </div>
-
-    <div class="app-card">
-      <h3>Industrial Plants</h3>
-      <p>Equipment and components for compatible industrial systems.</p>
-    </div>
-
-    <div class="app-card">
-      <h3>Process Engineering</h3>
-      <p>Flow, pressure and vacuum control equipment for process applications.</p>
-    </div>
+  <p class="intro">Equipment for water treatment and industrial processes.</p>
+  <div class="applications">
+    <article><h3>Water Treatment</h3><p>Equipment for water treatment applications.</p></article>
+    <article><h3>Industrial Equipment</h3><p>Components for suitable industrial installations.</p></article>
+    <article><h3>Process Systems</h3><p>Flow, pressure and vacuum-related equipment.</p></article>
   </div>
 </section>
 
 <section class="contact" id="contact">
-  <h2 class="section-title">Contact Us</h2>
-  <p>
-    Looking for engineering equipment or water treatment
-    solutions? Contact our team to discuss your requirements.
-  </p>
-  <p>Please add your company's verified phone number, email address and location here.</p>
-  <a class="btn" href="mailto:">Email Us</a>
+  <h2>Contact Us</h2>
+  <p>Contact Shanthi Engineering Works and Consultants for product enquiries.</p>
+  <a class="btn" href="#home">Back to Top</a>
 </section>
-</main>
 
-<footer>
-  <p>© 2026 Shanthi Engineering Works and Consultants. All rights reserved.</p>
-</footer>
+<footer>© 2026 Shanthi Engineering Works and Consultants. All rights reserved.</footer>
+
+<div class="modal" id="productModal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button class="close" id="closeModal" aria-label="Close">×</button>
+    <div class="modal-image"><img id="modalImage" src="" alt=""></div>
+    <div class="modal-info">
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+      <a class="btn" href="#contact" id="enquireBtn">Product Enquiry</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const products = [
+ {name:"Ejector",image:"product-01.png",description:"Equipment used in vacuum chlorination systems."},
+ {name:"Flow Meter",image:"product-02.png",description:"Equipment used to measure flow."},
+ {name:"Vacuum Regulator",image:"product-03.png",description:"Equipment for vacuum regulation."},
+ {name:"Pressure Reducing Valve",image:"product-04.png",description:"Valve for reducing pressure."},
+ {name:"Vacuum Switch",image:"product-05.png",description:"Equipment for monitoring vacuum."},
+ {name:"Auxiliary Valve",image:"product-06.png",description:"Valve component for compatible systems."},
+ {name:"Clamp",image:"product-07.png",description:"Component for securing compatible connections."},
+ {name:"Chlorination Tank",image:"product-08.png",description:"Tank equipment for chlorination applications."},
+ {name:"Floor Mounted Chlorinator",image:"product-09.png",description:"Floor-mounted chlorination equipment."},
+ {name:"Manifold",image:"product-10.png",description:"Component for connecting multiple lines."},
+ {name:"Copper Pipe",image:"product-11.png",description:"Pipe used in compatible installations."},
+ {name:"Product 12",image:"product-12.png",description:"Select to view this product image."},
+ {name:"Product 13",image:"product-13.png",description:"Select to view this product image."},
+ {name:"Product 14",image:"product-14.png",description:"Select to view this product image."},
+ {name:"Product 15",image:"product-15.png",description:"Select to view this product image."},
+ {name:"Product 16",image:"product-16.png",description:"Select to view this product image."}
+];
+
+const grid = document.getElementById("productGrid");
+const modal = document.getElementById("productModal");
+
+products.forEach(function(product){
+  const card = document.createElement("article");
+  card.className = "product-card";
+  card.tabIndex = 0;
+  card.setAttribute("role","button");
+  card.innerHTML =
+    '<img src="' + product.image + '" alt="' + product.name + '" loading="lazy">' +
+    '<div class="info"><h3>' + product.name + '</h3><p>' + product.description + '</p></div>';
+
+  function openProduct(){
+    document.getElementById("modalImage").src = product.image;
+    document.getElementById("modalImage").alt = product.name;
+    document.getElementById("modalTitle").textContent = product.name;
+    document.getElementById("modalDescription").textContent = product.description;
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  card.addEventListener("click",openProduct);
+  card.addEventListener("keydown",function(event){
+    if(event.key === "Enter" || event.key === " "){
+      event.preventDefault();
+      openProduct();
+    }
+  });
+  grid.appendChild(card);
+});
+
+function closeProduct(){
+  modal.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+document.getElementById("closeModal").addEventListener("click",closeProduct);
+modal.addEventListener("click",function(event){
+  if(event.target === modal) closeProduct();
+});
+document.addEventListener("keydown",function(event){
+  if(event.key === "Escape") closeProduct();
+});
+document.getElementById("enquireBtn").addEventListener("click",closeProduct);
+</script>
 
 </body>
 </html>
