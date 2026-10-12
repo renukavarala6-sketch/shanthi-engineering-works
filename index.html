@@ -637,95 +637,90 @@ footer {
   Replace generic names/descriptions when the correct product
   names and details for products 12–16 are available.
 */
-
+```javascript
 const products = [
   {
-    name: "Ejector",
+    name: "100 kg Tonner Emergency Kit",
     image: "product-01.png",
-    description: "Equipment used in vacuum chlorination systems."
+    description: "Specially designed to safely control chlorine gas leaks from 100 kg tonners. It contains essential tools and sealing devices to help contain leaks and minimize hazardous gas release."
   },
   {
-    name: "Flow Meter",
+    name: "900 kg Tonner Emergency Kit",
     image: "product-02.png",
-    description: "Equipment used to measure flow."
-  },
-  {
-    name: "Vacuum Regulator",
-    image: "product-03.png",
-    description: "Equipment for vacuum regulation."
-  },
-  {
-    name: "Pressure Reducing Valve",
-    image: "product-04.png",
-    description: "Valve for reducing pressure."
-  },
-  {
-    name: "Vacuum Switch",
-    image: "product-05.png",
-    description: "Equipment for monitoring vacuum."
-  },
-  {
-    name: "Auxiliary Valve",
-    image: "product-06.png",
-    description: "Valve component for compatible systems."
-  },
-  {
-    name: "Clamp",
-    image: "product-07.png",
-    description: "Component for securing compatible connections."
-  },
-  {
-    name: "Chlorination Tank",
-    image: "product-08.png",
-    description: "Tank equipment for chlorination applications."
-  },
-  {
-    name: "Floor Mounted Chlorinator",
-    image: "product-09.png",
-    description: "Floor-mounted chlorination equipment."
-  },
-  {
-    name: "Manifold",
-    image: "product-10.png",
-    description: "Component for connecting multiple lines."
-  },
-  {
-    name: "Copper Pipe",
-    image: "product-11.png",
-    description: "Pipe used in compatible installations."
-  },
-  {
-    name: "Product 12",
-    image: "product-12.png",
-    description: "Select to view this product image and enquire about it."
-  },
-  {
-    name: "Product 13",
-    image: "product-13.png",
-    description: "Select to view this product image and enquire about it."
-  },
-  {
-    name: "Product 14",
-    image: "product-14.png",
-    description: "Select to view this product image and enquire about it."
-  },
-  {
-    name: "Product 15",
-    image: "product-15.png",
-    description: "Select to view this product image and enquire about it."
-  },
-  {
-    name: "Product 16",
-    image: "product-16.png",
-    description: "Select to view this product image and enquire about it."
+    description: "Specially designed to safely control chlorine gas leaks from 900 kg tonners. It contains essential tools and sealing devices to help contain leaks and minimize hazardous gas release."
   },
   {
     name: "Chlorine Leak Detector",
-    image: "Chlorine_Detector.jpeg",
-    description:
-      "Detects chlorine gas and can provide an early warning when hazardous gas is present. Check the product specifications for alarm features."
+    image: "product-03.png",
+    description: "Continuously monitors chlorine gas concentration and provides audible and visual alarms when a leak is detected, helping reduce risks to personnel and equipment."
+  },
+  {
+    name: "Safety Shower",
+    image: "product-04.png",
+    description: "Provides immediate decontamination for personnel exposed to hazardous chemicals by delivering a high flow of clean water to wash away contaminants."
+  },
+  {
+    name: "100 kg Tonner Hood",
+    image: "product-05.png",
+    description: "Protective hood designed to temporarily seal chlorine leaks from 100 kg tonners and help minimize gas release until permanent repairs are made."
+  },
+  {
+    name: "900 kg Tonner Hood",
+    image: "product-06.png",
+    description: "Robust leak-control hood designed for 900 kg chlorine tonners to help contain hazardous gas leaks."
+  },
+  {
+    name: "Safety Breathing Apparatus (SCBA)",
+    image: "product-07.png",
+    description: "Self-contained breathing apparatus that supplies clean breathing air for use in toxic or oxygen-deficient environments."
+  },
+  {
+    name: "Glass Fronted FRP Cabinet for Breathing Apparatus",
+    image: "product-08.png",
+    description: "Durable FRP cabinet with a transparent front, providing secure, weather-resistant and easily accessible storage for breathing apparatus."
+  },
+  {
+    name: "Canister Type Respiratory Mask",
+    image: "product-09.png",
+    description: "Reusable respiratory mask with replaceable canisters designed to protect users from chlorine gas and other hazardous airborne contaminants."
+  },
+  {
+    name: "Wind Sock",
+    image: "product-10.png",
+    description: "Wind-direction indicator used during gas-leak emergencies to identify wind flow and assist with safe evacuation planning."
+  },
+  {
+    name: "PVC Apron",
+    image: "product-11.png",
+    description: "Lightweight, chemical-resistant apron designed to protect the wearer from liquid chemical splashes during handling operations."
+  },
+  {
+    name: "PVC Full Suit",
+    image: "product-12.png",
+    description: "Chemical-resistant full-body suit designed to provide protection against hazardous chemical splashes and industrial contaminants."
+  },
+  {
+    name: "Safety Gloves",
+    image: "product-13.png",
+    description: "Durable PVC gloves offering resistance to chemicals, oils, acids and alkalis while supporting comfort and flexibility."
+  },
+  {
+    name: "Safety Helmet",
+    image: "product-14.png",
+    description: "Industrial safety helmet designed to protect the head from impacts, falling objects and workplace hazards."
+  },
+  {
+    name: "Safety Goggles",
+    image: "product-15.png",
+    description: "Protective goggles designed to shield the eyes from chemical splashes, dust, airborne particles and debris."
+  },
+  {
+    name: "Safety Shoes",
+    image: "product-16.png",
+    description: "Industrial safety shoes with slip-resistant soles and reinforced toe protection for workplace safety."
   }
 ];
+
 
 const grid = document.getElementById("productGrid");
 const modal = document.getElementById("productModal");
