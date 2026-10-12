@@ -436,14 +436,26 @@ footer {
 
     <div class="modal-info">
       <h2 id="selectedProduct"></h2>
-      <p id="modalDescription"></p>
-      <div style="margin-top:15px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-  <button type="button" onclick="document.getElementById('modalImage').src='product-05.png'">Front View</button>
-  <button type="button" disabled>Left View</button>
-  <button type="button" disabled>Right View</button>
+     <p id="modalDescription"></p>
+
+<div style="margin-top:15px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+  <button type="button"
+    onclick="const img = document.getElementById('modalImage');img.src = 'product-05.png'; img.style.transform = 'none';">
+    Front View
+  </button>
+
+  <button type="button"
+    onclick="document.getElementById('modalImage').style.transform='perspective(600px) rotateY(-20deg)';">
+     Left View
+  </button>
+
+  <button type="button"
+    onclick=" document.getElementById('modalImage').style.transform = 'perspective(600px) rotateY(20deg)';">
+    Right View
+  </button>
 </div>
-    </div>
-  </div>
+
+
 </div>
 
 <script>
