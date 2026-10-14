@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Add Products</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #e8f1ff;
+  margin: 0;
+  padding: 25px;
+}
+.box {
+  max-width: 500px;
+  margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px #0002;
+}
+h2 { color: #10233f; text-align: center; }
+input, textarea, button {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  margin: 8px 0;
+}
+button {
+  background: #10233f;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#dashboard { display: none; }
+#message { overflow-wrap: anywhere; }
+</style>
+</head>
+
+<body>
+<div class="box">
+  <h2>Admin Login</h2>
+  <input id="email" type="email" placeholder="Admin Email">
+  <input id="password" type="password" placeholder="Password">
+  <button id="loginBtn">Login</button>
+  <p id="message"></p>
+
+  <div id="dashboard">
+    <h2>Add New Product</h2>
+    <form id="productForm">
+      <input id="name" placeholder="Product Name" required>
+      <input id="image" type="url"
+        placeholder="Product Image URL" required>
+      <textarea id="description"
+        placeholder="Product Description" required></textarea>
+      <button type="submit">Add Product</button>
+    </form>
+    <button id="logoutBtn">Logout</button>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getAuth, signInWithEmailAndPassword, signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  getFirestore, collection, addDoc, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyADHkR1H2zyHUp5SBDWbpMKJpCtsZFNneo",
+  authDomain: "shanthi-engineering-works.firebaseapp.com",
+  projectId: "shanthi-engineering-works",
+  storageBucket: "shanthi-engineering-works.firebasestorage.app",
+  messagingSenderId: "619909039011",
+  appId: "1:619909039011:web:a561d677705bedefb4d016",
+  measurementId: "G-GDQ266ET18"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const adminEmail = "renukavarala6@gmail.com";
+const message = document.getElementById("message");
+
+document.getElementById("loginBtn").onclick = async () => {
+  try {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const result = await signInWithEmailAndPassword(auth, email, password);
+
+    if (result.user.email !== adminEmail) {
+      await signOut(auth);
+      throw new Error("Admin access denied.");
+    }
+
+    document.getElementById("dashboard").style.display = "block";
+    message.textContent = "Login successful.";
+  } catch (error) {
+    message.textContent = error.message;
+  }
+};
+
+document.getElementById("productForm").onsubmit = async (event) => {
+  event.preventDefault();
+
+  if (!auth.currentUser ||
+      auth.currentUser.email !== adminEmail) {
+    message.textContent = "Please login as admin first.";
+    return;
+  }
+
+  try {
+    await addDoc(collection(db, "products"), {
+      name: document.getElementById("name").value.trim(),
+      image: document.getElementById("image").value.trim(),
+      description: document.getElementById("description").value.trim(),
+      createdAt: serverTimestamp()
+    });
+
+    message.textContent = "Product saved to database.";
+    document.getElementById("productForm").reset();
+  } catch (error) {
+    message.textContent =
+      "Save failed: " + error.message +
+      ". Check Firestore setup and rules.";
+  }
+};
+
+document.getElementById("logoutBtn").onclick = async () => {
+  await signOut(auth);
+  document.getElementById("dashboard").style.display = "none";
+  message.textContent = "Logged out.";
+};
+</script>
+</body>
+</html>
