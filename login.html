@@ -28,18 +28,9 @@
     }
     h1 { color: #082b4c; font-size: 25px; text-align: center; }
     p { text-align: center; color: #64748b; }
-    label { display: block; margin-top: 18px; font-weight: bold; }
-    input {
-      width: 100%;
-      padding: 12px;
-      margin-top: 8px;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      font-size: 16px;
-    }
     button {
       width: 100%;
-      margin-top: 22px;
+      margin-top: 16px;
       padding: 13px;
       background: #082b4c;
       color: white;
@@ -56,18 +47,8 @@
   <div class="login-box">
     <h1>Admin Login</h1>
     <p>Shanthi Engineering Works and Consultants</p>
-
-    <form id="loginForm">
-      <label for="email">Admin Email</label>
-      <input id="email" type="email" autocomplete="username" required>
-
-      <label for="password">Password</label>
-      <input id="password" type="password" autocomplete="current-password" required>
-
-      <button type="submit">Login</button>
-      <div id="message" role="status"></div>
-    </form>
-
+    <button id="googleLogin" type="button">Continue with Google</button>
+    <div id="message" role="status"></div>
     <a class="back" href="index.html">Back to Website</a>
   </div>
 
@@ -75,40 +56,42 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
     import {
       getAuth,
-      signInWithEmailAndPassword
+      GoogleAuthProvider,
+      signInWithPopup
     } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
-    // Firebase Console nunchi mee project config ikkada add cheyyali.
     const firebaseConfig = {
-      apiKey: "ADD_YOUR_API_KEY",
+      apiKey: "AIzaSyADHkR1H2zyHUp5SBDWbpMKJpCtsZFNneo",
       authDomain: "shanthi-engineering-works.firebaseapp.com",
       projectId: "shanthi-engineering-works",
-      appId: "ADD_YOUR_APP_ID"
+      storageBucket: "shanthi-engineering-works.firebasestorage.app",
+      messagingSenderId: "619909039011",
+      appId: "1:619909039011:web:a561d677705bedefb4d016",
+      measurementId: "G-GDQ266ET18"
     };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
 
-    document.getElementById("loginForm").addEventListener("submit", async (event) => {
-      event.preventDefault();
-
+    document.getElementById("googleLogin").addEventListener("click", async () => {
       const message = document.getElementById("message");
-      message.textContent = "Checking login...";
+      message.textContent = "Signing in...";
 
       try {
-        const result = await signInWithEmailAndPassword(
-          auth,
-          document.getElementById("email").value.trim(),
-          document.getElementById("password").value
-        );
+        const result = await signInWithPopup(auth, provider);
+        const email = result.user.email;
 
-        // Login success ayina users ni default ga admin ani consider cheyyakudadhu.
-        // Admin access kosam server-verified admin permission avasaram.
-        await auth.signOut();
+        if (email !== "renukavarala6@gmail.com") {
+          await auth.signOut();
+          message.textContent = "Access denied. This Google account is not authorized.";
+          return;
+        }
+
         message.textContent =
-          "Authentication successful, but admin permission setup is still required.";
+          "Google sign-in successful. Admin access still needs secure server-side authorization.";
       } catch (error) {
-        message.textContent = "Login failed. Check your email and password.";
+        message.textContent = "Login failed: " + error.message;
       }
     });
   </script>
