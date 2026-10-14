@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - Shanthi Engineering Works</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f8fc;
+      color: #203047;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .login-box {
+      background: white;
+      width: 100%;
+      max-width: 400px;
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: 0 5px 24px rgba(0,0,0,0.10);
+    }
+    h1 { color: #082b4c; font-size: 25px; text-align: center; }
+    p { text-align: center; color: #64748b; }
+    label { display: block; margin-top: 18px; font-weight: bold; }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 13px;
+      background: #082b4c;
+      color: white;
+      border: 0;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .back { display: block; margin-top: 20px; color: #082b4c; text-align: center; }
+    #message { margin-top: 14px; font-size: 14px; overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h1>Admin Login</h1>
+    <p>Shanthi Engineering Works and Consultants</p>
+
+    <form id="loginForm">
+      <label for="email">Admin Email</label>
+      <input id="email" type="email" autocomplete="username" required>
+
+      <label for="password">Password</label>
+      <input id="password" type="password" autocomplete="current-password" required>
+
+      <button type="submit">Login</button>
+      <div id="message" role="status"></div>
+    </form>
+
+    <a class="back" href="index.html">Back to Website</a>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+
+    // Firebase Console nunchi mee project config ikkada add cheyyali.
+    const firebaseConfig = {
+      apiKey: "ADD_YOUR_API_KEY",
+      authDomain: "shanthi-engineering-works.firebaseapp.com",
+      projectId: "shanthi-engineering-works",
+      appId: "ADD_YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.getElementById("loginForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const message = document.getElementById("message");
+      message.textContent = "Checking login...";
+
+      try {
+        const result = await signInWithEmailAndPassword(
+          auth,
+          document.getElementById("email").value.trim(),
+          document.getElementById("password").value
+        );
+
+        // Login success ayina users ni default ga admin ani consider cheyyakudadhu.
+        // Admin access kosam server-verified admin permission avasaram.
+        await auth.signOut();
+        message.textContent =
+          "Authentication successful, but admin permission setup is still required.";
+      } catch (error) {
+        message.textContent = "Login failed. Check your email and password.";
+      }
+    });
+  </script>
+</body>
+</html>
