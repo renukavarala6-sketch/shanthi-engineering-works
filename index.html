@@ -430,9 +430,12 @@ footer {
     <button class="close-modal" id="closeModal"
             aria-label="Close product details">&times;</button>
 
-    <div class="modal-image-wrap">
-      <img class="modal-image" id="modalImage" src="" alt="">
-    </div>
+<div class="modal-image-wrap">
+  <img class="modal-image" id="modalImage" src="" alt="">
+  <div id="modalThumbnails"
+       style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+  </div>
+</div>
 
     <div class="modal-info">
       <h2 id="selectedProduct"></h2>
@@ -462,11 +465,17 @@ footer {
 
 <script>
 const products = [
-  {
-    name: "100 kg Tonner Emergency Kit",
-    image: "product-01.png",
-    description: "Specially designed to help control chlorine gas leaks from 100 kg tonners. It contains tools and sealing devices intended to help contain leaks and minimize hazardous gas release."
-  },
+  
+{
+  name: "100 kg Tonner Emergency Kit",
+  image: "product-01.png",
+  extraImages: [
+    "100%20kg%20emeregency%20kit%201.jpeg",
+    "100%20kg%20emeregency%20kit%202.jpeg"
+  ],
+  description: "Specially designed to help control chlorine gas leaks from 100 kg tonners. It contains tools and sealing devices intended to help contain leaks and minimize hazardous gas release."
+},
+
   {
     name: "900 kg Tonner Emergency Kit",
     image: "product-02.png",
@@ -482,11 +491,17 @@ const products = [
     image: "product-04.png",
     description: "Provides water for emergency washing when personnel are exposed to hazardous chemicals. Follow the equipment instructions and workplace emergency procedures."
   },
-  {
-    name: "100 kg Tonner Hood",
-    image: "product-05.png",
-    description: "A protective hood designed for use in containing leaks from 100 kg chlorine tonners as part of an appropriate emergency response."
-  },
+ 
+{
+  name: "100 kg Tonner Emergency Kit",
+  image: "product-01.png",
+  extraImages: [
+    "100%20kg%20emeregency%20kit%201.jpeg",
+    "100%20kg%20emeregency%20kit%202.jpeg"
+  ],
+  description: "Specially designed to help control chlorine gas leaks from 100 kg tonners. It contains tools and sealing devices intended to help contain leaks and minimize hazardous gas release."
+},
+
   {
     name: "900 kg Tonner Hood",
     image: "product-06.png",
@@ -547,6 +562,7 @@ const products = [
 const productGrid = document.getElementById("productGrid");
 const modal = document.getElementById("productModal");
 const modalImage = document.getElementById("modalImage");
+  const modalThumbnails = document.getElementById("modalThumbnails");
 const selectedProduct = document.getElementById("selectedProduct");
 const modalDescription = document.getElementById("modalDescription");
 const closeModalButton = document.getElementById("closeModal");
@@ -590,16 +606,44 @@ products.forEach(function(product) {
   card.appendChild(button);
   productGrid.appendChild(card);
 
-  button.addEventListener("click", function() {
-    modalImage.src = product.image;
-    modalImage.alt = product.name;
-    selectedProduct.textContent = product.name;
-    modalDescription.textContent = product.description;
-    modal.classList.add("show");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-    closeModalButton.focus();
+ 
+button.addEventListener("click", function() {
+  modalImage.src = product.image;
+  modalImage.alt = product.name;
+
+  selectedProduct.textContent = product.name;
+  modalDescription.textContent = product.description;
+
+  // Munduga unna extra photos anni clear chestundi
+  modalThumbnails.innerHTML = "";
+
+  // Extra photos unte thumbnails ga chupistundi
+  (product.extraImages || []).forEach(function(photoSrc, index) {
+    const thumbnail = document.createElement("img");
+
+    thumbnail.src = photoSrc;
+    thumbnail.alt = product.name + " - extra photo " + (index + 1);
+    thumbnail.style.width = "85px";
+    thumbnail.style.height = "70px";
+    thumbnail.style.objectFit = "contain";
+    thumbnail.style.cursor = "pointer";
+    thumbnail.style.border = "1px solid #ccc";
+    thumbnail.style.borderRadius = "6px";
+    thumbnail.style.padding = "4px";
+
+    thumbnail.addEventListener("click", function() {
+      modalImage.src = photoSrc;
+      modalImage.alt = thumbnail.alt;
+    });
+
+    modalThumbnails.appendChild(thumbnail);
   });
+
+  modal.classList.add("show");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  closeModalButton.focus();
+});
 });
 
 function closeModal() {
