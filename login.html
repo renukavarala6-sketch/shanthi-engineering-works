@@ -1,99 +1,146 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Login - Shanthi Engineering Works</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #e8f1ff;
-      color: #203047;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-    .login-box {
-      background: white;
-      width: 100%;
-      max-width: 400px;
-      padding: 32px;
-      border-radius: 12px;
-      box-shadow: 0 5px 24px rgba(0,0,0,0.10);
-    }
-    h1 { color: #082b4c; font-size: 25px; text-align: center; }
-    p { text-align: center; color: #64748b; }
-    button {
-      width: 100%;
-      margin-top: 16px;
-      padding: 13px;
-      background: #082b4c;
-      color: white;
-      border: 0;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .back { display: block; margin-top: 20px; color: #082b4c; text-align: center; }
-    #message { margin-top: 14px; font-size: 14px; overflow-wrap: anywhere; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #e8f1ff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background: white;
+  padding: 35px;
+  width: 90%;
+  max-width: 380px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px #0002;
+}
+
+h2 {
+  text-align: center;
+  color: #10233f;
+}
+
+p {
+  text-align: center;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  background: #10233f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#message {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+a {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #10233f;
+}
+</style>
 </head>
+
 <body>
-  <div class="login-box">
-    <h1>Admin Login</h1>
-    <p>Shanthi Engineering Works and Consultants</p>
-    <button id="googleLogin" type="button">Continue with Google</button>
-    <div id="message" role="status"></div>
-    <a class="back" href="index.html">Back to Website</a>
-  </div>
+<div class="login-box">
+  <h2>Admin Login</h2>
+  <p>Shanthi Engineering Works and Consultants</p>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-    import {
-      getAuth,
-      GoogleAuthProvider,
-      signInWithPopup
-    } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+  <form id="loginForm">
+    <input type="email" id="email"
+      placeholder="Email Address" required>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyADHkR1H2zyHUp5SBDWbpMKJpCtsZFNneo",
-      authDomain: "shanthi-engineering-works.firebaseapp.com",
-      projectId: "shanthi-engineering-works",
-      storageBucket: "shanthi-engineering-works.firebasestorage.app",
-      messagingSenderId: "619909039011",
-      appId: "1:619909039011:web:a561d677705bedefb4d016",
-      measurementId: "G-GDQ266ET18"
-    };
+    <input type="password" id="password"
+      placeholder="Password" required>
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
+    <button type="submit">Login</button>
+  </form>
 
-    document.getElementById("googleLogin").addEventListener("click", async () => {
-      const message = document.getElementById("message");
-      message.textContent = "Signing in...";
+  <p id="message"></p>
 
-      try {
-        const result = await signInWithPopup(auth, provider);
-        const email = result.user.email;
+  <a href="index.html">Back to Website</a>
+</div>
 
-        if (email !== "renukavarala6@gmail.com") {
-          await auth.signOut();
-          message.textContent = "Access denied. This Google account is not authorized.";
-          return;
-        }
+<script type="module">
+import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-        message.textContent =
-          "Google sign-in successful. Admin access still needs secure server-side authorization.";
-      } catch (error) {
-        message.textContent = "Login failed: " + error.message;
+import {
+  getAuth,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyADHkR1H2zyHUp5SBDWbpMKJpCtsZFNneo",
+  authDomain: "shanthi-engineering-works.firebaseapp.com",
+  projectId: "shanthi-engineering-works",
+  storageBucket: "shanthi-engineering-works.firebasestorage.app",
+  messagingSenderId: "619909039011",
+  appId: "1:619909039011:web:a561d677705bedefb4d016",
+  measurementId: "G-GDQ266ET18"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+document.getElementById("loginForm").addEventListener("submit",
+  async function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const message = document.getElementById("message");
+
+    message.textContent = "Signing in...";
+
+    try {
+      const result = await signInWithEmailAndPassword(
+        auth, email, password
+      );
+
+      if (result.user.email === "renukavarala6@gmail.com") {
+        message.textContent = "Login successful.";
+      } else {
+        await auth.signOut();
+        message.textContent = "Admin access denied.";
       }
-    });
-  </script>
+    } catch (error) {
+      message.textContent = "Login failed. Check your email and password.";
+    }
+  });
+</script>
 </body>
 </html>
+```
