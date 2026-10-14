@@ -52,8 +52,8 @@ button {
     <h2>Add New Product</h2>
     <form id="productForm">
       <input id="name" placeholder="Product Name" required>
-      <input id="image" type="url"
-        placeholder="Product Image URL" required>
+     <input id="image" type="file"
+  accept="image/*" required>
       <textarea id="description"
         placeholder="Product Description" required></textarea>
       <button type="submit">Add Product</button>
@@ -65,15 +65,21 @@ button {
 <script type="module">
 import { initializeApp }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 import {
   getAuth, signInWithEmailAndPassword, signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 import {
   getFirestore, collection, addDoc, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+import {
+  getStorage, ref, uploadBytes, getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyADHkR1H2zyHUp5SBDWbpMKJpCtsZFNneo",
+  apiKey: "AIzaSyADkR1H2zyHk5SBDWbpMKJpCtsZFNneo",
   authDomain: "shanthi-engineering-works.firebaseapp.com",
   projectId: "shanthi-engineering-works",
   storageBucket: "shanthi-engineering-works.firebasestorage.app",
@@ -85,6 +91,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
+
 const adminEmail = "renukavarala6@gmail.com";
 const message = document.getElementById("message");
 
@@ -92,6 +100,7 @@ document.getElementById("loginBtn").onclick = async () => {
   try {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
+
     const result = await signInWithEmailAndPassword(auth, email, password);
 
     if (result.user.email !== adminEmail) {
@@ -102,33 +111,46 @@ document.getElementById("loginBtn").onclick = async () => {
     document.getElementById("dashboard").style.display = "block";
     message.textContent = "Login successful.";
   } catch (error) {
-    message.textContent = error.message;
+    message.textContent = "Login failed: " + error.message;
   }
 };
 
 document.getElementById("productForm").onsubmit = async (event) => {
   event.preventDefault();
 
-  if (!auth.currentUser ||
-      auth.currentUser.email !== adminEmail) {
+  if (!auth.currentUser || auth.currentUser.email !== adminEmail) {
     message.textContent = "Please login as admin first.";
     return;
   }
 
   try {
+    const name = document.getElementById("name").value.trim();
+    const description = document.getElementById("description").value.trim();
+    const file = document.getElementById("image").files[0];
+
+    if (!file) {
+      message.textContent = "Select a product image.";
+      return;
+    }
+
+    message.textContent = "Uploading image...";
+
+    const imageRef = ref(storage, "products/" + Date.now() + "_" + file.name);
+    await uploadBytes(imageRef, file);
+    const imageURL = await getDownloadURL(imageRef);
+
     await addDoc(collection(db, "products"), {
-      name: document.getElementById("name").value.trim(),
-      image: document.getElementById("image").value.trim(),
-      description: document.getElementById("description").value.trim(),
+      name: name,
+      image: imageURL,
+      description: description,
       createdAt: serverTimestamp()
     });
 
-    message.textContent = "Product saved to database.";
+    message.textContent = "Product added successfully!";
     document.getElementById("productForm").reset();
+
   } catch (error) {
-    message.textContent =
-      "Save failed: " + error.message +
-      ". Check Firestore setup and rules.";
+    message.textContent = "Error: " + error.message;
   }
 };
 
