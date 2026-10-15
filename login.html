@@ -130,8 +130,11 @@ document.getElementById("loginForm").addEventListener("submit",
         auth, email, password
       );
 
-      if (result.user.email === "renukavarala6@gmail.com") {
-        message.textContent = "Login successful.";
+     if (result.user.email === "renukavarala6@gmail.com") {
+  message.textContent = "Login successful. Opening admin page...";
+
+  window.location.href = "admin.html";
+
       } else {
         await auth.signOut();
         message.textContent = "Admin access denied.";
