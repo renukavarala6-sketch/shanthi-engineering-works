@@ -363,6 +363,61 @@ footer {
     transition-duration: 0.01ms !important;
   }
 }
+  
+/* Product image click chesinappudu zoom cursor chupisthundi */
+#modalImage {
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+/* Pedhaga image open ayye overlay */
+.image-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.92);
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px 20px;
+}
+
+.image-lightbox.show {
+  display: flex;
+}
+
+.image-lightbox img {
+  max-width: 95%;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.image-lightbox .lightbox-close,
+.image-lightbox .lightbox-prev,
+.image-lightbox .lightbox-next {
+  position: absolute;
+  color: white;
+  background: #222;
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.image-lightbox .lightbox-close {
+  top: 12px;
+  right: 16px;
+}
+
+.image-lightbox .lightbox-prev {
+  left: 12px;
+}
+
+.image-lightbox .lightbox-next {
+  right: 12px;
+}
+
 </style>
 </head>
 
@@ -819,6 +874,99 @@ document.addEventListener("keydown", function(event) {
   © 2026 Shanthi Engineering Works and Consultants. All rights reserved.
 </footer>
 
+<div id="imageLightbox" class="image-lightbox" aria-hidden="true">
+  <button type="button" class="lightbox-close" aria-label="Close image">×</button>
+  <button type="button" class="lightbox-prev" aria-label="Previous image">❮</button>
+  <img id="lightboxImage" src="" alt="Product image">
+  <button type="button" class="lightbox-next" aria-label="Next image">❯</button>
 </div>
+
+</div>
+  
+<script>
+(function () {
+  const lightbox = document.getElementById("imageLightbox");
+  const lightboxImage = document.getElementById("lightboxImage");
+  const closeButton = lightbox.querySelector(".lightbox-close");
+  const prevButton = lightbox.querySelector(".lightbox-prev");
+  const nextButton = lightbox.querySelector(".lightbox-next");
+
+  let galleryImages = [];
+  let currentIndex = 0;
+
+  function showImage(index) {
+    if (!galleryImages.length) return;
+
+    currentIndex = (index + galleryImages.length) % galleryImages.length;
+    lightboxImage.src = galleryImages[currentIndex].src;
+    lightboxImage.alt = galleryImages[currentIndex].alt;
+  }
+
+  function openGallery(images, index) {
+    galleryImages = images;
+    showImage(index);
+    lightbox.classList.add("show");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeGallery() {
+    lightbox.classList.remove("show");
+    lightbox.setAttribute("aria-hidden", "true");
+    lightboxImage.src = "";
+    document.body.style.overflow = "";
+  }
+
+  closeButton.addEventListener("click", closeGallery);
+  prevButton.addEventListener("click", function () {
+    showImage(currentIndex - 1);
+  });
+  nextButton.addEventListener("click", function () {
+    showImage(currentIndex + 1);
+  });
+
+  lightbox.addEventListener("click", function (event) {
+    if (event.target === lightbox) closeGallery();
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (!lightbox.classList.contains("show")) return;
+
+    if (event.key === "Escape") closeGallery();
+    if (event.key === "ArrowLeft") showImage(currentIndex - 1);
+    if (event.key === "ArrowRight") showImage(currentIndex + 1);
+  });
+
+  // Main image mariyu additional thumbnails ni gallery ki connect chestundi
+  document.addEventListener("click", function (event) {
+    const image = event.target.closest("#modalImage, #modalThumbnails img");
+    if (!image) return;
+
+    const mainImage = document.getElementById("modalImage");
+    const thumbnails = Array.from(
+      document.querySelectorAll("#modalThumbnails img")
+    );
+
+    const images = [{
+      src: mainImage.src,
+      alt: mainImage.alt || "Main product image"
+    }];
+
+    thumbnails.forEach(function (thumbnail) {
+      images.push({
+        src: thumbnail.src,
+        alt: thumbnail.alt || "Additional product image"
+      });
+    });
+
+    const clickedIndex = image.id === "modalImage"
+      ? 0
+      : thumbnails.indexOf(image) + 1;
+
+    openGallery(images, clickedIndex);
+  });
+})();
+</script>
+
 </body>
 </html>
