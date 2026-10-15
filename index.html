@@ -464,14 +464,50 @@ footer {
   object-position: center !important;
 }
 
-/* Popup lo anni small thumbnails same size */
-#modalThumbnails img {
-  flex: 0 0 100px !important;
-  width: 100px !important;
-  height: 80px !important;
-  object-fit: contain !important;
-  object-position: center !important;
+
+/* Product popup: 3 photos horizontal scroll row */
+.modal-box.product-modal-box {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 15px;
 }
+
+.product-photo-row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px 4px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.product-photo-row img {
+  flex: 0 0 220px;
+  width: 220px !important;
+  height: 200px !important;
+  object-fit: contain;
+  border: 1px solid #dce6ef;
+  border-radius: 8px;
+  background: #f5f8fc;
+  padding: 6px;
+}
+
+.modal-info {
+  width: 100%;
+}
+
+@media (max-width: 650px) {
+  .product-photo-row img {
+    flex: 0 0 160px;
+    width: 160px !important;
+    height: 150px !important;
+  }
+}
+
 
 </style>
 </head>
@@ -568,31 +604,27 @@ footer {
   </section>
 </main>
 
+
 <!-- Product detail popup -->
 <div class="modal" id="productModal" aria-hidden="true" aria-label="Product details">
-  <div class="modal-box" role="dialog" aria-modal="true"
+  <div class="modal-box product-modal-box" role="dialog" aria-modal="true"
        aria-labelledby="selectedProduct">
+
     <button class="close-modal" id="closeModal"
             aria-label="Close product details">&times;</button>
 
-<div class="modal-image-wrap">
-  <img class="modal-image" id="modalImage" src="" alt="">
-  
-<div id="modalThumbnails"
-     style="display:flex; gap:10px; justify-content:flex-start; flex-wrap:nowrap; overflow-x:auto; overflow-y:hidden; margin-top:10px; max-width:100%; padding:8px 4px; scroll-behavior:smooth; -webkit-overflow-scrolling:touch;">
-</div>
+    <!-- 3 photos oke horizontal scroll row lo -->
+    <div class="modal-image-wrap">
+      <div id="modalThumbnails" class="product-photo-row"></div>
+    </div>
 
-</div>
-
+    <!-- Photos kindha product matter -->
     <div class="modal-info">
       <h2 id="selectedProduct"></h2>
-     <p id="modalDescription"></p>
-
-
+      <p id="modalDescription"></p>
     </div>
+
   </div>
-
-
 </div>
 
 <script>
@@ -755,7 +787,7 @@ const products = [
 
 const productGrid = document.getElementById("productGrid");
 const modal = document.getElementById("productModal");
-const modalImage = document.getElementById("modalImage");
+const modalImage = null;
   const modalThumbnails = document.getElementById("modalThumbnails");
 const selectedProduct = document.getElementById("selectedProduct");
 const modalDescription = document.getElementById("modalDescription");
@@ -810,36 +842,33 @@ products.forEach(function(product) {
  
 button.addEventListener("click", function() {
   modalOpener = button;
-  modalImage.src = assetPath(product.image);
-  modalImage.alt = product.name;
   document.getElementById("enquiryProduct").value = product.name;
 
   selectedProduct.textContent = product.name;
   modalDescription.textContent = product.description;
 
-  // Munduga unna extra photos anni clear chestundi
+  
+  // Munduga unna photos anni clear chestundi
   modalThumbnails.replaceChildren();
-const mainThumbnail = document.createElement("img");
-mainThumbnail.src = assetPath(product.image);
-mainThumbnail.alt = product.name + " - main photo";
-mainThumbnail.tabIndex = 0;
-mainThumbnail.style.width = "100px";
-mainThumbnail.style.height = "80px";
-mainThumbnail.style.objectFit = "contain";
-mainThumbnail.style.flex = "0 0 100px";
-mainThumbnail.style.cursor = "pointer";
-mainThumbnail.style.border = "1px solid #ccc";
-mainThumbnail.style.borderRadius = "6px";
-mainThumbnail.style.padding = "4px";
 
-mainThumbnail.addEventListener("click", function() {
-  modalImage.src = assetPath(product.image);
-  modalImage.alt = product.name;
-  });
+  // Main image ni first thumbnail ga add chestundi
+  const mainThumbnail = document.createElement("img");
+  mainThumbnail.src = assetPath(product.image);
+  mainThumbnail.alt = product.name + " - main photo";
+  mainThumbnail.tabIndex = 0;
+  mainThumbnail.setAttribute("role", "button");
+  mainThumbnail.style.width = "100px";
+  mainThumbnail.style.height = "80px";
+  mainThumbnail.style.objectFit = "contain";
+  mainThumbnail.style.flex = "0 0 100px";
+  mainThumbnail.style.cursor = "pointer";
+  mainThumbnail.style.border = "1px solid #ccc";
+  mainThumbnail.style.borderRadius = "6px";
+  mainThumbnail.style.padding = "4px";
 
-modalThumbnails.appendChild(mainThumbnail);
-
-  // Extra photos unte thumbnails ga chupistundi
+  modalThumbnails.appendChild(mainThumbnail);
+ 
+  // Migatha 2 photos ni same scroll row lo add chestundi
   (product.extraImages || []).forEach(function(photoSrc, index) {
     const thumbnail = document.createElement("img");
 
@@ -848,34 +877,18 @@ modalThumbnails.appendChild(mainThumbnail);
     thumbnail.tabIndex = 0;
     thumbnail.setAttribute("role", "button");
     thumbnail.setAttribute("aria-label", "Show " + thumbnail.alt);
-    thumbnail.style.width = "85px";
-    thumbnail.style.height = "70px";
+
+    thumbnail.style.width = "100px";
+    thumbnail.style.height = "80px";
+    thumbnail.style.flex = "0 0 100px";
     thumbnail.style.objectFit = "contain";
-    thumbnail.style.cursor = "pointer";
-    thumbnail.style.border = "1px solid #ccc";
-    thumbnail.style.borderRadius = "6px";
-    thumbnail.style.padding = "4px";
-
-    thumbnail.addEventListener("click", function() {
-      modalImage.src = assetPath(photoSrc);
-      modalImage.alt = thumbnail.alt;
-    });
-
-    thumbnail.addEventListener("keydown", function(event) {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        thumbnail.click();
-      }
-    });
-
-    modalThumbnails.appendChild(thumbnail);
+   
+ modalThumbnails.appendChild(thumbnail);
   });
-
   modal.classList.add("show");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
   closeModalButton.focus();
-});
 });
 
 function closeModal() {
@@ -1013,15 +1026,28 @@ document.addEventListener("keydown", function(event) {
     if (event.key === "ArrowRight") showImage(currentIndex + 1);
   });
 
-  // Main image mariyu additional thumbnails ni gallery ki connect chestundi
-  document.addEventListener("click", function (event) {
-    const image = event.target.closest("#modalImage, #modalThumbnails img");
+  // Product popup lo photo click chesthe anni photos gallery lo open avuthayi
+  document.getElementById("modalThumbnails").addEventListener("click", function(event) {
+    const image = event.target.closest("img");
     if (!image) return;
 
-    const mainImage = document.getElementById("modalImage");
     const thumbnails = Array.from(
       document.querySelectorAll("#modalThumbnails img")
     );
+
+    const images = thumbnails.map(function(thumbnail) {
+      return {
+        src: thumbnail.src,
+        alt: thumbnail.alt || "Product image"
+      };
+    });
+
+    const clickedIndex = thumbnails.indexOf(image);
+    openGallery(images, clickedIndex);
+  });
+
+  
+  
 
     const images = [{
       src: mainImage.src,
