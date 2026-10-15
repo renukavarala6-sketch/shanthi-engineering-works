@@ -20,6 +20,28 @@ body {
   line-height: 1.6;
 }
 
+a:focus-visible,
+button:focus-visible,
+img[role="button"]:focus-visible {
+  outline: 3px solid #f5b942;
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 1100;
+  padding: 10px 14px;
+  background: white;
+  color: #07345a;
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 header {
   background: #082b4c;
   color: white;
@@ -332,10 +354,21 @@ footer {
     font-size: 22px;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 </style>
 </head>
 
 <body>
+
+<a class="skip-link" href="#mainContent">Skip to main content</a>
 
 <header>
   <div class="brand">
@@ -344,17 +377,18 @@ footer {
     <h2>Shanthi Engineering Works and Consultants</h2>
   </div>
 
-  <nav>
+  <nav aria-label="Main navigation">
     <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#products">Products</a>
     <a href="#applications">Applications</a>
     <a href="#contact">Contact</a>
+    <a href="#enquiry">Enquiry</a>
     <a href="login.html">Admin Login</a>
   </nav>
 </header>
 
-<main>
+<main id="mainContent">
   <section class="hero" id="home">
     <h1>Industrial Safety &amp; Water Treatment Equipment</h1>
     <p>
@@ -425,7 +459,7 @@ footer {
 </main>
 
 <!-- Product detail popup -->
-<div class="modal" id="productModal" aria-hidden="true">
+<div class="modal" id="productModal" aria-hidden="true" aria-label="Product details">
   <div class="modal-box" role="dialog" aria-modal="true"
        aria-labelledby="selectedProduct">
     <button class="close-modal" id="closeModal"
@@ -616,7 +650,15 @@ const modalDescription = document.getElementById("modalDescription");
 const closeModalButton = document.getElementById("closeModal");
 const productError = document.getElementById("productError");
 
-let failedImages = 0;
+let modalOpener = null;
+
+function assetPath(path) {
+  try {
+    return encodeURI(decodeURIComponent(path));
+  } catch (error) {
+    return encodeURI(path);
+  }
+}
 
 products.forEach(function(product) {
   const card = document.createElement("article");
@@ -628,14 +670,13 @@ products.forEach(function(product) {
   button.setAttribute("aria-label", "View " + product.name);
 
   const image = document.createElement("img");
-  image.src = product.image;
+  image.src = assetPath(product.image);
   image.alt = product.name;
   image.loading = "lazy";
 
   image.addEventListener("error", function() {
     image.alt = product.name + " image could not be loaded";
     image.style.display = "none";
-    failedImages++;
     productError.hidden = false;
     productError.textContent =
       "Some product images could not be loaded. Check the image filenames in GitHub.";
@@ -656,21 +697,26 @@ products.forEach(function(product) {
 
  
 button.addEventListener("click", function() {
-  modalImage.src = product.image;
+  modalOpener = button;
+  modalImage.src = assetPath(product.image);
   modalImage.alt = product.name;
+  document.getElementById("enquiryProduct").value = product.name;
 
   selectedProduct.textContent = product.name;
   modalDescription.textContent = product.description;
 
   // Munduga unna extra photos anni clear chestundi
-  modalThumbnails.innerHTML = "";
+  modalThumbnails.replaceChildren();
 
   // Extra photos unte thumbnails ga chupistundi
   (product.extraImages || []).forEach(function(photoSrc, index) {
     const thumbnail = document.createElement("img");
 
-    thumbnail.src = photoSrc;
+    thumbnail.src = assetPath(photoSrc);
     thumbnail.alt = product.name + " - extra photo " + (index + 1);
+    thumbnail.tabIndex = 0;
+    thumbnail.setAttribute("role", "button");
+    thumbnail.setAttribute("aria-label", "Show " + thumbnail.alt);
     thumbnail.style.width = "85px";
     thumbnail.style.height = "70px";
     thumbnail.style.objectFit = "contain";
@@ -680,8 +726,15 @@ button.addEventListener("click", function() {
     thumbnail.style.padding = "4px";
 
     thumbnail.addEventListener("click", function() {
-      modalImage.src = photoSrc;
+      modalImage.src = assetPath(photoSrc);
       modalImage.alt = thumbnail.alt;
+    });
+
+    thumbnail.addEventListener("keydown", function(event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        thumbnail.click();
+      }
     });
 
     modalThumbnails.appendChild(thumbnail);
@@ -698,6 +751,9 @@ function closeModal() {
   modal.classList.remove("show");
   modal.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
+  if (modalOpener) {
+    modalOpener.focus();
+  }
 }
 
 closeModalButton.addEventListener("click", closeModal);
@@ -709,8 +765,27 @@ modal.addEventListener("click", function(event) {
 });
 
 document.addEventListener("keydown", function(event) {
-  if (event.key === "Escape" && modal.classList.contains("show")) {
+  if (!modal.classList.contains("show")) {
+    return;
+  }
+
+  if (event.key === "Escape") {
     closeModal();
+    return;
+  }
+
+  if (event.key === "Tab") {
+    const focusable = modal.querySelectorAll("button, img[role='button']");
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   }
 });
 </script>
@@ -719,20 +794,20 @@ document.addEventListener("keydown", function(event) {
 <section id="enquiry" style="max-width:600px;margin:40px auto;padding:24px;background:#ffffff;border:1px solid #dce3eb;border-radius:10px;">
   <h2 style="text-align:center;">Product Enquiry</h2>
 
-  <form action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
+  <form id="enquiryForm" action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
     <input type="hidden" name="_subject" value="New Product Enquiry">
 
-    <input type="text" name="Name" placeholder="Your Name" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
+    <input type="text" name="Name" placeholder="Your Name" autocomplete="name" aria-label="Your name" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
 
-    <input type="text" name="Company" placeholder="Company Name" style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
+    <input type="text" name="Company" placeholder="Company Name" autocomplete="organization" aria-label="Company name" style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
 
-    <input type="tel" name="Phone" placeholder="Phone Number" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
+    <input type="tel" name="Phone" placeholder="Phone Number" autocomplete="tel" aria-label="Phone number" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
 
-    <input type="email" name="Email" placeholder="Email Address" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
+    <input type="email" name="Email" placeholder="Email Address" autocomplete="email" aria-label="Email address" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
 
-    <input type="text" name="Product" placeholder="Product Name" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
+    <input id="enquiryProduct" type="text" name="Product" placeholder="Product Name" aria-label="Product name" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
 
-    <textarea name="Message" placeholder="Your Enquiry" rows="4" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;"></textarea>
+    <textarea name="Message" placeholder="Your Enquiry" rows="4" aria-label="Your enquiry" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;"></textarea>
 
     <button type="submit" style="width:100%;padding:13px;background:#123c68;color:white;border:0;border-radius:5px;cursor:pointer;">
       Submit Enquiry
