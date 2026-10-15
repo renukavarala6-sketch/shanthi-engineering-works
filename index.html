@@ -444,26 +444,31 @@ footer {
   max-width: 100%;
 }
 
-
-
-
-/* Product cards lo images anni same size */
+/* Product cards: anni images ki same box size */
 #productGrid button img {
-  display: block !important;
   width: 100% !important;
   height: 220px !important;
   min-height: 220px !important;
   max-height: 220px !important;
   object-fit: contain !important;
   object-position: center !important;
+  display: block !important;
 }
 
-/* Popup lo pedda image */
+/* Popup main image: fixed size */
 #modalImage {
-  display: block !important;
-  width: 100% !important;
-  height: 350px !important;
-  max-height: 350px !important;
+  width: 420px !important;
+  height: 520px !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+/* Popup lo anni small thumbnails same size */
+#modalThumbnails img {
+  flex: 0 0 100px !important;
+  width: 100px !important;
+  height: 80px !important;
   object-fit: contain !important;
   object-position: center !important;
 }
