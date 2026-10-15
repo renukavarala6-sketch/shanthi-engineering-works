@@ -418,6 +418,32 @@ footer {
   right: 12px;
 }
 
+#modalThumbnails {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  justify-content: flex-start;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  padding: 8px 4px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+#modalThumbnails img {
+  flex: 0 0 100px;
+  width: 100px !important;
+  height: 80px !important;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+#modalImage {
+  cursor: zoom-in;
+  max-width: 100%;
+}
+
 </style>
 </head>
 
@@ -522,9 +548,11 @@ footer {
 
 <div class="modal-image-wrap">
   <img class="modal-image" id="modalImage" src="" alt="">
-  <div id="modalThumbnails"
-       style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
-  </div>
+  
+<div id="modalThumbnails"
+     style="display:flex; gap:10px; justify-content:flex-start; flex-wrap:nowrap; overflow-x:auto; overflow-y:hidden; margin-top:10px; max-width:100%; padding:8px 4px; scroll-behavior:smooth; -webkit-overflow-scrolling:touch;">
+</div>
+
 </div>
 
     <div class="modal-info">
@@ -762,6 +790,25 @@ button.addEventListener("click", function() {
 
   // Munduga unna extra photos anni clear chestundi
   modalThumbnails.replaceChildren();
+const mainThumbnail = document.createElement("img");
+mainThumbnail.src = assetPath(product.image);
+mainThumbnail.alt = product.name + " - main photo";
+mainThumbnail.tabIndex = 0;
+mainThumbnail.style.width = "100px";
+mainThumbnail.style.height = "80px";
+mainThumbnail.style.objectFit = "contain";
+mainThumbnail.style.flex = "0 0 100px";
+mainThumbnail.style.cursor = "pointer";
+mainThumbnail.style.border = "1px solid #ccc";
+mainThumbnail.style.borderRadius = "6px";
+mainThumbnail.style.padding = "4px";
+
+mainThumbnail.addEventListener("click", function() {
+  modalImage.src = assetPath(product.image);
+  modalImage.alt = product.name;
+  });
+
+modalThumbnails.appendChild(mainThumbnail);
 
   // Extra photos unte thumbnails ga chupistundi
   (product.extraImages || []).forEach(function(photoSrc, index) {
