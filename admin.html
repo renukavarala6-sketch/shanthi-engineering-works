@@ -37,27 +37,49 @@ button {
 }
 #dashboard { display: none; }
 #message { overflow-wrap: anywhere; }
+#preview {
+  display: none;
+  max-width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  margin: 10px auto;
+}
 </style>
 </head>
 
 <body>
 <div class="box">
   <h2>Admin Login</h2>
-  <input id="email" type="email" placeholder="Admin Email">
-  <input id="password" type="password" placeholder="Password">
+
+  <input id="email" type="email" placeholder="Admin Email" required>
+  <input id="password" type="password" placeholder="Password" required>
   <button id="loginBtn">Login</button>
-  <p id="message"></p>
+  <p id="message" role="status"></p>
 
   <div id="dashboard">
     <h2>Add New Product</h2>
+
     <form id="productForm">
       <input id="name" placeholder="Product Name" required>
-     <input id="image" type="file"
-  accept="image/*" required>
-      <textarea id="description"
-        placeholder="Product Description" required></textarea>
-      <button type="submit">Add Product</button>
+
+      <input
+        id="image"
+        type="url"
+        placeholder="Paste GitHub Image URL"
+        required
+      >
+
+      <img id="preview" alt="Product image preview">
+
+      <textarea
+        id="description"
+        placeholder="Product Description"
+        required
+      ></textarea>
+
+      <button id="addBtn" type="submit">Add Product</button>
     </form>
+
     <button id="logoutBtn">Logout</button>
   </div>
 </div>
@@ -67,16 +89,18 @@ import { initializeApp }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
-  getAuth, signInWithEmailAndPassword, signOut
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
-  getFirestore, collection, addDoc, serverTimestamp
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-import {
-  getStorage, ref, uploadBytes, getDownloadURL
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyADkR1H2zyHk5SBDWbpMKJpCtsZFNneo",
@@ -91,54 +115,106 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const storage = getStorage(app);
 
 const adminEmail = "renukavarala6@gmail.com";
 const message = document.getElementById("message");
+const dashboard = document.getElementById("dashboard");
+const loginBtn = document.getElementById("loginBtn");
+const productForm = document.getElementById("productForm");
+const addBtn = document.getElementById("addBtn");
+const imageInput = document.getElementById("image");
+const preview = document.getElementById("preview");
 
-document.getElementById("loginBtn").onclick = async () => {
+function showAdmin(user) {
+  const isAdmin =
+    user && user.email?.toLowerCase() === adminEmail.toLowerCase();
+
+  dashboard.style.display = isAdmin ? "block" : "none";
+  loginBtn.style.display = isAdmin ? "none" : "block";
+
+  document.getElementById("email").style.display =
+    isAdmin ? "none" : "block";
+
+  document.getElementById("password").style.display =
+    isAdmin ? "none" : "block";
+}
+
+onAuthStateChanged(auth, (user) => {
+  showAdmin(user);
+
+  if (user && user.email?.toLowerCase() === adminEmail.toLowerCase()) {
+    message.textContent = "Admin logged in.";
+  }
+});
+
+loginBtn.onclick = async () => {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  if (!email || !password) {
+    message.textContent = "Enter email and password.";
+    return;
+  }
+
+  loginBtn.disabled = true;
+
   try {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-
     const result = await signInWithEmailAndPassword(auth, email, password);
 
-    if (result.user.email !== adminEmail) {
+    if (result.user.email?.toLowerCase() !== adminEmail.toLowerCase()) {
       await signOut(auth);
       throw new Error("Admin access denied.");
     }
 
-    document.getElementById("dashboard").style.display = "block";
+    showAdmin(result.user);
     message.textContent = "Login successful.";
   } catch (error) {
-    message.textContent = "Login failed: " + error.message;
+    message.textContent = "Login failed. Check credentials and Firebase settings.";
+  } finally {
+    loginBtn.disabled = false;
   }
 };
 
-document.getElementById("productForm").onsubmit = async (event) => {
+imageInput.addEventListener("input", () => {
+  const url = imageInput.value.trim();
+
+  if (url.startsWith("https://")) {
+    preview.src = url;
+    preview.style.display = "block";
+  } else {
+    preview.removeAttribute("src");
+    preview.style.display = "none";
+  }
+});
+
+preview.onerror = () => {
+  preview.style.display = "none";
+  message.textContent = "Image URL open avvatledu. Correct image URL use cheyyi.";
+};
+
+productForm.onsubmit = async (event) => {
   event.preventDefault();
 
-  if (!auth.currentUser || auth.currentUser.email !== adminEmail) {
+  const user = auth.currentUser;
+
+  if (!user || user.email?.toLowerCase() !== adminEmail.toLowerCase()) {
     message.textContent = "Please login as admin first.";
     return;
   }
 
+  const name = document.getElementById("name").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const imageURL = imageInput.value.trim();
+
+  if (!name || !description || !imageURL.startsWith("https://")) {
+    message.textContent = "Enter product name, description and HTTPS image URL.";
+    return;
+  }
+
+  addBtn.disabled = true;
+  message.textContent = "Saving product...";
+
   try {
-    const name = document.getElementById("name").value.trim();
-    const description = document.getElementById("description").value.trim();
-    const file = document.getElementById("image").files[0];
-
-    if (!file) {
-      message.textContent = "Select a product image.";
-      return;
-    }
-
-    message.textContent = "Uploading image...";
-
-    const imageRef = ref(storage, "products/" + Date.now() + "_" + file.name);
-    await uploadBytes(imageRef, file);
-    const imageURL = await getDownloadURL(imageRef);
-
     await addDoc(collection(db, "products"), {
       name: name,
       image: imageURL,
@@ -146,18 +222,30 @@ document.getElementById("productForm").onsubmit = async (event) => {
       createdAt: serverTimestamp()
     });
 
-    message.textContent = "Product added successfully!";
-    document.getElementById("productForm").reset();
-
+    message.textContent = "Product added to Firestore successfully!";
+    productForm.reset();
+    preview.removeAttribute("src");
+    preview.style.display = "none";
   } catch (error) {
-    message.textContent = "Error: " + error.message;
+    console.error(error);
+    message.textContent =
+      "Save failed. Check Firestore security rules and database settings.";
+  } finally {
+    addBtn.disabled = false;
   }
 };
 
 document.getElementById("logoutBtn").onclick = async () => {
-  await signOut(auth);
-  document.getElementById("dashboard").style.display = "none";
-  message.textContent = "Logged out.";
+  try {
+    await signOut(auth);
+    dashboard.style.display = "none";
+    loginBtn.style.display = "block";
+    document.getElementById("email").style.display = "block";
+    document.getElementById("password").style.display = "block";
+    message.textContent = "Logged out.";
+  } catch (error) {
+    message.textContent = "Logout failed. Please try again.";
+  }
 };
 </script>
 </body>
