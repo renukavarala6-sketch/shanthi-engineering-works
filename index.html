@@ -1045,28 +1045,6 @@ document.addEventListener("keydown", function(event) {
     const clickedIndex = thumbnails.indexOf(image);
     openGallery(images, clickedIndex);
   });
-
-  
-  
-
-    const images = [{
-      src: mainImage.src,
-      alt: mainImage.alt || "Main product image"
-    }];
-
-    thumbnails.forEach(function (thumbnail) {
-      images.push({
-        src: thumbnail.src,
-        alt: thumbnail.alt || "Additional product image"
-      });
-    });
-
-    const clickedIndex = image.id === "modalImage"
-      ? 0
-      : thumbnails.indexOf(image) + 1;
-
-    openGallery(images, clickedIndex);
-  });
 })();
 </script>
 
