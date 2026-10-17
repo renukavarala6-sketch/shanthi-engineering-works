@@ -481,10 +481,13 @@ footer {
 
 .product-photo-row {
   display: flex;
+  flex-direction: row;
   flex-wrap: nowrap;
   gap: 12px;
   width: 100%;
-  overflow-x: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: scroll;
   overflow-y: hidden;
   padding: 10px 4px;
   scroll-behavior: smooth;
@@ -494,12 +497,18 @@ footer {
 .product-photo-row img {
   flex: 0 0 220px;
   width: 220px !important;
+  min-width: 220px;
+  max-width: 220px;
   height: 200px !important;
   object-fit: contain;
   border: 1px solid #dce6ef;
   border-radius: 8px;
   background: #f5f8fc;
   padding: 6px;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-drag: none;
+  cursor: zoom-in;
 }
 
 .modal-info {
@@ -510,6 +519,8 @@ footer {
   .product-photo-row img {
     flex: 0 0 160px;
     width: 160px !important;
+    min-width: 160px;
+    max-width: 160px;
     height: 150px !important;
   }
 }
@@ -867,7 +878,40 @@ button.addEventListener("click", function() {
     photo.loading = "lazy";
     modalThumbnails.appendChild(photo);
   });
+// Enable horizontal scrolling with the mouse
+modalThumbnails.style.overflowX = "auto";
+modalThumbnails.style.overflowY = "hidden";
 
+// Set up mouse drag scrolling only once
+if (!modalThumbnails.dataset.dragEnabled) {
+  modalThumbnails.dataset.dragEnabled = "true";
+
+  let isDragging = false;
+  let startX = 0;
+  let startScrollLeft = 0;
+
+  modalThumbnails.addEventListener("mousedown", function(event) {
+    if (event.button !== 0) return;
+
+    isDragging = true;
+    startX = event.clientX;
+    startScrollLeft = modalThumbnails.scrollLeft;
+    modalThumbnails.style.cursor = "grabbing";
+  });
+
+  window.addEventListener("mouseup", function() {
+    isDragging = false;
+    modalThumbnails.style.cursor = "grab";
+  });
+
+  modalThumbnails.addEventListener("mousemove", function(event) {
+    if (!isDragging) return;
+
+    event.preventDefault();
+    const distance = event.clientX - startX;
+    modalThumbnails.scrollLeft = startScrollLeft - distance;
+  });
+}
   modal.classList.add("show");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
