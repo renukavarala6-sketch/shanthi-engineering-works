@@ -418,32 +418,39 @@ footer {
   right: 12px;
 }
 
+
 #modalThumbnails {
   display: flex;
+  flex-direction: row;
   flex-wrap: nowrap;
-  gap: 10px;
-  justify-content: flex-start;
+  gap: 12px;
   overflow-x: auto;
   overflow-y: hidden;
+  width: 100%;
   max-width: 100%;
-  padding: 8px 4px;
+  padding: 10px;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: auto;
 }
-
 
 #modalThumbnails img {
   flex: 0 0 220px;
   width: 220px !important;
   height: 200px !important;
   object-fit: contain;
-  cursor: pointer;
-  border: 1px solid #dce6ef;
-  border-radius: 8px;
-  background: #f5f8fc;
-  padding: 6px;
+  cursor: default;
 }
 
+#modalThumbnails img {
+  pointer-events: none;
+  user-select: none;
+}
+
+#modalThumbnails {
+  touch-action: pan-x;
+  cursor: grab;
+}
 
 #modalImage {
   cursor: zoom-in;
@@ -1049,6 +1056,37 @@ document.addEventListener("keydown", function(event) {
     const clickedIndex = thumbnails.indexOf(image);
     openGallery(images, clickedIndex);
   });
+  
+  // Mouse tho drag chesi product photos scroll cheyadaniki
+  const gallery = document.getElementById("modalThumbnails");
+
+  let isDragging = false;
+  let startX = 0;
+  let startScrollLeft = 0;
+
+  gallery.addEventListener("mousedown", function (event) {
+    isDragging = true;
+    startX = event.pageX;
+    startScrollLeft = gallery.scrollLeft;
+    gallery.style.cursor = "grabbing";
+  });
+
+  gallery.addEventListener("mouseup", function () {
+    isDragging = false;
+    gallery.style.cursor = "grab";
+  });
+
+  gallery.addEventListener("mouseleave", function () {
+    isDragging = false;
+    gallery.style.cursor = "grab";
+  });
+
+  gallery.addEventListener("mousemove", function (event) {
+    if (!isDragging) return;
+    event.preventDefault();
+    gallery.scrollLeft = startScrollLeft - (event.pageX - startX);
+  });
+
 })();
 </script>
 
