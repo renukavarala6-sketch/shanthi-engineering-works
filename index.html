@@ -851,44 +851,22 @@ button.addEventListener("click", function() {
   // Munduga unna photos anni clear chestundi
   modalThumbnails.replaceChildren();
 
-  // Main image ni first thumbnail ga add chestundi
-  const mainThumbnail = document.createElement("img");
-  mainThumbnail.src = assetPath(product.image);
-  mainThumbnail.alt = product.name + " - main photo";
-  mainThumbnail.tabIndex = 0;
-  mainThumbnail.setAttribute("role", "button");
-  mainThumbnail.style.width = "100px";
-  mainThumbnail.style.height = "80px";
-  mainThumbnail.style.objectFit = "contain";
-  mainThumbnail.style.flex = "0 0 100px";
-  mainThumbnail.style.cursor = "pointer";
-  mainThumbnail.style.border = "1px solid #ccc";
-  mainThumbnail.style.borderRadius = "6px";
-  mainThumbnail.style.padding = "4px";
+  // Add all product images to the horizontal scroll gallery
+  const allPhotos = [product.image, ...(product.extraImages || [])];
 
-  modalThumbnails.appendChild(mainThumbnail);
- 
-  // Migatha 2 photos ni same scroll row lo add chestundi
-  (product.extraImages || []).forEach(function(photoSrc, index) {
-    const thumbnail = document.createElement("img");
-
-    thumbnail.src = assetPath(photoSrc);
-    thumbnail.alt = product.name + " - extra photo " + (index + 1);
-    thumbnail.tabIndex = 0;
-    thumbnail.setAttribute("role", "button");
-    thumbnail.setAttribute("aria-label", "Show " + thumbnail.alt);
-
-    thumbnail.style.width = "100px";
-    thumbnail.style.height = "80px";
-    thumbnail.style.flex = "0 0 100px";
-    thumbnail.style.objectFit = "contain";
-   
- modalThumbnails.appendChild(thumbnail);
+  allPhotos.forEach(function(photoSrc, index) {
+    const photo = document.createElement("img");
+    photo.src = assetPath(photoSrc);
+    photo.alt = product.name + " - photo " + (index + 1);
+    photo.loading = "lazy";
+    modalThumbnails.appendChild(photo);
   });
+
   modal.classList.add("show");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
   closeModalButton.focus();
+
 });
 });
 function closeModal() {
