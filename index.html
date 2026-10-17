@@ -51,12 +51,12 @@ header {
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
-}
 
 .brand {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 12px;
+  width: 100%;
 }
 
 .brand img {
@@ -65,12 +65,26 @@ header {
   object-fit: contain;
   background: white;
   border-radius: 5px;
+  flex-shrink: 0;
+}
+
+
+.brand > div {
+  background-color: white;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  box-sizing: border-box;
+   min-width: 0;
 }
 
 .brand h2 {
+   color: #0066cc;
   font-size: 21px;
   margin: 0;
 }
+  
 
 nav {
   display: flex;
