@@ -524,7 +524,42 @@ footer {
     height: 150px !important;
   }
 }
+/* Fix product image horizontal scrolling */
+.modal-image-wrap {
+  width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
 
+#modalThumbnails {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  box-sizing: border-box !important;
+  gap: 12px !important;
+}
+
+#modalThumbnails img {
+  flex: 0 0 220px !important;
+  width: 220px !important;
+  min-width: 220px !important;
+  height: 200px !important;
+  object-fit: contain !important;
+}
+
+@media (max-width: 650px) {
+  #modalThumbnails img {
+    flex: 0 0 160px !important;
+    width: 160px !important;
+    min-width: 160px !important;
+    height: 150px !important;
+  }
+}
 
 </style>
 </head>
