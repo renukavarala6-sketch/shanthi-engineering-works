@@ -51,12 +51,12 @@ header {
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
+}
 
 .brand {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   gap: 12px;
-  width: 100%;
 }
 
 .brand img {
@@ -65,26 +65,12 @@ header {
   object-fit: contain;
   background: white;
   border-radius: 5px;
-  flex-shrink: 0;
-}
-
-
-.brand > div {
-  background-color: white;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  box-sizing: border-box;
-   min-width: 0;
 }
 
 .brand h2 {
-   color: #0066cc;
   font-size: 21px;
   margin: 0;
 }
-  
 
 nav {
   display: flex;
@@ -531,18 +517,11 @@ footer {
 <a class="skip-link" href="#mainContent">Skip to main content</a>
 
 <header>
- 
-<div class="brand">
-  <img src="SEW_Logo.jpg-removebg-preview.png"
-       alt="Shanthi Engineering Works Logo">
-
-  <div style="background-color: white; padding: 10px 20px; flex: 1; align-self: stretch; display: flex; align-items: center;">
-    <h2 style="color: #0066cc; margin: 0;">
-      Shanthi Engineering Works and Consultants
-    </h2>
+  <div class="brand">
+    <img src="SEW_Logo_black_background.png"
+         alt="Shanthi Engineering Works Logo">
+    <h2>Shanthi Engineering Works and Consultants</h2>
   </div>
-</div>
-
 
   <nav aria-label="Main navigation">
     <a href="#home">Home</a>
