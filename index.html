@@ -545,8 +545,13 @@ footer {
 
   cursor: grab;
   scroll-behavior: auto !important;
-  scrollbar-width: thin;
+ scrollbar-width: none !important;
+-ms-overflow-style: none !important;
   box-sizing: border-box;
+}
+
+#modalThumbnails::-webkit-scrollbar {
+  display: none !important;
 }
 
 #modalThumbnails img {
