@@ -418,149 +418,44 @@ footer {
   right: 12px;
 }
 
-#modalThumbnails {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 12px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  width: 100%;
-  max-width: 100%;
-  padding: 10px;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: auto;
-  touch-action: pan-x;
-  cursor: grab;
-}
-
-#modalThumbnails img {
-  flex: 0 0 220px;
-  width: 220px !important;
-  height: 200px !important;
-  object-fit: contain;
-  user-select: none;
-  -webkit-user-drag: none;
-  cursor: zoom-in;
-}
-
-#modalImage {
-  cursor: zoom-in;
-  max-width: 100%;
-}
-
-/* Product cards: anni images ki same box size */
-#productGrid button img {
-  width: 100% !important;
-  height: 220px !important;
-  min-height: 220px !important;
-  max-height: 220px !important;
-  object-fit: contain !important;
-  object-position: center !important;
-  display: block !important;
-}
-
-/* Popup main image: fixed size */
-#modalImage {
-  width: 420px !important;
-  height: 520px !important;
-  max-width: 100% !important;
-  object-fit: contain !important;
-  object-position: center !important;
-}
 
 
-/* Product popup: 3 photos horizontal scroll row */
-.modal-box.product-modal-box {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 15px;
-}
-
-.product-photo-row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 12px;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  padding: 10px 4px;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-}
-
-.product-photo-row img {
-  flex: 0 0 220px;
-  width: 220px !important;
-  min-width: 220px;
-  max-width: 220px;
-  height: 200px !important;
-  object-fit: contain;
-  border: 1px solid #dce6ef;
-  border-radius: 8px;
-  background: #f5f8fc;
-  padding: 6px;
-  box-sizing: border-box;
-  user-select: none;
-  -webkit-user-drag: none;
-  cursor: zoom-in;
-}
-
-.modal-info {
-  width: 100%;
-}
-
-@media (max-width: 650px) {
-  .product-photo-row img {
-    flex: 0 0 160px;
-    width: 160px !important;
-    min-width: 160px;
-    max-width: 160px;
-    height: 150px !important;
-  }
-}
-/* Fix product image horizontal scrolling */
-.modal-image-wrap {
-  width: 100% !important;
-  min-width: 0 !important;
-  overflow: hidden !important;
-}
-
-
+/* Product photo horizontal gallery */
 #modalThumbnails {
   display: flex !important;
+  flex-direction: row !important;
   flex-wrap: nowrap !important;
   justify-content: flex-start !important;
   gap: 15px !important;
 
   width: 100% !important;
+  max-width: 100% !important;
   min-width: 0 !important;
+  box-sizing: border-box !important;
+
   overflow-x: auto !important;
   overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  scroll-behavior: auto !important;
 
   cursor: grab;
-  scroll-behavior: auto !important;
- scrollbar-width: none !important;
--ms-overflow-style: none !important;
-  box-sizing: border-box;
-}
-
-#modalThumbnails::-webkit-scrollbar {
-  display: none !important;
+  user-select: none;
+  scrollbar-width: thin;
 }
 
 #modalThumbnails img {
-  flex: 0 0 275px !important;
-  width: 275px !important;
-  min-width: 275px !important;
-  height: 250px !important;
+  flex: 0 0 220px !important;
+  width: 220px !important;
+  min-width: 220px !important;
+  max-width: 220px !important;
+  height: 200px !important;
+
   object-fit: contain !important;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 #modalThumbnails:active {
@@ -572,10 +467,10 @@ footer {
     flex: 0 0 160px !important;
     width: 160px !important;
     min-width: 160px !important;
+    max-width: 160px !important;
     height: 150px !important;
   }
 }
-
 
 </style>
 </head>
@@ -930,11 +825,6 @@ button.addEventListener("click", function() {
     modalThumbnails.appendChild(photo);
   });
 
-  // Enable mouse drag and touch swipe
-  modalThumbnails.style.overflowX = "auto";
-  modalThumbnails.style.overflowY = "hidden";
-  modalThumbnails.style.cursor = "grab";
-
   if (!modalThumbnails.dataset.dragEnabled) {
     modalThumbnails.dataset.dragEnabled = "true";
 
@@ -977,6 +867,17 @@ modalThumbnails.addEventListener("pointerdown", function(event) {
       event.preventDefault();
     });
   }
+  modalThumbnails.style.overflowX = "auto";
+modalThumbnails.style.overflowY = "hidden";
+modalThumbnails.style.cursor = "grab";
+modalThumbnails.style.touchAction = "pan-y";
+modalThumbnails.style.userSelect = "none";
+
+modalThumbnails.querySelectorAll("img").forEach(function(img) {
+  img.style.pointerEvents = "none";
+  img.style.userSelect = "none";
+  img.draggable = false;
+});
 modal.classList.add("show");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
