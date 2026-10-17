@@ -1037,58 +1037,85 @@ document.addEventListener("keydown", function(event) {
     if (event.key === "ArrowRight") showImage(currentIndex + 1);
   });
 
-  // Product popup lo photo click chesthe anni photos gallery lo open avuthayi
-  document.getElementById("modalThumbnails").addEventListener("click", function(event) {
-    const image = event.target.closest("img");
-    if (!image) return;
+ 
 
-    const thumbnails = Array.from(
-      document.querySelectorAll("#modalThumbnails img")
-    );
+  
+ 
+  // Product photos ni mouse tho drag chesi scroll cheyadaniki
+  const gallery = document.getElementById("modalThumbnails");
 
-    const images = thumbnails.map(function(thumbnail) {
-      return {
-        src: thumbnail.src,
-        alt: thumbnail.alt || "Product image"
-      };
+  if (gallery) {
+    let isDragging = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+
+    gallery.addEventListener("mousedown", function (event) {
+      if (event.button !== 0) return;
+      isDragging = true;
+      startX = event.clientX;
+      startScrollLeft = gallery.scrollLeft;
+      gallery.style.cursor = "grabbing";
     });
+
 
     const clickedIndex = thumbnails.indexOf(image);
     openGallery(images, clickedIndex);
   });
+
   
-  // Mouse tho drag chesi product photos scroll cheyadaniki
+ 
+  // Product photos ni mouse tho drag chesi scroll cheyadaniki
   const gallery = document.getElementById("modalThumbnails");
 
-  let isDragging = false;
-  let startX = 0;
-  let startScrollLeft = 0;
+  if (gallery) {
+    let isDragging = false;
+    let startX = 0;
+    let startScrollLeft = 0;
 
-  gallery.addEventListener("mousedown", function (event) {
-    isDragging = true;
-    startX = event.pageX;
-    startScrollLeft = gallery.scrollLeft;
-    gallery.style.cursor = "grabbing";
-  });
+    gallery.addEventListener("mousedown", function (event) {
+      if (event.button !== 0) return;
+      isDragging = true;
+      startX = event.clientX;
+      startScrollLeft = gallery.scrollLeft;
+      gallery.style.cursor = "grabbing";
+    });
 
-  gallery.addEventListener("mouseup", function () {
-    isDragging = false;
-    gallery.style.cursor = "grab";
-  });
+    window.addEventListener("mouseup", function () {
+      isDragging = false;
+      gallery.style.cursor = "grab";
+    });
 
-  gallery.addEventListener("mouseleave", function () {
-    isDragging = false;
-    gallery.style.cursor = "grab";
-  });
+    gallery.addEventListener("mousemove", function (event) {
+      if (!isDragging) return;
+      event.preventDefault();
+      gallery.scrollLeft =
+        startScrollLeft - (event.clientX - startX);
+    });
+    
+    gallery.addEventListener("click", function(event) {
+      if (isDragging) return;
 
-  gallery.addEventListener("mousemove", function (event) {
-    if (!isDragging) return;
-    event.preventDefault();
-    gallery.scrollLeft = startScrollLeft - (event.pageX - startX);
-  });
+      const image = event.target.closest("img");
+      if (!image) return;
+
+      const thumbnails = Array.from(gallery.querySelectorAll("img"));
+      const images = thumbnails.map(function(thumbnail) {
+        return {
+          src: thumbnail.src,
+          alt: thumbnail.alt || "Product image"
+        };
+      });
+
+      openGallery(images, thumbnails.indexOf(image));
+    });
+
+  }
+
 
 })();
 </script>
 
 </body>
 </html>
+
+   
