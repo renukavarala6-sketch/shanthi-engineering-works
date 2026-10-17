@@ -924,41 +924,49 @@ button.addEventListener("click", function() {
     photo.loading = "lazy";
     modalThumbnails.appendChild(photo);
   });
-// Enable horizontal scrolling with the mouse
-modalThumbnails.style.overflowX = "auto";
-modalThumbnails.style.overflowY = "hidden";
 
-// Set up mouse drag scrolling only once
-if (!modalThumbnails.dataset.dragEnabled) {
-  modalThumbnails.dataset.dragEnabled = "true";
+  // Enable horizontal scrolling with mouse drag and touch swipe
+  modalThumbnails.style.overflowX = "auto";
+  modalThumbnails.style.overflowY = "hidden";
+  modalThumbnails.style.cursor = "grab";
+  modalThumbnails.style.touchAction = "pan-x";
 
-  let isDragging = false;
-  let startX = 0;
-  let startScrollLeft = 0;
+  // Set up drag scrolling only once
+  if (!modalThumbnails.dataset.dragEnabled) {
+    modalThumbnails.dataset.dragEnabled = "true";
 
-  modalThumbnails.addEventListener("mousedown", function(event) {
-    if (event.button !== 0) return;
+    let isDragging = false;
+    let startX = 0;
+    let startScrollLeft = 0;
 
-    isDragging = true;
-    startX = event.clientX;
-    startScrollLeft = modalThumbnails.scrollLeft;
-    modalThumbnails.style.cursor = "grabbing";
-  });
+    modalThumbnails.addEventListener("mousedown", function(event) {
+      if (event.button !== 0) return;
 
-  window.addEventListener("mouseup", function() {
-    isDragging = false;
-    modalThumbnails.style.cursor = "grab";
-  });
+      isDragging = true;
+      startX = event.clientX;
+      startScrollLeft = modalThumbnails.scrollLeft;
+      modalThumbnails.style.cursor = "grabbing";
+    });
 
-  modalThumbnails.addEventListener("mousemove", function(event) {
-    if (!isDragging) return;
+    window.addEventListener("mouseup", function() {
+      isDragging = false;
+      modalThumbnails.style.cursor = "grab";
+    });
 
-    event.preventDefault();
-    const distance = event.clientX - startX;
-    modalThumbnails.scrollLeft = startScrollLeft - distance;
-  });
-}
-  modal.classList.add("show");
+    modalThumbnails.addEventListener("mousemove", function(event) {
+      if (!isDragging) return;
+
+      event.preventDefault();
+      modalThumbnails.scrollLeft =
+        startScrollLeft - (event.clientX - startX);
+    });
+
+    // Prevent image dragging from interfering with scrolling
+    modalThumbnails.addEventListener("dragstart", function(event) {
+      event.preventDefault();
+    });
+  }
+modal.classList.add("show");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
   closeModalButton.focus();
