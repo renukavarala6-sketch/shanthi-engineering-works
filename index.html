@@ -869,11 +869,29 @@ modalThumbnails.addEventListener("pointerdown", function(event) {
         startScrollLeft - (event.clientX - startX);
     });
 
-    function stopGalleryDrag() {
-      isDragging = false;
-      modalThumbnails.style.cursor = "grab";
-      modalThumbnails.style.touchAction = "pan-y";
-    }
+    
+function stopGalleryDrag() {
+  if (!isDragging) return;
+
+  isDragging = false;
+  modalThumbnails.style.cursor = "grab";
+  modalThumbnails.style.touchAction = "pan-y";
+
+  // Snap smoothly to the nearest product image.
+  const imageWidth = modalThumbnails.clientWidth;
+
+  if (imageWidth > 0) {
+    const imageIndex = Math.round(
+      modalThumbnails.scrollLeft / imageWidth
+    );
+
+    modalThumbnails.scrollTo({
+      left: imageIndex * imageWidth,
+      behavior: "smooth"
+    });
+  }
+}
+
 
     modalThumbnails.addEventListener("pointerup", stopGalleryDrag);
     modalThumbnails.addEventListener("pointercancel", stopGalleryDrag);
