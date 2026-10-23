@@ -1036,6 +1036,7 @@ function closeModal() {
 
 closeModalButton.addEventListener("click", function (event) {
   event.preventDefault();
+  console.log("CLOSE BUTTON CLICKED");
   event.stopPropagation();
   closeModal();
 });
