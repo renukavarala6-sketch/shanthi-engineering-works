@@ -635,6 +635,115 @@ section h2 {
 .product-card:hover {
   box-shadow: 0 8px 24px rgba(16, 42, 67, 0.15);
 }
+  
+/* Professional styling for existing website */
+header {
+  background: #082b4c;
+  color: #ffffff;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.14);
+}
+
+.brand h2 {
+  color: #ffffff !important;
+  letter-spacing: 0.4px;
+}
+
+nav a {
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+nav a:hover {
+  color: #69c5ff;
+}
+
+.hero {
+  background: linear-gradient(115deg, #08345b, #087eaa);
+  color: #ffffff;
+}
+
+.hero h1 {
+  color: #ffffff;
+  max-width: 950px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero p {
+  line-height: 1.8;
+}
+
+section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.section-title {
+  color: #07345a;
+  font-weight: 750;
+  letter-spacing: 0.3px;
+}
+
+#about,
+#products,
+#applications,
+#contact {
+  scroll-margin-top: 90px;
+}
+
+#about,
+#applications {
+  background: #f3f7fb;
+}
+
+.product-card {
+  border: 1px solid #dceaf5;
+  border-radius: 12px;
+  box-shadow: 0 5px 18px rgba(7, 52, 90, 0.08);
+  transition: transform 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 26px rgba(7, 52, 90, 0.15);
+}
+
+.product-card h3 {
+  color: #07345a;
+}
+
+.application-item,
+.about-box,
+.contact-box {
+  border: 1px solid #e0ebf4;
+  box-shadow: 0 5px 18px rgba(7, 52, 90, 0.05);
+}
+
+#contact {
+  background: #eaf3fa;
+}
+
+footer {
+  background: #062541;
+  color: #ffffff;
+  line-height: 1.8;
+}
+
+@media (max-width: 650px) {
+  .brand h2 {
+    font-size: 17px;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 7vw, 40px);
+  }
+
+  section {
+    padding-top: 42px;
+    padding-bottom: 42px;
+  }
+}
+
 </style>
 </head>
 
