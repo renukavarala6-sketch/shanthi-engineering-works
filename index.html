@@ -907,6 +907,54 @@ footer {
   padding: 0 15px 16px !important;
 }
 
+/* Final product card design */
+.product-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 28px !important;
+}
+
+.product-card {
+  display: flex !important;
+  flex-direction: column !important;
+  background: #ffffff !important;
+  color: #102a43 !important;
+  border: 1px solid #d9e4ed !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 5px 18px rgba(16, 42, 67, 0.10) !important;
+}
+
+.product-card img {
+  background: #ffffff !important;
+  object-fit: contain !important;
+}
+
+.product-card h3 {
+  display: block !important;
+  background: #ffffff !important;
+  color: #102a43 !important;
+  padding: 16px !important;
+  font-size: 17px !important;
+}
+
+.product-card .click-note {
+  background: #ffffff !important;
+  color: #087eaa !important;
+}
+
+@media (max-width: 750px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 </style>
 </head>
 
