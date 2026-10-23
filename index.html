@@ -421,7 +421,23 @@ footer {
 
 
 
-/* Product photo gallery: show one image at a time */
+/* Product popup: images on top, details below */
+.product-modal-box {
+  display: flex !important;
+  flex-direction: column !important;
+  width: min(900px, 95vw) !important;
+  max-width: 900px !important;
+  gap: 20px !important;
+}
+
+.modal-image-wrap {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Horizontal image gallery */
 #modalThumbnails {
   display: flex !important;
   flex-direction: row !important;
@@ -429,17 +445,13 @@ footer {
   gap: 0 !important;
   width: 100% !important;
   min-width: 0 !important;
-  box-sizing: border-box !important;
-
   overflow-x: auto !important;
   overflow-y: hidden !important;
-  -webkit-overflow-scrolling: touch;
-
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   cursor: grab;
-  user-select: none;
 }
 
 #modalThumbnails img {
@@ -449,11 +461,17 @@ footer {
   max-width: 100% !important;
   height: 400px !important;
   object-fit: contain !important;
-  box-sizing: border-box !important;
   scroll-snap-align: start;
-  pointer-events: auto;
+  box-sizing: border-box !important;
   user-select: none;
   -webkit-user-drag: none;
+}
+
+/* Product information below the gallery */
+.modal-info {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
 }
 
 #modalThumbnails:active {
@@ -465,11 +483,10 @@ footer {
     height: 260px !important;
   }
 
-  .modal-box {
-    padding: 45px 18px 22px;
+  .product-modal-box {
+    gap: 14px !important;
   }
 }
-
 </style>
 </head>
 
