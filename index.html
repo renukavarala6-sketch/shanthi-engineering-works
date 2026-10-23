@@ -592,9 +592,16 @@ footer {
             aria-label="Close product details">&times;</button>
 
     <!-- 3 photos oke horizontal scroll row lo -->
-    <div class="modal-image-wrap">
-      <div id="modalThumbnails" class="product-photo-row"></div>
-    </div>
+   
+<div class="modal-image-wrap">
+  <button type="button" class="gallery-arrow gallery-prev"
+          id="galleryPrev" aria-label="Previous image">❮</button>
+
+  <div id="modalThumbnails" class="product-photo-row"></div>
+
+  <button type="button" class="gallery-arrow gallery-next"
+          id="galleryNext" aria-label="Next image">❯</button>
+</div>
 
     <!-- Photos kindha product matter -->
     <div class="modal-info">
@@ -767,6 +774,10 @@ const productGrid = document.getElementById("productGrid");
 const modal = document.getElementById("productModal");
 const modalImage = null;
   const modalThumbnails = document.getElementById("modalThumbnails");
+  
+const galleryPrev = document.getElementById("galleryPrev");
+const galleryNext = document.getElementById("galleryNext");
+
 const selectedProduct = document.getElementById("selectedProduct");
 const modalDescription = document.getElementById("modalDescription");
 const closeModalButton = document.getElementById("closeModal");
@@ -918,10 +929,58 @@ modal.classList.add("show");
 
 });
 });
+  
+function scrollProductGallery(direction) {
+  const imageWidth = modalThumbnails.clientWidth;
+
+  if (imageWidth <= 0) return;
+
+  const currentIndex = Math.round(
+    modalThumbnails.scrollLeft / imageWidth
+  );
+
+  const totalImages = modalThumbnails.querySelectorAll("img").length;
+
+  const nextIndex = Math.max(
+    0,
+    Math.min(totalImages - 1, currentIndex + direction)
+  );
+
+  modalThumbnails.scrollTo({
+    left: nextIndex * imageWidth,
+    behavior: "smooth"
+  });
+}
+
+function updateGalleryArrows() {
+  const images = modalThumbnails.querySelectorAll("img");
+  const imageWidth = modalThumbnails.clientWidth;
+
+  if (!images.length || imageWidth <= 0) return;
+
+  const currentIndex = Math.round(
+    modalThumbnails.scrollLeft / imageWidth
+  );
+
+  galleryPrev.hidden = currentIndex <= 0;
+  galleryNext.hidden = currentIndex >= images.length - 1;
+}
+galleryNext.addEventListener("click", function() {
+  scrollProductGallery(1);
+});
+galleryPrev.addEventListener("click", function() {
+  scrollProductGallery(-1);
+});
+
+
+modalThumbnails.addEventListener("scroll", updateGalleryArrows);
+window.addEventListener("resize", updateGalleryArrows);
+
 function closeModal() {
   modal.classList.remove("show");
   modal.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
+
   if (modalOpener) {
     modalOpener.focus();
   }
