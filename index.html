@@ -635,8 +635,8 @@ footer {
   <div class="modal-box product-modal-box" role="dialog" aria-modal="true"
        aria-labelledby="selectedProduct">
 
-    <button class="close-modal" id="closeModal"
-            aria-label="Close product details">&times;</button>
+   <button type="button" class="close-modal" id="closeModal"
+        aria-label="Close product details">&times;</button>
 
     <!-- 3 photos oke horizontal scroll row lo -->
    
@@ -1033,13 +1033,19 @@ function closeModal() {
   }
 }
 
-closeModalButton.addEventListener("click", closeModal);
 
-modal.addEventListener("click", function(event) {
+closeModalButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  event.stopPropagation();
+  closeModal();
+});
+
+modal.addEventListener("click", function (event) {
   if (event.target === modal) {
     closeModal();
   }
 });
+
 
 document.addEventListener("keydown", function(event) {
   if (!modal.classList.contains("show")) {
@@ -1052,14 +1058,19 @@ document.addEventListener("keydown", function(event) {
   }
 
   if (event.key === "Tab") {
-    const focusable = modal.querySelectorAll("button, img[role='button']");
+    const focusable = modal.querySelectorAll(
+      "button, img[role='button']"
+      );
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
 
     if (event.shiftKey && document.activeElement === first) {
       event.preventDefault();
       last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
+    } else if (
+      !event.shiftKey && 
+      document.activeElement === last
+    ) {
       event.preventDefault();
       first.focus();
     }
