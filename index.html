@@ -1088,3 +1088,1092 @@ document.addEventListener("keydown", function(event) {
 </html>
 
    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHANTHI ENGINEERING WORKS AND CONSULTANTS</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #203047;
+  background: #f5f8fc;
+  line-height: 1.6;
+}
+
+a:focus-visible,
+button:focus-visible,
+img[role="button"]:focus-visible {
+  outline: 3px solid #f5b942;
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 1100;
+  padding: 10px 14px;
+  background: white;
+  color: #07345a;
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+header {
+  background: #082b4c;
+  color: white;
+  padding: 15px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand img {
+  width: 65px;
+  height: 60px;
+  object-fit: contain;
+  background: white;
+  border-radius: 5px;
+}
+
+.brand h2 {
+  font-size: 21px;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #7dd3fc;
+}
+
+/* Professional Home Page */
+.hero {
+  position: relative;
+  padding: clamp(75px, 9vw, 115px) 24px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(135deg, #07345a 0%, #087eaa 100%);
+}
+
+.hero h1 {
+  max-width: 1000px;
+  margin: 0 auto 22px;
+  font-size: clamp(32px, 4.5vw, 54px);
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+  text-wrap: balance;
+}
+
+.hero p {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.8;
+  color: #f3f8fc;
+}
+
+.hero a {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 15px 30px;
+  border: 2px solid white;
+  border-radius: 8px;
+  background: white;
+  color: #07345a;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.12);
+  transition: background 0.25s ease,
+              color 0.25s ease,
+              transform 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.hero a:hover {
+  background: #07345a;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 9px 22px rgba(0, 0, 0, 0.2);
+}
+
+.hero a:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 5px;
+}
+
+@media (max-width: 650px) {
+ .hero {
+    padding: 55px 18px;
+  }
+  
+
+  section {
+    padding: 40px 5%;
+  }
+
+  .modal-box {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 45px 18px 22px;
+  }
+
+  .modal-image {
+    height: 260px;
+  }
+
+  .modal-info h2 {
+    font-size: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+  
+/* Product image click chesinappudu zoom cursor chupisthundi */
+#modalImage {
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+/* Pedhaga image open ayye overlay */
+.image-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.92);
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px 20px;
+}
+
+.image-lightbox.show {
+  display: flex;
+}
+
+.image-lightbox img {
+  max-width: 95%;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.image-lightbox .lightbox-close,
+.image-lightbox .lightbox-prev,
+.image-lightbox .lightbox-next {
+  position: absolute;
+  color: white;
+  background: #222;
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.image-lightbox .lightbox-close {
+  top: 12px;
+  right: 16px;
+}
+
+.image-lightbox .lightbox-prev {
+  left: 12px;
+}
+
+.image-lightbox .lightbox-next {
+  right: 12px;
+}
+
+
+
+
+
+/* Product popup: images on top, details below */
+.product-modal-box {
+  display: flex !important;
+  flex-direction: column !important;
+  width: min(900px, 95vw) !important;
+  max-width: 900px !important;
+  gap: 20px !important;
+}
+
+/* Image gallery container */
+.modal-image-wrap {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Horizontal gallery without a visible scrollbar */
+#modalThumbnails {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: 0 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  cursor: grab;
+}
+
+#modalThumbnails::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Show one product image at a time */
+#modalThumbnails img {
+  flex: 0 0 100% !important;
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  height: 400px !important;
+  object-fit: contain !important;
+  scroll-snap-align: start;
+  box-sizing: border-box !important;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+#modalThumbnails:active {
+  cursor: grabbing;
+}
+
+/* Previous and next arrows */
+.gallery-arrow {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 10 !important;
+  width: 44px !important;
+  height: 44px !important;
+  border: none !important;
+  border-radius: 50% !important;
+  background: #e8eef5 !important;
+  color: #222 !important;
+  font-size: 24px !important;
+  cursor: pointer !important;
+}
+
+.gallery-prev {
+  left: 10px !important;
+}
+
+.gallery-next {
+  right: 10px !important;
+}
+
+.gallery-arrow[hidden] {
+  display: none !important;
+}
+
+/* Product information below the images */
+.modal-info {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+/* Mobile screen adjustments */
+@media (max-width: 650px) {
+  #modalThumbnails img {
+    height: 260px !important;
+  }
+
+  .product-modal-box {
+    gap: 14px !important;
+  }
+
+  .gallery-arrow {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 20px !important;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<a class="skip-link" href="#mainContent">Skip to main content</a>
+
+<header>
+  <div class="brand">
+    <img src="SEW_Logo_black_background.png"
+         alt="Shanthi Engineering Works Logo">
+    <h2>Shanthi Engineering Works and Consultants</h2>
+  </div>
+
+  <nav aria-label="Main navigation">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#products">Products</a>
+    <a href="#applications">Applications</a>
+    <a href="#contact">Contact</a>
+    <a href="#enquiry">Enquiry</a>
+    <a href="login.html">Admin Login</a>
+  </nav>
+</header>
+
+<main id="mainContent">
+  <section class="hero" id="home">
+    <h1>Industrial Safety &amp; Water Treatment Equipment</h1>
+    <p>
+      Explore our range of industrial safety equipment and
+      chlorine handling products.
+    </p>
+    <a href="#products">Explore Our Products</a>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About Us</h2>
+    <div class="about-box">
+      <p>
+        Shanthi Engineering Works and Consultants provides information
+        about industrial safety equipment and products used in chlorine
+        handling and water treatment applications.
+      </p>
+      <p>
+        Explore our product range to view product images and descriptions.
+        Please contact our team for product specifications and availability.
+      </p>
+    </div>
+  </section>
+
+  <section id="products">
+    <h2 class="section-title">Our Products</h2>
+    <p class="section-intro">
+      Explore our products and click on an item to see the larger image
+      and product information.
+      Select a product to view the image on the left and details on the right.
+    </p>
+
+    <div id="productGrid" class="product-grid"></div>
+    <p id="productError" class="empty-message" hidden>
+      Product images could not be loaded. Please check the image filenames
+      in your GitHub repository.
+    </p>
+  </section>
+
+  <section id="applications">
+    <h2 class="section-title">Applications</h2>
+    <div class="application-grid">
+      <div class="application-item">
+        <h3>Water Treatment</h3>
+        <p>Equipment used in water treatment and related processes.</p>
+      </div>
+      <div class="application-item">
+        <h3>Industrial Safety</h3>
+        <p>Safety equipment for industrial workplaces and operations.</p>
+      </div>
+      <div class="application-item">
+        <h3>Chlorine Handling</h3>
+        <p>Products intended for chlorine handling and emergency preparedness.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-box">
+      <p>
+        For product details, specifications and enquiries,
+        please contact Shanthi Engineering Works and Consultants.
+      </p>
+      <p>We welcome your product-related enquiries.</p>
+    </div>
+  </section>
+</main>
+
+
+<!-- Product detail popup -->
+<div class="modal" id="productModal" aria-hidden="true" aria-label="Product details">
+  <div class="modal-box product-modal-box" role="dialog" aria-modal="true"
+       aria-labelledby="selectedProduct">
+
+   <button type="button" class="close-modal" id="closeModal"
+        aria-label="Close product details">&times;</button>
+
+    <!-- 3 photos oke horizontal scroll row lo -->
+   
+<div class="modal-image-wrap">
+  <button type="button" class="gallery-arrow gallery-prev"
+          id="galleryPrev" aria-label="Previous image">❮</button>
+
+  <div id="modalThumbnails" class="product-photo-row"></div>
+
+  <button type="button" class="gallery-arrow gallery-next"
+          id="galleryNext" aria-label="Next image">❯</button>
+</div>
+
+    <!-- Photos kindha product matter -->
+    <div class="modal-info">
+      <h2 id="selectedProduct"></h2>
+      <p id="modalDescription"></p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const products = [
+  
+{
+  name: "100 kg Tonner Emergency Kit",
+  image: "product-01.png",
+  extraImages: [
+    "100%20kg%20emeregency%20kit%201.jpeg",
+     "100 kg kit.jpeg"
+  ],
+  description: "Specially designed to help control chlorine gas leaks from 100 kg tonners. It contains tools and sealing devices intended to help contain leaks and minimize hazardous gas release."
+},
+
+  {
+    name: "900 kg Tonner Emergency Kit",
+    image: "product-02.png",
+    extraImages: [
+  "900%20kg%20tonner%20emeregency%20kit%201.jpeg",
+      "900 kg kit.jpeg"
+],
+    description: "Specially designed to help control chlorine gas leaks from 900 kg tonners. It contains tools and sealing devices intended to help contain leaks and minimize hazardous gas release."
+  },
+  {
+    name: "Chlorine Leak Detector",
+    image: "product-03.png",
+   extraImages: [
+  "chlorin%20leak%20detector%20%201.jpeg",
+  "chlorin%20leak%20detector%20%202.jpeg"
+],
+   description: "Monitors chlorine gas concentration and can provide audible or visual alarms when a leak is detected, depending on the model specifications."
+  },
+  {
+    name: "Safety Shower",
+    image: "product-04.png",
+    extraImages: [
+  "safety%20shower%201.jpeg",
+  "safety%20shower%202.jpeg"
+],
+
+    description: "Provides water for emergency washing when personnel are exposed to hazardous chemicals. Follow the equipment instructions and workplace emergency procedures."
+  },
+ 
+{
+ name: "100 kg Tonner Hood",
+  image: "product-05.png",
+  extraImages: [
+  "100%20kg%20Tonner%20Hood%201.jpeg",
+  "100%20kg%20Tonner%20Hood%202.jpeg"
+],
+
+  description: "Protective hood used to temporarily seal chlorine leaks from 100 kg tonners,helping minimize ga release until permanent repairs are made."
+},
+  {
+    name: "900 kg Tonner Hood",
+    image: "product-06.png",
+    extraImages: [
+  "900%20kg%20Tonner%20Hood%201.jpeg",
+  "900%20kg%20Tonner%20Hood%202.jpeg"
+],
+
+    description: "A leak-control hood designed for 900 kg chlorine tonners. Use only with the specified equipment and trained emergency response procedures."
+  },
+  {
+    name: "Safety Breathing Apparatus (SCBA)",
+    image: "product-07.png", 
+    extraImages: [
+  "Safety%20Breathing%20Apparatus%20(SCBA)%201.jpeg",
+  "Safety%20Breathing%20Apparatus%20(SCBA)%202.jpeg"
+],
+
+    description: "A self-contained breathing apparatus that supplies breathing air for suitable emergency and industrial applications. Selection and use require proper training."
+  },
+  {
+    name: "Glass Fronted FRP Cabinet for Breathing Apparatus",
+    image: "product-08.png",
+    extraImages: [
+  "Glass%20Fronted%20FRP%20Cabinet%20for%20Breathing%20Apparatus%201.jpeg",
+  "Glass%20Fronted%20FRP%20Cabinet%20for%20Breathing%20Apparatus%202.jpeg"
+],
+
+    description: "An FRP storage cabinet with a transparent front, intended to keep breathing apparatus accessible and protected during storage."
+  },
+  {
+    name: "Canister Type Respiratory Mask",
+    image: "product-09.png",
+  extraImages: [
+    "Canister%20Type%20Respiratory%20Mask%201.jpeg",
+    "Canister%20Type%20Respiratory%20Mask%202.jpeg"
+  ],
+  description: "A respiratory mask designed to work with compatible replaceable canisters. Confirm suitability for the specific gas and exposure conditions before use."
+},
+ 
+{
+  name: "Wind Sock",
+  image: "product-10.png",
+  extraImages: [
+    "wind sock 1.jpeg",
+    "wind sock 2.jpeg"
+  ],
+  description: "A wind direction indicator used to identify wind direction and provide a visual indication of wind conditions."
+},
+
+  {
+    name: "PVC Apron",
+    image: "product-11.png",
+     extraImages: [
+    "PVC Apron 1.jpeg",
+    "PVC Apron 2.jpeg"
+  ],
+    description: "A PVC apron intended to help protect the wearer from liquid splashes during suitable handling operations. Check chemical compatibility before use."
+  },
+  {
+    name: "PVC Full Suit",
+    image: "product-12.png",
+    extraImages: [
+    "PVC Full Suit 1.jpeg",
+    "PVC Full Suit 2.jpeg"
+  ],
+    description: "A PVC protective suit intended for suitable industrial environments. Protection depends on the suit's specifications and chemical compatibility."
+  },
+  {
+    name: "Safety Gloves",
+    image: "product-13.png",
+    extraImages: [
+    "Safety Gloves 1.jpeg",
+    "Safety Gloves 2.jpeg"
+  ],
+    description: "Protective gloves intended for suitable industrial tasks. Select gloves according to the chemical, exposure risk and manufacturer specifications."
+  },
+  {
+    name: "Safety Helmet",
+    image: "product-14.png",
+    extraImages: [
+    "Safety Helmet 1.jpeg",
+    "Safety Helmet 2.jpeg"
+  ],
+    description: "An industrial safety helmet designed to help protect the head against specified workplace hazards."
+  },
+  {
+    name: "Safety Goggles",
+    image: "product-15.png",
+    extraImages: [
+    "Safety Goggles 1.jpeg",
+    "Safety Goggles 2.jpeg"
+  ],
+    description: "Protective goggles designed to help shield the eyes from specified workplace hazards such as splashes or particles."
+  },
+  {
+    name: "Safety Shoes",
+    image: "product-16.png",
+    extraImages: [
+    "Safety Shoes 1.jpeg",
+    "Safety shoes 2.jpeg"
+  ],
+    description: "Industrial safety shoes designed for workplace protection. Slip resistance and toe protection depend on the product's specifications."
+  }
+];
+
+const productGrid = document.getElementById("productGrid");
+const modal = document.getElementById("productModal");
+const modalImage = null;
+  const modalThumbnails = document.getElementById("modalThumbnails");
+  
+const galleryPrev = document.getElementById("galleryPrev");
+const galleryNext = document.getElementById("galleryNext");
+
+const selectedProduct = document.getElementById("selectedProduct");
+const modalDescription = document.getElementById("modalDescription");
+const closeModalButton = document.getElementById("closeModal");
+const productError = document.getElementById("productError");
+
+let modalOpener = null;
+
+function assetPath(path) {
+  try {
+    return encodeURI(decodeURIComponent(path));
+  } catch (error) {
+    return encodeURI(path);
+  }
+}
+
+products.forEach(function(product) {
+  const card = document.createElement("article");
+  card.className = "product-card";
+
+  const button = document.createElement("button");
+  button.className = "product-button";
+  button.type = "button";
+  button.setAttribute("aria-label", "View " + product.name);
+
+  const image = document.createElement("img");
+  image.src = assetPath(product.image);
+  image.alt = product.name;
+  image.loading = "lazy";
+
+  image.addEventListener("error", function() {
+    image.alt = product.name + " image could not be loaded";
+    image.style.display = "none";
+    productError.hidden = false;
+    productError.textContent =
+      "Some product images could not be loaded. Check the image filenames in GitHub.";
+  });
+
+  const title = document.createElement("h3");
+  title.textContent = product.name;
+
+  const note = document.createElement("span");
+  note.className = "click-note";
+  note.textContent = "Click to view details";
+
+  button.appendChild(image);
+  button.appendChild(title);
+  button.appendChild(note);
+  card.appendChild(button);
+  productGrid.appendChild(card);
+
+ 
+button.addEventListener("click", function() {
+  modalOpener = button;
+  document.getElementById("enquiryProduct").value = product.name;
+
+  selectedProduct.textContent = product.name;
+  modalDescription.textContent = product.description;
+
+  
+  // Munduga unna photos anni clear chestundi
+  modalThumbnails.replaceChildren();
+
+  // Add all product images to the horizontal scroll gallery
+  const allPhotos = [product.image, ...(product.extraImages || [])];
+
+  allPhotos.forEach(function(photoSrc, index) {
+    const photo = document.createElement("img");
+    photo.src = assetPath(photoSrc);
+    photo.alt = product.name + " - photo " + (index + 1);
+    photo.loading = "lazy";
+    modalThumbnails.appendChild(photo);
+  });
+
+  if (!modalThumbnails.dataset.dragEnabled) {
+    modalThumbnails.dataset.dragEnabled = "true";
+
+    let isDragging = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+
+   
+modalThumbnails.addEventListener("pointerdown", function(event) {
+  if (event.pointerType === "mouse" && event.button !== 0) return;
+
+  isDragging = true;
+  startX = event.clientX;
+  startScrollLeft = modalThumbnails.scrollLeft;
+  modalThumbnails.setPointerCapture(event.pointerId);
+
+  if (event.pointerType === "mouse") {
+    modalThumbnails.style.cursor = "grabbing";
+  }
+});
+
+
+    modalThumbnails.addEventListener("pointermove", function(event) {
+      if (!isDragging) return;
+
+      modalThumbnails.scrollLeft =
+        startScrollLeft - (event.clientX - startX);
+    });
+
+    
+function stopGalleryDrag() {
+  if (!isDragging) return;
+
+  isDragging = false;
+  modalThumbnails.style.cursor = "grab";
+  modalThumbnails.style.touchAction = "pan-y";
+
+  // Snap smoothly to the nearest product image.
+  const imageWidth = modalThumbnails.clientWidth;
+
+  if (imageWidth > 0) {
+    const imageIndex = Math.round(
+      modalThumbnails.scrollLeft / imageWidth
+    );
+
+    modalThumbnails.scrollTo({
+      left: imageIndex * imageWidth,
+      behavior: "smooth"
+    });
+  }
+}
+
+
+    modalThumbnails.addEventListener("pointerup", stopGalleryDrag);
+    modalThumbnails.addEventListener("pointercancel", stopGalleryDrag);
+
+    modalThumbnails.addEventListener("dragstart", function(event) {
+      event.preventDefault();
+    });
+  }
+  modalThumbnails.style.overflowX = "auto";
+modalThumbnails.style.overflowY = "hidden";
+modalThumbnails.style.cursor = "grab";
+modalThumbnails.style.touchAction = "pan-y";
+modalThumbnails.style.userSelect = "none";
+
+modalThumbnails.querySelectorAll("img").forEach(function(img) {
+  img.style.pointerEvents = "none";
+  img.style.userSelect = "none";
+  img.draggable = false;
+});
+modal.classList.add("show");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  closeModalButton.focus();
+
+});
+});
+  
+function scrollProductGallery(direction) {
+  const imageWidth = modalThumbnails.clientWidth;
+
+  if (imageWidth <= 0) return;
+
+  const currentIndex = Math.round(
+    modalThumbnails.scrollLeft / imageWidth
+  );
+
+  const totalImages = modalThumbnails.querySelectorAll("img").length;
+
+  const nextIndex = Math.max(
+    0,
+    Math.min(totalImages - 1, currentIndex + direction)
+  );
+
+  modalThumbnails.scrollTo({
+    left: nextIndex * imageWidth,
+    behavior: "smooth"
+  });
+}
+
+function updateGalleryArrows() {
+  const images = modalThumbnails.querySelectorAll("img");
+  const imageWidth = modalThumbnails.clientWidth;
+
+  if (!images.length || imageWidth <= 0) return;
+
+  const currentIndex = Math.round(
+    modalThumbnails.scrollLeft / imageWidth
+  );
+
+  galleryPrev.hidden = currentIndex <= 0;
+  galleryNext.hidden = currentIndex >= images.length - 1;
+}
+galleryNext.addEventListener("click", function() {
+  scrollProductGallery(1);
+});
+galleryPrev.addEventListener("click", function() {
+  scrollProductGallery(-1);
+});
+
+
+modalThumbnails.addEventListener("scroll", updateGalleryArrows);
+window.addEventListener("resize", updateGalleryArrows);
+
+function closeModal() {
+  modal.classList.remove("show");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+
+  if (modalOpener) {
+    modalOpener.focus();
+  }
+}
+
+
+closeModalButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  console.log("CLOSE BUTTON CLICKED");
+  event.stopPropagation();
+  closeModal();
+});
+
+modal.addEventListener("click", function (event) {
+  if (event.target === modal) {
+    closeModal();
+  }
+});
+
+
+document.addEventListener("keydown", function(event) {
+  if (!modal.classList.contains("show")) {
+    return;
+  }
+
+  if (event.key === "Escape") {
+    closeModal();
+    return;
+  }
+
+  if (event.key === "Tab") {
+    const focusable = modal.querySelectorAll(
+      "button, img[role='button']"
+      );
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (
+      !event.shiftKey && 
+      document.activeElement === last
+    ) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+});
+</script>
+
+<!-- Enquiry Box Only -->
+<section id="enquiry" style="max-width:600px;margin:40px auto;padding:24px;background:#ffffff;border:1px solid #dce3eb;border-radius:10px;">
+  <h2 style="text-align:center;">Product Enquiry</h2>
+
+  <form id="enquiryForm" action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
+    <input type="hidden" name="_subject" value="New Product Enquiry">
+
+    <input type="text" name="Name" placeholder="Your Name" autocomplete="name" aria-label="Your name" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
+
+    <input type="text" name="Company" placeholder="Company Name" autocomplete="organization" aria-label="Company name" style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
+
+    <input type="tel" name="Phone" placeholder="Phone Number" autocomplete="tel" aria-label="Phone number" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
+
+    <input type="email" name="Email" placeholder="Email Address" autocomplete="email" aria-label="Email address" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
+
+    
+<select id="enquiryProduct" name="Product" aria-label="Select product" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
+  <option value="">Select a Product</option>
+  <option value="100 kg Tonner Emergency Kit">100 kg Tonner Emergency Kit</option>
+  <option value="900 kg Tonner Emergency Kit">900 kg Tonner Emergency Kit</option>
+  <option value="Chlorine Leak Detector">Chlorine Leak Detector</option>
+  <option value="Safety Shower">Safety Shower</option>
+  <option value="100 kg Tonner Hood">100 kg Tonner Hood</option>
+  <option value="900 kg Tonner Hood">900 kg Tonner Hood</option>
+  <option value="Safety Breathing Apparatus (SCBA)">Safety Breathing Apparatus (SCBA)</option>
+  <option value="Glass Fronted FRP Cabinet for Breathing Apparatus">Glass Fronted FRP Cabinet for Breathing Apparatus</option>
+  <option value="Respiratory Mask">Respiratory Mask</option>
+  <option value="Wind Sock">Wind Sock</option>
+  <option value="PVC Apron">PVC Apron</option>
+  <option value="PVC Suit">PVC Suit</option>
+  <option value="Safety Gloves">Safety Gloves</option>
+  <option value="Safety Helmet">Safety Helmet</option>
+  <option value="Safety Goggles">Safety Goggles</option>
+  <option value="Safety Shoes">Safety Shoes</option>
+</select>
+
+
+    <textarea name="Message" placeholder="Your Enquiry" rows="4" aria-label="Your enquiry" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;"></textarea>
+
+    <button type="submit" style="width:100%;padding:13px;background:#123c68;color:white;border:0;border-radius:5px;cursor:pointer;">
+      Submit Enquiry
+    </button>
+  </form>
+</section>
+
+<footer style="text-align:center;padding:20px;">
+  © 2026 Shanthi Engineering Works and Consultants. All rights reserved.
+</footer>
+
+<div id="imageLightbox" class="image-lightbox" aria-hidden="true">
+  <button type="button" class="lightbox-close" aria-label="Close image">×</button>
+  <button type="button" class="lightbox-prev" aria-label="Previous image">❮</button>
+  <img id="lightboxImage" src="" alt="Product image">
+  <button type="button" class="lightbox-next" aria-label="Next image">❯</button>
+</div>
+
+</div>
+  
+<script>
+(function () {
+  const lightbox = document.getElementById("imageLightbox");
+  const lightboxImage = document.getElementById("lightboxImage");
+  const closeButton = lightbox.querySelector(".lightbox-close");
+  const prevButton = lightbox.querySelector(".lightbox-prev");
+  const nextButton = lightbox.querySelector(".lightbox-next");
+
+  let galleryImages = [];
+  let currentIndex = 0;
+
+  function showImage(index) {
+    if (!galleryImages.length) return;
+
+    currentIndex = (index + galleryImages.length) % galleryImages.length;
+    lightboxImage.src = galleryImages[currentIndex].src;
+    lightboxImage.alt = galleryImages[currentIndex].alt;
+  }
+
+  function openGallery(images, index) {
+    galleryImages = images;
+    showImage(index);
+    lightbox.classList.add("show");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeGallery() {
+    lightbox.classList.remove("show");
+    lightbox.setAttribute("aria-hidden", "true");
+    lightboxImage.src = "";
+    document.body.style.overflow = "";
+  }
+
+  closeButton.addEventListener("click", closeGallery);
+  prevButton.addEventListener("click", function () {
+    showImage(currentIndex - 1);
+  });
+  nextButton.addEventListener("click", function () {
+    showImage(currentIndex + 1);
+  });
+
+  lightbox.addEventListener("click", function (event) {
+    if (event.target === lightbox) closeGallery();
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (!lightbox.classList.contains("show")) return;
+
+    if (event.key === "Escape") closeGallery();
+    if (event.key === "ArrowLeft") showImage(currentIndex - 1);
+    if (event.key === "ArrowRight") showImage(currentIndex + 1);
+  });
+
+ 
+
+  
+ 
+  // Product photos ni mouse tho drag chesi scroll cheyadaniki
+  const gallery = document.getElementById("modalThumbnails");
+
+  if (gallery) {
+    let isDragging = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+
+    gallery.addEventListener("mousedown", function (event) {
+      if (event.button !== 0) return;
+      isDragging = true;
+      startX = event.clientX;
+      startScrollLeft = gallery.scrollLeft;
+      gallery.style.cursor = "grabbing";
+    });
+
+
+    const clickedIndex = thumbnails.indexOf(image);
+    openGallery(images, clickedIndex);
+  });
+
+  
+ 
+  // Product photos ni mouse tho drag chesi scroll cheyadaniki
+  const gallery = document.getElementById("modalThumbnails");
+
+  if (gallery) {
+    let isDragging = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+
+    gallery.addEventListener("mousedown", function (event) {
+      if (event.button !== 0) return;
+      isDragging = true;
+      startX = event.clientX;
+      startScrollLeft = gallery.scrollLeft;
+      gallery.style.cursor = "grabbing";
+    });
+
+    window.addEventListener("mouseup", function () {
+      isDragging = false;
+      gallery.style.cursor = "grab";
+    });
+
+    gallery.addEventListener("mousemove", function (event) {
+      if (!isDragging) return;
+      event.preventDefault();
+      gallery.scrollLeft =
+        startScrollLeft - (event.clientX - startX);
+    });
+    
+    gallery.addEventListener("click", function(event) {
+      if (isDragging) return;
+
+      const image = event.target.closest("img");
+      if (!image) return;
+
+      const thumbnails = Array.from(gallery.querySelectorAll("img"));
+      const images = thumbnails.map(function(thumbnail) {
+        return {
+          src: thumbnail.src,
+          alt: thumbnail.alt || "Product image"
+        };
+      });
+
+      openGallery(images, thumbnails.indexOf(image));
+    });
+
+  }
+
+
+})();
+</script>
+
+</body>
+</html>
+
+   
