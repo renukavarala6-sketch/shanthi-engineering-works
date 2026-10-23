@@ -535,6 +535,82 @@ footer {
   }
 }
 
+/* Professional website improvements — preserves existing design */
+:root {
+  --brand-navy: #102a43;
+  --brand-blue: #1769aa;
+  --brand-light: #f3f7fb;
+  --brand-white: #ffffff;
+  --brand-text: #243447;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--brand-text);
+  background: var(--brand-white);
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4 {
+  color: var(--brand-navy);
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+section {
+  scroll-margin-top: 90px;
+}
+
+button, .button, a.button {
+  transition: background-color .2s ease,
+              color .2s ease,
+              transform .2s ease,
+              box-shadow .2s ease;
+}
+
+button:hover, .button:hover, a.button:hover {
+  transform: translateY(-2px);
+}
+
+img {
+  max-width: 100%;
+}
+
+input, textarea, select {
+  font: inherit;
+}
+
+input:focus, textarea:focus, select:focus,
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  body {
+    line-height: 1.55;
+  }
+
+  img {
+    height: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
 </style>
 </head>
 
