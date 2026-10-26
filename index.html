@@ -1211,28 +1211,33 @@ footer {
 }
 
 
-/* Professional industrial hero background */
+
+/* Hero background image */
 .hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   min-height: 440px !important;
   padding: 100px 24px !important;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
- 
- background:
-  linear-gradient(
-    90deg,
-    rgba(4, 24, 45, 0.35),
-    rgba(4, 35, 60, 0.15)
-  ),
-  url("./Industrial%20Water%20Treatment%20Facility.png")
-    center center / cover no-repeat;
- 
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(4, 24, 45, 0.35),
+      rgba(4, 35, 60, 0.15)
+    ),
+    url("./Industrial%20Water%20Treatment%20Facility.png") !important;
+
+  background-position: center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+
   color: #ffffff !important;
 }
 
@@ -1249,6 +1254,8 @@ footer {
   margin: 0 auto 25px;
   line-height: 1.7;
 }
+
+
   </style>
 </head>
 <body>
