@@ -1567,69 +1567,86 @@ header .brand img {
   }
 }
 
+
 /* PREMIUM INDUSTRIAL PRODUCT PAGE ONLY */
+
 #products {
-  background: #f3f6fa;
-  padding: 80px 5%;
-  color: #14263d;
+  background: #f4f7fb;
+  padding: 75px 5%;
+  color: #102a43;
 }
 
+#products .section-title,
 #products h2 {
-  position: relative;
+  color: #102a43;
   text-align: center;
-  color: #102b49;
-  font-size: clamp(30px, 4vw, 44px);
+  font-size: clamp(30px, 4vw, 42px);
   font-weight: 800;
-  letter-spacing: 1px;
-  margin-bottom: 48px;
-  padding-bottom: 22px;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
 }
 
+#products .section-title::after,
 #products h2::after {
   content: "";
   display: block;
   width: 76px;
   height: 4px;
   background: #d99a28;
-  margin: 18px auto 0;
-  border-radius: 3px;
+  margin: 16px auto 0;
+  border-radius: 4px;
+}
+
+#products .section-intro {
+  max-width: 760px;
+  margin: 0 auto 42px;
+  color: #526579;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.8;
 }
 
 #products .product-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
   gap: 28px;
-  max-width: 1400px;
+  max-width: 1350px;
   margin: 0 auto;
 }
 
 #products .product-card {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
-  background: #ffffff;
-  border: 1px solid #dce4ed;
-  border-radius: 8px;
+  height: 100%;
   overflow: hidden;
-  box-shadow: 0 5px 18px rgba(16, 43, 73, 0.07);
+  background: #ffffff;
+  border: 1px solid #dce5ee;
+  border-radius: 12px;
+  box-shadow: 0 6px 22px rgba(16, 42, 67, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease,
               border-color 0.3s ease;
 }
 
 #products .product-card:hover {
-  transform: translateY(-7px);
+  transform: translateY(-6px);
   border-color: #d99a28;
-  box-shadow: 0 16px 32px rgba(16, 43, 73, 0.15);
+  box-shadow: 0 16px 34px rgba(16, 42, 67, 0.15);
 }
 
 #products .product-button {
   display: flex;
   flex-direction: column;
+  flex: 1;
   width: 100%;
   height: 100%;
   padding: 0;
   border: 0;
   border-radius: 0;
   background: #ffffff;
-  color: #14263d;
+  color: #102a43;
   text-align: left;
   cursor: pointer;
   overflow: hidden;
@@ -1637,54 +1654,56 @@ header .brand img {
 
 #products .product-button img {
   display: block;
+  box-sizing: border-box;
   width: 100%;
   height: 245px;
-  object-fit: contain;
   padding: 22px;
-  box-sizing: border-box;
+  object-fit: contain;
   background: #ffffff;
-  border-bottom: 1px solid #e5eaf0;
-  transition: transform 0.35s ease;
+  border-bottom: 1px solid #e5ebf1;
+  transition: transform 0.3s ease;
 }
 
 #products .product-card:hover .product-button img {
-  transform: scale(1.035);
+  transform: scale(1.03);
 }
 
 #products .product-button h3 {
-  width: 100%;
   box-sizing: border-box;
-  padding: 22px 22px 10px;
+  width: 100%;
   margin: 0;
-  color: #102b49;
+  padding: 22px 22px 12px;
+  color: #102a43;
   font-size: 19px;
-  line-height: 1.45;
   font-weight: 750;
-  text-align: left;
+  line-height: 1.5;
 }
 
 #products .product-button .click-note {
   display: block;
-  width: calc(100% - 44px);
   box-sizing: border-box;
+  width: calc(100% - 44px);
   margin: auto 22px 22px;
-  padding: 12px 15px;
-  background: #102b49;
+  padding: 12px 14px;
+  background: #102a43;
   border-left: 4px solid #d99a28;
   color: #ffffff;
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
-  text-align: left;
-  transition: background 0.25s ease;
+  transition: background 0.3s ease;
 }
 
 #products .product-card:hover .click-note {
-  background: #19466f;
+  background: #1769aa;
 }
 
-/* TABLET */
+#products .product-button:focus-visible {
+  outline: 3px solid #d99a28;
+  outline-offset: -3px;
+}
+
 @media (max-width: 1000px) {
   #products .product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1692,11 +1711,10 @@ header .brand img {
   }
 
   #products {
-    padding: 65px 4%;
+    padding: 60px 4%;
   }
 }
 
-/* MOBILE */
 @media (max-width: 600px) {
   #products {
     padding: 45px 16px;
@@ -1708,7 +1726,7 @@ header .brand img {
   }
 
   #products .product-button img {
-    height: 225px;
+    height: 220px;
   }
 
   #products .product-button h3 {
@@ -1719,6 +1737,10 @@ header .brand img {
   #products .product-button .click-note {
     width: calc(100% - 36px);
     margin: auto 18px 18px;
+  }
+
+  #products .section-intro {
+    font-size: 14px;
   }
 }
 
