@@ -2055,6 +2055,34 @@ header nav a {
   box-sizing: border-box;
 }
 
+/* STICKY NAVIGATION - KEEP MENU VISIBLE */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* Keep the existing navigation at the top */
+header,
+.site-header,
+.navbar,
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Keep navigation background readable */
+header,
+.site-header,
+.navbar {
+  background-color: #ffffff;
+}
+
+/* Prevent sections from hiding behind the menu */
+section {
+  scroll-margin-top: 100px;
+}
+
   </style>
 </head>
 <body>
