@@ -1861,6 +1861,176 @@ header nav a {
   }
 }
 
+/* PREMIUM PRODUCT ENQUIRY FORM */
+#enquiry {
+  padding: 80px 20px;
+  background: #f3f6fa;
+  color: #243447;
+}
+
+#enquiry .enquiry-heading {
+  max-width: 760px;
+  margin: 0 auto 36px;
+  text-align: center;
+}
+
+#enquiry .enquiry-eyebrow {
+  color: #b47a16;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin: 0 0 12px;
+}
+
+#enquiry .enquiry-heading h2 {
+  color: #102a43;
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 800;
+  margin: 0 0 16px;
+}
+
+#enquiry .enquiry-heading > p:last-child {
+  color: #526477;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+#enquiry .enquiry-card {
+  max-width: 850px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #dce5ee;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 14px 38px rgba(16, 42, 67, 0.09);
+}
+
+#enquiry .enquiry-card-header {
+  padding: 28px 32px;
+  background: #102a43;
+  border-bottom: 4px solid #d99a28;
+}
+
+#enquiry .enquiry-card-header h3 {
+  color: #ffffff;
+  font-size: 23px;
+  margin: 0 0 8px;
+}
+
+#enquiry .enquiry-card-header p {
+  color: #dce7f1;
+  margin: 0;
+  font-size: 14px;
+}
+
+#enquiry #enquiryForm {
+  padding: 30px 32px;
+}
+
+#enquiry .enquiry-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+#enquiry .enquiry-field {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#enquiry .enquiry-full {
+  grid-column: 1 / -1;
+}
+
+#enquiry .enquiry-field label {
+  color: #102a43;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+#enquiry .enquiry-field input,
+#enquiry .enquiry-field select,
+#enquiry .enquiry-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border: 1px solid #ccd7e2;
+  border-radius: 5px;
+  background: #fbfcfe;
+  color: #243447;
+  font: inherit;
+  font-size: 14px;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+#enquiry .enquiry-field textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+#enquiry .enquiry-field input:focus,
+#enquiry .enquiry-field select:focus,
+#enquiry .enquiry-field textarea:focus {
+  outline: none;
+  border-color: #1769aa;
+  box-shadow: 0 0 0 3px rgba(23, 105, 170, 0.12);
+  background: #ffffff;
+}
+
+#enquiry .enquiry-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 26px;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 5px;
+  background: #102a43;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: background .2s ease, box-shadow .2s ease;
+}
+
+#enquiry .enquiry-submit:hover {
+  background: #1769aa;
+  box-shadow: 0 6px 16px rgba(16, 42, 67, 0.18);
+}
+
+#enquiry .enquiry-required {
+  margin: 14px 0 0;
+  color: #65778a;
+  font-size: 12px;
+}
+
+@media (max-width: 600px) {
+  #enquiry {
+    padding: 48px 16px;
+  }
+
+  #enquiry .enquiry-card-header {
+    padding: 23px 20px;
+  }
+
+  #enquiry #enquiryForm {
+    padding: 22px 18px;
+  }
+
+  #enquiry .enquiry-fields {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  #enquiry .enquiry-full {
+    grid-column: auto;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -2429,49 +2599,93 @@ document.addEventListener("keydown", function(event) {
 });
 </script>
 
-<!-- Enquiry Box Only -->
-<section id="enquiry" style="max-width:600px;margin:40px auto;padding:24px;background:#ffffff;border:1px solid #dce3eb;border-radius:10px;">
-  <h2 style="text-align:center;">Product Enquiry</h2>
 
-  <form id="enquiryForm" action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
-    <input type="hidden" name="_subject" value="New Product Enquiry">
+<!-- Premium Product Enquiry Section -->
+<section id="enquiry">
+  <div class="enquiry-heading">
+    <p class="enquiry-eyebrow">LET'S WORK TOGETHER</p>
+    <h2>Product Enquiry</h2>
+    <p>Tell us your requirements. Our team welcomes your product-related enquiries.</p>
+  </div>
 
-    <input type="text" name="Name" placeholder="Your Name" autocomplete="name" aria-label="Your name" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
+  <div class="enquiry-card">
+    <div class="enquiry-card-header">
+      <h3>Send Your Enquiry</h3>
+      <p>Fill in the details below to enquire about our products.</p>
+    </div>
 
-    <input type="text" name="Company" placeholder="Company Name" autocomplete="organization" aria-label="Company name" style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
+    <form id="enquiryForm"
+      action="https://formsubmit.co/YOUR_EMAIL@example.com"
+      method="POST">
 
-    <input type="tel" name="Phone" placeholder="Phone Number" autocomplete="tel" aria-label="Phone number" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
+      <input type="hidden" name="_subject" value="New Product Enquiry">
 
-    <input type="email" name="Email" placeholder="Email Address" autocomplete="email" aria-label="Email address" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
+      <div class="enquiry-fields">
+        <div class="enquiry-field">
+          <label for="enquiryName">Your Name *</label>
+          <input id="enquiryName" type="text" name="Name"
+            placeholder="Enter your full name"
+            autocomplete="name" required>
+        </div>
 
-    
-<select id="enquiryProduct" name="Product" aria-label="Select product" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;">
-  <option value="">Select a Product</option>
-  <option value="100 kg Tonner Emergency Kit">100 kg Tonner Emergency Kit</option>
-  <option value="900 kg Tonner Emergency Kit">900 kg Tonner Emergency Kit</option>
-  <option value="Chlorine Leak Detector">Chlorine Leak Detector</option>
-  <option value="Safety Shower">Safety Shower</option>
-  <option value="100 kg Tonner Hood">100 kg Tonner Hood</option>
-  <option value="900 kg Tonner Hood">900 kg Tonner Hood</option>
-  <option value="Safety Breathing Apparatus (SCBA)">Safety Breathing Apparatus (SCBA)</option>
-  <option value="Glass Fronted FRP Cabinet for Breathing Apparatus">Glass Fronted FRP Cabinet for Breathing Apparatus</option>
-  <option value="Respiratory Mask">Respiratory Mask</option>
-  <option value="Wind Sock">Wind Sock</option>
-  <option value="PVC Apron">PVC Apron</option>
-  <option value="PVC Suit">PVC Suit</option>
-  <option value="Safety Gloves">Safety Gloves</option>
-  <option value="Safety Helmet">Safety Helmet</option>
-  <option value="Safety Goggles">Safety Goggles</option>
-  <option value="Safety Shoes">Safety Shoes</option>
-</select>
+        <div class="enquiry-field">
+          <label for="enquiryCompany">Company Name</label>
+          <input id="enquiryCompany" type="text" name="Company"
+            placeholder="Enter company name"
+            autocomplete="organization">
+        </div>
 
+        <div class="enquiry-field">
+          <label for="enquiryPhone">Phone Number *</label>
+          <input id="enquiryPhone" type="tel" name="Phone"
+            placeholder="Enter phone number"
+            autocomplete="tel" required>
+        </div>
 
-    <textarea name="Message" placeholder="Your Enquiry" rows="4" aria-label="Your enquiry" required style="width:100%;padding:12px;margin:8px 0;box-sizing:border-box;"></textarea>
+        <div class="enquiry-field">
+          <label for="enquiryEmail">Email Address *</label>
+          <input id="enquiryEmail" type="email" name="Email"
+            placeholder="Enter email address"
+            autocomplete="email" required>
+        </div>
 
-    <button type="submit" style="width:100%;padding:13px;background:#123c68;color:white;border:0;border-radius:5px;cursor:pointer;">
-      Submit Enquiry
-    </button>
-  </form>
+        <div class="enquiry-field enquiry-full">
+          <label for="enquiryProduct">Select Product *</label>
+          <select id="enquiryProduct" name="Product" required>
+            <option value="">Select a Product</option>
+            <option value="100 kg Tonner Emergency Kit">100 kg Tonner Emergency Kit</option>
+            <option value="900 kg Tonner Emergency Kit">900 kg Tonner Emergency Kit</option>
+            <option value="Chlorine Leak Detector">Chlorine Leak Detector</option>
+            <option value="Safety Shower">Safety Shower</option>
+            <option value="100 kg Tonner Hood">100 kg Tonner Hood</option>
+            <option value="900 kg Tonner Hood">900 kg Tonner Hood</option>
+            <option value="Safety Breathing Apparatus (SCBA)">Safety Breathing Apparatus (SCBA)</option>
+            <option value="Glass Fronted FRP Cabinet for Breathing Apparatus">Glass Fronted FRP Cabinet for Breathing Apparatus</option>
+            <option value="Respiratory Mask">Respiratory Mask</option>
+            <option value="Wind Sock">Wind Sock</option>
+            <option value="PVC Apron">PVC Apron</option>
+            <option value="PVC Suit">PVC Suit</option>
+            <option value="Safety Gloves">Safety Gloves</option>
+            <option value="Safety Helmet">Safety Helmet</option>
+            <option value="Safety Goggles">Safety Goggles</option>
+            <option value="Safety Shoes">Safety Shoes</option>
+          </select>
+        </div>
+
+        <div class="enquiry-field enquiry-full">
+          <label for="enquiryMessage">Your Enquiry *</label>
+          <textarea id="enquiryMessage" name="Message"
+            placeholder="Describe your product requirements..."
+            rows="5" required></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="enquiry-submit">
+        Submit Enquiry <span aria-hidden="true">→</span>
+      </button>
+      <p class="enquiry-required">* Required fields</p>
+    </form>
+  </div>
 </section>
 
 <footer style="text-align:center;padding:20px;">
