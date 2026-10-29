@@ -2097,6 +2097,38 @@ header .brand img {
   object-fit: contain;
 }
 
+/* Product cards: consistent professional layout */
+#products .product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#products .product-button {
+  flex: 1;
+  min-height: 100%;
+}
+
+#products .product-button img {
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+#products .product-button h3 {
+  min-height: 82px;
+}
+
+#products .product-button .click-note {
+  margin-top: auto;
+}
+
+/* Mobile card titles */
+@media (max-width: 600px) {
+  #products .product-button h3 {
+    min-height: 0;
+  }
+}
+
   </style>
 </head>
 <body>
