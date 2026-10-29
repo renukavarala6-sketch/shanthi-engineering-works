@@ -1715,6 +1715,80 @@ header nav a {
   }
 }
 
+/* PREMIUM PRODUCT DETAILS POPUP */
+.product-modal-box {
+  background: #ffffff !important;
+  border: 1px solid #dce5ee !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 24px 70px rgba(10, 35, 60, 0.24) !important;
+  padding: 24px !important;
+  gap: 24px !important;
+}
+
+/* Product image area */
+.modal-image-wrap {
+  background: #f4f7fa !important;
+  border: 1px solid #e3eaf1 !important;
+  border-radius: 8px !important;
+  padding: 8px !important;
+}
+
+/* One image at a time */
+#modalThumbnails img {
+  height: 380px !important;
+  background: #f4f7fa !important;
+  object-fit: contain !important;
+}
+
+/* Premium gallery arrows */
+.gallery-arrow {
+  background: #102a43 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16) !important;
+}
+
+.gallery-arrow:hover {
+  background: #1769aa !important;
+}
+
+/* Product details */
+.modal-info {
+  padding: 8px 4px !important;
+  color: #243447 !important;
+  line-height: 1.7 !important;
+}
+
+.modal-info h2,
+.modal-info h3 {
+  color: #102a43 !important;
+  font-weight: 750 !important;
+  margin-bottom: 14px !important;
+}
+
+/* Popup buttons only */
+.product-modal-box button {
+  border-radius: 5px;
+}
+
+/* Mobile popup */
+@media (max-width: 650px) {
+  .product-modal-box {
+    width: 94vw !important;
+    padding: 14px !important;
+    gap: 16px !important;
+  }
+
+  #modalThumbnails img {
+    height: 250px !important;
+  }
+
+  .modal-info {
+    padding: 4px 2px !important;
+  }
+}
+
   </style>
 </head>
 <body>
