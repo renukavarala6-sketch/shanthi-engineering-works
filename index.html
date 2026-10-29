@@ -1255,6 +1255,77 @@ footer {
   line-height: 1.7;
 }
 
+/* Home and About Us redesign */
+.home-benefits {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 28px 5%;
+  background: #ffffff;
+  color: #082c50;
+}
+
+.home-benefit {
+  padding: 12px;
+  border-right: 1px solid #d6e3ef;
+}
+
+.home-benefit h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.home-benefit p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.about-redesign {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+  padding: 55px 6%;
+  background: #edf6ff;
+  color: #0a3157;
+}
+
+.about-redesign img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.about-redesign h2 {
+  font-size: 32px;
+  margin: 12px 0;
+}
+
+.about-redesign p {
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  .home-benefits {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .home-benefit {
+    border-right: none;
+  }
+
+  .about-redesign {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .about-redesign h2 {
+    font-size: 26px;
+  }
+}
+
 
   </style>
 </head>
@@ -1278,29 +1349,57 @@ footer {
 </header>
 
 <main id="mainContent">
+ 
   <section class="hero" id="home">
-    <h1>Industrial Safety &amp; Water Treatment Equipment</h1>
+    <h1>INDUSTRIAL SAFETY &amp;<br>WATER TREATMENT EQUIPMENT</h1>
     <p>
-      Explore our range of industrial safety equipment and
-      chlorine handling products.
+      Reliable industrial equipment and water treatment solutions
+      to support your operational and safety requirements.
     </p>
     <a href="#products">Explore Our Products</a>
+    <a href="#enquiry">Request a Quote</a>
   </section>
 
-  <section id="about">
-    <h2 class="section-title">About Us</h2>
-    <div class="about-box">
-      <p>
-        Shanthi Engineering Works and Consultants provides information
-        about industrial safety equipment and products used in chlorine
-        handling and water treatment applications.
-      </p>
-      <p>
-        Explore our product range to view product images and descriptions.
-        Please contact our team for product specifications and availability.
-      </p>
+  <section class="home-benefits">
+    <div class="home-benefit">
+      <h3>Quality Products</h3>
+      <p>Explore our industrial equipment range.</p>
+    </div>
+    <div class="home-benefit">
+      <h3>Industrial Solutions</h3>
+      <p>Equipment for industrial applications.</p>
+    </div>
+    <div class="home-benefit">
+      <h3>Safety Focus</h3>
+      <p>Products for industrial safety needs.</p>
+    </div>
+    <div class="home-benefit">
+      <h3>Enquiry Support</h3>
+      <p>Contact us for product information.</p>
     </div>
   </section>
+
+  <section id="about" class="about-redesign">
+    <div>
+      <p class="eyebrow">ABOUT OUR COMPANY</p>
+      <h2>SHANTHI ENGINEERING WORKS AND CONSULTANTS</h2>
+      <p>
+        We provide information about industrial safety equipment,
+        chlorine handling products and water treatment solutions.
+        Our website helps customers explore our product range and
+        contact us for specifications and enquiries.
+      </p>
+      <p>
+        Have a product requirement? Explore our products and share
+        your enquiry with our team.
+      </p>
+      <a href="#products">View Our Products</a>
+    </div>
+    <img
+     src="/shanthi-engineering-works/Industrial%20Water%20Treatment%20Facility.png"
+      alt="Industrial water treatment facility">
+  </section>
+
 
   <section id="products">
     <h2 class="section-title">Our Products</h2>
