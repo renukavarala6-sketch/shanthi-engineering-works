@@ -1789,6 +1789,78 @@ header nav a {
   }
 }
 
+/* PREMIUM CONTACT PAGE DESIGN */
+#contact {
+  position: relative;
+  padding: 80px 5%;
+  background: #f3f6fa;
+  color: #243447;
+}
+
+#contact .section-title {
+  text-align: center;
+  color: #102a43;
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 800;
+  margin: 0 auto 42px;
+  padding-bottom: 20px;
+  letter-spacing: 0.4px;
+}
+
+#contact .section-title::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 4px;
+  background: #d99a28;
+  margin: 17px auto 0;
+  border-radius: 3px;
+}
+
+#contact .contact-box {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 42px 46px;
+  background: #ffffff;
+  border: 1px solid #dce5ee;
+  border-top: 5px solid #102a43;
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(16, 42, 67, 0.09);
+  text-align: center;
+}
+
+#contact .contact-box p {
+  color: #425466;
+  font-size: 17px;
+  line-height: 1.9;
+  margin: 0 0 16px;
+}
+
+#contact .contact-box p:last-child {
+  margin-bottom: 0;
+  color: #102a43;
+  font-weight: 650;
+}
+
+@media (max-width: 600px) {
+  #contact {
+    padding: 48px 16px;
+  }
+
+  #contact .section-title {
+    margin-bottom: 28px;
+  }
+
+  #contact .contact-box {
+    padding: 28px 20px;
+  }
+
+  #contact .contact-box p {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+}
+
   </style>
 </head>
 <body>
