@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin - Add Products</title>
+<title>Admin - Product Management</title>
 
 <style>
 body {
@@ -15,7 +15,7 @@ body {
 }
 
 .box {
-  max-width: 500px;
+  max-width: 650px;
   margin: 30px auto;
   background: white;
   padding: 25px;
@@ -87,7 +87,7 @@ button:disabled {
   color: #10233f;
 }
 
-#dashboard textarea {
+textarea {
   min-height: 100px;
   resize: vertical;
 }
@@ -96,6 +96,60 @@ button:disabled {
   font-size: 13px;
   color: #555;
   margin: 4px 0 10px;
+}
+
+#productList {
+  margin-top: 25px;
+}
+
+.product-item {
+  border: 1px solid #ccd8e8;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+.product-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  background: #f5f7fa;
+  border-radius: 5px;
+}
+
+.product-item h3 {
+  color: #10233f;
+  overflow-wrap: anywhere;
+}
+
+.product-item p {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.product-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.product-actions button {
+  flex: 1;
+}
+
+.delete-btn {
+  background: #b42318;
+}
+
+.cancel-btn {
+  background: #666;
+}
+
+#formHeading {
+  margin-top: 20px;
+}
+
+#cancelEditBtn {
+  display: none;
 }
 </style>
 </head>
@@ -115,15 +169,11 @@ button:disabled {
 
   <div id="dashboard">
 
-    <h2>Add New Product</h2>
+    <h2 id="formHeading">Add New Product</h2>
 
     <form id="productForm">
 
-      <input
-        id="name"
-        placeholder="Product Name"
-        required
-      >
+      <input id="name" placeholder="Product Name" required>
 
       <label>Main Product Image</label>
 
@@ -167,11 +217,27 @@ button:disabled {
         required
       ></textarea>
 
-      <button id="addBtn" type="submit">
-        Add Product
+      <button id="addBtn" type="submit">Add Product</button>
+
+      <button
+        id="cancelEditBtn"
+        class="cancel-btn"
+        type="button"
+      >
+        Cancel Edit
       </button>
 
     </form>
+
+    <div id="productList">
+
+      <h2>Manage Products</h2>
+
+      <button id="refreshBtn" type="button">Refresh Products</button>
+
+      <div id="productsContainer"></div>
+
+    </div>
 
     <button id="logoutBtn">Logout</button>
 
@@ -195,6 +261,10 @@ import {
   getFirestore,
   collection,
   addDoc,
+  getDocs,
+  doc,
+  updateDoc,
+  deleteDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -236,10 +306,26 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const imageCounter = document.getElementById("imageCounter");
 
+const productsContainer = document.getElementById("productsContainer");
+const formHeading = document.getElementById("formHeading");
+const cancelEditBtn = document.getElementById("cancelEditBtn");
+
 
 // Gallery variables
 let galleryImages = [];
 let currentImageIndex = 0;
+let editingProductId = null;
+
+
+// Check whether current user is admin
+function isAdminUser() {
+
+  const user = auth.currentUser;
+
+  return user &&
+    user.email?.toLowerCase() === adminEmail.toLowerCase();
+
+}
 
 
 // Show or hide Admin Dashboard
@@ -256,6 +342,7 @@ function showAdmin(user) {
 
   document.getElementById("password").style.display =
     isAdmin ? "none" : "block";
+
 }
 
 
@@ -271,20 +358,18 @@ function updateGallery() {
 
   galleryImages = [];
 
-  // Add main image first
   if (mainImage.startsWith("https://")) {
     galleryImages.push(mainImage);
   }
 
-  // Add extra images after main image
   galleryImages.push(...extraImages);
 
-  // Remove duplicate URLs
   galleryImages = [...new Set(galleryImages)];
 
   currentImageIndex = 0;
 
   showGalleryImage();
+
 }
 
 
@@ -299,6 +384,7 @@ function showGalleryImage() {
     imageCounter.textContent = "0 / 0";
 
     return;
+
   }
 
   preview.style.display = "block";
@@ -311,7 +397,7 @@ function showGalleryImage() {
 }
 
 
-// Show previous image
+// Previous image
 prevBtn.onclick = () => {
 
   if (galleryImages.length === 0) return;
@@ -327,7 +413,7 @@ prevBtn.onclick = () => {
 };
 
 
-// Show next image
+// Next image
 nextBtn.onclick = () => {
 
   if (galleryImages.length === 0) return;
@@ -343,11 +429,8 @@ nextBtn.onclick = () => {
 };
 
 
-// Update preview when main image changes
+// Update preview when image URLs change
 imageInput.addEventListener("input", updateGallery);
-
-
-// Update preview when extra images change
 extraImagesInput.addEventListener("input", updateGallery);
 
 
@@ -362,13 +445,214 @@ preview.onerror = () => {
 };
 
 
+// Reset product form
+function resetProductForm() {
+
+  productForm.reset();
+
+  editingProductId = null;
+
+  formHeading.textContent = "Add New Product";
+
+  addBtn.textContent = "Add Product";
+
+  cancelEditBtn.style.display = "none";
+
+  galleryImages = [];
+
+  currentImageIndex = 0;
+
+  showGalleryImage();
+
+}
+
+
+// Load all products from Firestore
+async function loadProducts() {
+
+  if (!isAdminUser()) return;
+
+  productsContainer.textContent = "Loading products...";
+
+  try {
+
+    const snapshot = await getDocs(collection(db, "products"));
+
+    productsContainer.replaceChildren();
+
+    if (snapshot.empty) {
+
+      productsContainer.textContent = "No products found.";
+
+      return;
+
+    }
+
+    snapshot.forEach((productDoc) => {
+
+      const product = productDoc.data();
+
+      const item = document.createElement("div");
+      item.className = "product-item";
+
+      const image = document.createElement("img");
+      image.alt = product.name || "Product image";
+
+      if (typeof product.image === "string") {
+        image.src = product.image;
+      }
+
+      const title = document.createElement("h3");
+      title.textContent = product.name || "Unnamed Product";
+
+      const description = document.createElement("p");
+      description.textContent =
+        product.description || "No description available.";
+
+      const extraCount = Array.isArray(product.extraImages)
+        ? product.extraImages.length
+        : 0;
+
+      const imageCount = document.createElement("p");
+      imageCount.textContent =
+        `Extra images: ${extraCount}`;
+
+      const actions = document.createElement("div");
+      actions.className = "product-actions";
+
+      const editButton = document.createElement("button");
+      editButton.textContent = "Edit";
+
+      editButton.onclick = () => {
+        editProduct(productDoc.id, product);
+      };
+
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Delete";
+      deleteButton.className = "delete-btn";
+
+      deleteButton.onclick = () => {
+        deleteProduct(productDoc.id, product.name);
+      };
+
+      actions.append(editButton, deleteButton);
+
+      item.append(image, title, description, imageCount, actions);
+
+      productsContainer.appendChild(item);
+
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    productsContainer.textContent =
+      "Unable to load products. Check Firestore settings.";
+
+  }
+
+}
+
+
+// Load selected product into the form
+function editProduct(productId, product) {
+
+  if (!isAdminUser()) return;
+
+  editingProductId = productId;
+
+  document.getElementById("name").value =
+    product.name || "";
+
+  imageInput.value =
+    product.image || "";
+
+  extraImagesInput.value =
+    Array.isArray(product.extraImages)
+      ? product.extraImages.join("\n")
+      : "";
+
+  document.getElementById("description").value =
+    product.description || "";
+
+  formHeading.textContent = "Edit Product";
+
+  addBtn.textContent = "Update Product";
+
+  cancelEditBtn.style.display = "block";
+
+  updateGallery();
+
+  message.textContent =
+    "Product loaded. Make changes and click Update Product.";
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+// Delete selected product
+async function deleteProduct(productId, productName) {
+
+  if (!isAdminUser()) {
+
+    message.textContent = "Please login as admin first.";
+
+    return;
+
+  }
+
+  const confirmed = window.confirm(
+    `Are you sure you want to delete "${productName || "this product"}"?`
+  );
+
+  if (!confirmed) return;
+
+  message.textContent = "Deleting product...";
+
+  try {
+
+    await deleteDoc(doc(db, "products", productId));
+
+    if (editingProductId === productId) {
+      resetProductForm();
+    }
+
+    message.textContent = "Product deleted successfully!";
+
+    await loadProducts();
+
+  } catch (error) {
+
+    console.error(error);
+
+    message.textContent =
+      "Delete failed. Check Firestore security rules.";
+
+  }
+
+}
+
+
 // Check login status
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
 
   showAdmin(user);
 
   if (user && user.email?.toLowerCase() === adminEmail.toLowerCase()) {
+
     message.textContent = "Admin logged in.";
+
+    await loadProducts();
+
+  } else {
+
+    productsContainer.replaceChildren();
+
   }
 
 });
@@ -381,8 +665,11 @@ loginBtn.onclick = async () => {
   const password = document.getElementById("password").value;
 
   if (!email || !password) {
+
     message.textContent = "Enter email and password.";
+
     return;
+
   }
 
   loginBtn.disabled = true;
@@ -407,7 +694,11 @@ loginBtn.onclick = async () => {
 
     message.textContent = "Login successful.";
 
+    await loadProducts();
+
   } catch (error) {
+
+    console.error(error);
 
     message.textContent =
       "Login failed. Check credentials and Firebase settings.";
@@ -421,14 +712,12 @@ loginBtn.onclick = async () => {
 };
 
 
-// Add product to Firestore
+// Add or update product
 productForm.onsubmit = async (event) => {
 
   event.preventDefault();
 
-  const user = auth.currentUser;
-
-  if (!user || user.email?.toLowerCase() !== adminEmail.toLowerCase()) {
+  if (!isAdminUser()) {
 
     message.textContent = "Please login as admin first.";
 
@@ -449,7 +738,7 @@ productForm.onsubmit = async (event) => {
     .filter(url => url !== "");
 
 
-  // Check product details
+  // Check required product details
   if (!name || !description || !imageURL.startsWith("https://")) {
 
     message.textContent =
@@ -479,13 +768,14 @@ productForm.onsubmit = async (event) => {
 
   addBtn.disabled = true;
 
-  message.textContent = "Saving product...";
+  message.textContent = editingProductId
+    ? "Updating product..."
+    : "Saving product...";
 
 
   try {
 
-    // Save product details and gallery images
-    await addDoc(collection(db, "products"), {
+    const productData = {
 
       name: name,
 
@@ -493,24 +783,44 @@ productForm.onsubmit = async (event) => {
 
       extraImages: uniqueExtraImages,
 
-      description: description,
+      description: description
 
-      createdAt: serverTimestamp()
-
-    });
+    };
 
 
-    message.textContent =
-      "Product added to Firestore successfully!";
+    if (editingProductId) {
 
-    // Clear form after successful save
-    productForm.reset();
+      // Update existing product
+      await updateDoc(
+        doc(db, "products", editingProductId),
+        {
+          ...productData,
+          updatedAt: serverTimestamp()
+        }
+      );
 
-    galleryImages = [];
+      message.textContent = "Product updated successfully!";
 
-    currentImageIndex = 0;
+    } else {
 
-    showGalleryImage();
+      // Add new product
+      await addDoc(collection(db, "products"), {
+
+        ...productData,
+
+        createdAt: serverTimestamp()
+
+      });
+
+      message.textContent =
+        "Product added to Firestore successfully!";
+
+    }
+
+
+    resetProductForm();
+
+    await loadProducts();
 
   } catch (error) {
 
@@ -528,12 +838,28 @@ productForm.onsubmit = async (event) => {
 };
 
 
+// Cancel edit
+cancelEditBtn.onclick = () => {
+
+  resetProductForm();
+
+  message.textContent = "Edit cancelled.";
+
+};
+
+
+// Refresh product list
+document.getElementById("refreshBtn").onclick = loadProducts;
+
+
 // Admin logout
 document.getElementById("logoutBtn").onclick = async () => {
 
   try {
 
     await signOut(auth);
+
+    resetProductForm();
 
     dashboard.style.display = "none";
 
@@ -542,6 +868,8 @@ document.getElementById("logoutBtn").onclick = async () => {
     document.getElementById("email").style.display = "block";
 
     document.getElementById("password").style.display = "block";
+
+    productsContainer.replaceChildren();
 
     message.textContent = "Logged out.";
 
