@@ -13,6 +13,7 @@ body {
   margin: 0;
   padding: 25px;
 }
+
 .box {
   max-width: 500px;
   margin: 30px auto;
@@ -21,13 +22,19 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 15px #0002;
 }
-h2 { color: #10233f; text-align: center; }
+
+h2 {
+  color: #10233f;
+  text-align: center;
+}
+
 input, textarea, button {
   width: 100%;
   box-sizing: border-box;
   padding: 12px;
   margin: 8px 0;
 }
+
 button {
   background: #10233f;
   color: white;
@@ -35,41 +42,124 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-#dashboard { display: none; }
-#message { overflow-wrap: anywhere; }
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#dashboard {
+  display: none;
+}
+
+#message {
+  overflow-wrap: anywhere;
+}
+
+.gallery {
+  margin: 15px 0;
+  text-align: center;
+}
+
 #preview {
   display: none;
-  max-width: 100%;
-  max-height: 220px;
+  width: 100%;
+  max-height: 250px;
   object-fit: contain;
   margin: 10px auto;
+}
+
+.gallery-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gallery-controls button {
+  width: 55px;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+#imageCounter {
+  flex: 1;
+  text-align: center;
+  color: #10233f;
+}
+
+#dashboard textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.hint {
+  font-size: 13px;
+  color: #555;
+  margin: 4px 0 10px;
 }
 </style>
 </head>
 
 <body>
+
 <div class="box">
+
   <h2>Admin Login</h2>
 
   <input id="email" type="email" placeholder="Admin Email" required>
   <input id="password" type="password" placeholder="Password" required>
+
   <button id="loginBtn">Login</button>
+
   <p id="message" role="status"></p>
 
   <div id="dashboard">
+
     <h2>Add New Product</h2>
 
     <form id="productForm">
-      <input id="name" placeholder="Product Name" required>
+
+      <input
+        id="name"
+        placeholder="Product Name"
+        required
+      >
+
+      <label>Main Product Image</label>
 
       <input
         id="image"
         type="url"
-        placeholder="Paste GitHub Image URL"
+        placeholder="Paste Main Image URL"
         required
       >
 
-      <img id="preview" alt="Product image preview">
+      <label>Extra Product Images</label>
+
+      <textarea
+        id="extraImages"
+        placeholder="Paste extra image URLs here.&#10;One URL per line."
+      ></textarea>
+
+      <p class="hint">
+        Main image and extra images preview will appear below.
+      </p>
+
+      <div class="gallery">
+
+        <img id="preview" alt="Product image preview">
+
+        <div class="gallery-controls">
+
+          <button type="button" id="prevBtn">❮</button>
+
+          <span id="imageCounter">0 / 0</span>
+
+          <button type="button" id="nextBtn">❯</button>
+
+        </div>
+
+      </div>
 
       <textarea
         id="description"
@@ -77,14 +167,20 @@ button {
         required
       ></textarea>
 
-      <button id="addBtn" type="submit">Add Product</button>
+      <button id="addBtn" type="submit">
+        Add Product
+      </button>
+
     </form>
 
     <button id="logoutBtn">Logout</button>
+
   </div>
+
 </div>
 
 <script type="module">
+
 import { initializeApp }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
@@ -102,9 +198,10 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+
+// Firebase connection settings
 const firebaseConfig = {
-  
-apiKey: "AIzaSyADHkR1H2zyHUp5SBDWbpMKJpCtsZFNneo",
+  apiKey: "AIzaSyADHkR1H2zyHUp5SBDWbpMKJpCtsZFNneo",
   authDomain: "shanthi-engineering-works.firebaseapp.com",
   projectId: "shanthi-engineering-works",
   storageBucket: "shanthi-engineering-works.firebasestorage.app",
@@ -113,20 +210,41 @@ apiKey: "AIzaSyADHkR1H2zyHUp5SBDWbpMKJpCtsZFNneo",
   measurementId: "G-GDQ266ET18"
 };
 
+
+// Start Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+
+// Admin details
 const adminEmail = "renukavarala6@gmail.com";
+
+
+// Get HTML elements
 const message = document.getElementById("message");
 const dashboard = document.getElementById("dashboard");
 const loginBtn = document.getElementById("loginBtn");
 const productForm = document.getElementById("productForm");
 const addBtn = document.getElementById("addBtn");
-const imageInput = document.getElementById("image");
-const preview = document.getElementById("preview");
 
+const imageInput = document.getElementById("image");
+const extraImagesInput = document.getElementById("extraImages");
+
+const preview = document.getElementById("preview");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const imageCounter = document.getElementById("imageCounter");
+
+
+// Gallery variables
+let galleryImages = [];
+let currentImageIndex = 0;
+
+
+// Show or hide Admin Dashboard
 function showAdmin(user) {
+
   const isAdmin =
     user && user.email?.toLowerCase() === adminEmail.toLowerCase();
 
@@ -140,15 +258,125 @@ function showAdmin(user) {
     isAdmin ? "none" : "block";
 }
 
+
+// Update gallery preview
+function updateGallery() {
+
+  const mainImage = imageInput.value.trim();
+
+  const extraImages = extraImagesInput.value
+    .split("\n")
+    .map(url => url.trim())
+    .filter(url => url.startsWith("https://"));
+
+  galleryImages = [];
+
+  // Add main image first
+  if (mainImage.startsWith("https://")) {
+    galleryImages.push(mainImage);
+  }
+
+  // Add extra images after main image
+  galleryImages.push(...extraImages);
+
+  // Remove duplicate URLs
+  galleryImages = [...new Set(galleryImages)];
+
+  currentImageIndex = 0;
+
+  showGalleryImage();
+}
+
+
+// Display one image at a time
+function showGalleryImage() {
+
+  if (galleryImages.length === 0) {
+
+    preview.removeAttribute("src");
+    preview.style.display = "none";
+
+    imageCounter.textContent = "0 / 0";
+
+    return;
+  }
+
+  preview.style.display = "block";
+
+  preview.src = galleryImages[currentImageIndex];
+
+  imageCounter.textContent =
+    `${currentImageIndex + 1} / ${galleryImages.length}`;
+
+}
+
+
+// Show previous image
+prevBtn.onclick = () => {
+
+  if (galleryImages.length === 0) return;
+
+  currentImageIndex--;
+
+  if (currentImageIndex < 0) {
+    currentImageIndex = galleryImages.length - 1;
+  }
+
+  showGalleryImage();
+
+};
+
+
+// Show next image
+nextBtn.onclick = () => {
+
+  if (galleryImages.length === 0) return;
+
+  currentImageIndex++;
+
+  if (currentImageIndex >= galleryImages.length) {
+    currentImageIndex = 0;
+  }
+
+  showGalleryImage();
+
+};
+
+
+// Update preview when main image changes
+imageInput.addEventListener("input", updateGallery);
+
+
+// Update preview when extra images change
+extraImagesInput.addEventListener("input", updateGallery);
+
+
+// Handle image loading errors
+preview.onerror = () => {
+
+  preview.style.display = "none";
+
+  message.textContent =
+    "Image URL open avvatledu. Correct image URL use cheyyi.";
+
+};
+
+
+// Check login status
 onAuthStateChanged(auth, (user) => {
+
   showAdmin(user);
 
   if (user && user.email?.toLowerCase() === adminEmail.toLowerCase()) {
     message.textContent = "Admin logged in.";
   }
+
 });
 
+
+// Admin login
 loginBtn.onclick = async () => {
+
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
 
@@ -160,94 +388,172 @@ loginBtn.onclick = async () => {
   loginBtn.disabled = true;
 
   try {
-    const result = await signInWithEmailAndPassword(auth, email, password);
+
+    const result = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
     if (result.user.email?.toLowerCase() !== adminEmail.toLowerCase()) {
+
       await signOut(auth);
+
       throw new Error("Admin access denied.");
+
     }
 
     showAdmin(result.user);
+
     message.textContent = "Login successful.";
+
   } catch (error) {
-    message.textContent = "Login failed. Check credentials and Firebase settings.";
+
+    message.textContent =
+      "Login failed. Check credentials and Firebase settings.";
+
   } finally {
+
     loginBtn.disabled = false;
+
   }
+
 };
 
-imageInput.addEventListener("input", () => {
-  const url = imageInput.value.trim();
 
-  if (url.startsWith("https://")) {
-    preview.src = url;
-    preview.style.display = "block";
-  } else {
-    preview.removeAttribute("src");
-    preview.style.display = "none";
-  }
-});
-
-preview.onerror = () => {
-  preview.style.display = "none";
-  message.textContent = "Image URL open avvatledu. Correct image URL use cheyyi.";
-};
-
+// Add product to Firestore
 productForm.onsubmit = async (event) => {
+
   event.preventDefault();
 
   const user = auth.currentUser;
 
   if (!user || user.email?.toLowerCase() !== adminEmail.toLowerCase()) {
+
     message.textContent = "Please login as admin first.";
+
     return;
+
   }
 
   const name = document.getElementById("name").value.trim();
-  const description = document.getElementById("description").value.trim();
+
+  const description =
+    document.getElementById("description").value.trim();
+
   const imageURL = imageInput.value.trim();
 
+  const extraImages = extraImagesInput.value
+    .split("\n")
+    .map(url => url.trim())
+    .filter(url => url !== "");
+
+
+  // Check product details
   if (!name || !description || !imageURL.startsWith("https://")) {
-    message.textContent = "Enter product name, description and HTTPS image URL.";
+
+    message.textContent =
+      "Enter product name, description and HTTPS main image URL.";
+
     return;
+
   }
+
+
+  // Check extra image URLs
+  if (extraImages.some(url => !url.startsWith("https://"))) {
+
+    message.textContent =
+      "All extra image URLs must start with https://";
+
+    return;
+
+  }
+
+
+  // Remove duplicate images and main image from extras
+  const uniqueExtraImages = [
+    ...new Set(extraImages.filter(url => url !== imageURL))
+  ];
+
 
   addBtn.disabled = true;
+
   message.textContent = "Saving product...";
 
+
   try {
+
+    // Save product details and gallery images
     await addDoc(collection(db, "products"), {
+
       name: name,
+
       image: imageURL,
+
+      extraImages: uniqueExtraImages,
+
       description: description,
+
       createdAt: serverTimestamp()
+
     });
 
-    message.textContent = "Product added to Firestore successfully!";
+
+    message.textContent =
+      "Product added to Firestore successfully!";
+
+    // Clear form after successful save
     productForm.reset();
-    preview.removeAttribute("src");
-    preview.style.display = "none";
+
+    galleryImages = [];
+
+    currentImageIndex = 0;
+
+    showGalleryImage();
+
   } catch (error) {
+
     console.error(error);
+
     message.textContent =
       "Save failed. Check Firestore security rules and database settings.";
+
   } finally {
+
     addBtn.disabled = false;
+
   }
+
 };
 
+
+// Admin logout
 document.getElementById("logoutBtn").onclick = async () => {
+
   try {
+
     await signOut(auth);
+
     dashboard.style.display = "none";
+
     loginBtn.style.display = "block";
+
     document.getElementById("email").style.display = "block";
+
     document.getElementById("password").style.display = "block";
+
     message.textContent = "Logged out.";
+
   } catch (error) {
+
     message.textContent = "Logout failed. Please try again.";
+
   }
+
 };
+
 </script>
+
 </body>
 </html>
