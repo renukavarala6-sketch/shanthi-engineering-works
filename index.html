@@ -2305,6 +2305,32 @@ header .brand img {
   }
 }
 
+/* NEW PRODUCT HYBRID DESIGN START */
+
+.product-card.product-hidden {
+    display: none !important;
+}
+
+#viewAllProductsBtn {
+    display: block;
+    margin: 30px auto;
+    padding: 13px 35px;
+    background: #082b4c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#viewAllProductsBtn:hover {
+    background: #0b4778;
+}
+
+/* NEW PRODUCT HYBRID DESIGN END */
+
   </style>
 </head>
 <body>
@@ -3052,6 +3078,68 @@ document.addEventListener("keydown", function(event) {
   });
 })();
 </script>
+
+// NEW PRODUCT HYBRID DESIGN START
+
+(function () {
+    const productGrid = document.getElementById("productGrid");
+
+    if (!productGrid) return;
+
+    let showAllProducts = false;
+    let viewButton = null;
+
+    function updateProductDisplay() {
+        const products = Array.from(productGrid.children)
+            .filter(card => card.classList.contains("product-card"));
+
+        products.forEach((card, index) => {
+            card.classList.toggle(
+                "product-hidden",
+                !showAllProducts && index >= 5
+            );
+        });
+
+        if (products.length <= 5) {
+            if (viewButton) viewButton.style.display = "none";
+            return;
+        }
+
+        if (!viewButton) {
+            viewButton = document.createElement("button");
+            viewButton.id = "viewAllProductsBtn";
+            viewButton.type = "button";
+
+            productGrid.insertAdjacentElement("afterend", viewButton);
+
+            viewButton.addEventListener("click", function () {
+                showAllProducts = !showAllProducts;
+                updateProductDisplay();
+
+                if (!showAllProducts) {
+                    document.getElementById("products")
+                        .scrollIntoView({ behavior: "smooth" });
+                }
+            });
+        }
+
+        viewButton.style.display = "block";
+        viewButton.textContent = showAllProducts
+            ? "Show Less"
+            : "View All Products";
+    }
+
+    const observer = new MutationObserver(updateProductDisplay);
+
+    observer.observe(productGrid, {
+        childList: true
+    });
+
+    updateProductDisplay();
+
+})();
+
+// NEW PRODUCT HYBRID DESIGN END
 
 
 </body>
