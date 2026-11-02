@@ -3288,42 +3288,7 @@ document.addEventListener("keydown", function(event) {
 });
 </script>
 
-  <!-- NEW PRODUCT HYBRID DESIGN SCRIPT START -->
-<script>
-(function () {
-  const productGrid = document.getElementById("productGrid");
-  const viewAllButton = document.getElementById("viewAllProductsBtn");
 
-  if (!productGrid || !viewAllButton) return;
-
-  const productCards = productGrid.querySelectorAll(".product-card");
-  const visibleCount = 5;
-  let showingAll = false;
-
-  function updateProducts() {
-    productCards.forEach(function (card, index) {
-      card.classList.toggle(
-        "product-hidden",
-        !showingAll && index >= visibleCount
-      );
-    });
-
-    viewAllButton.textContent = showingAll
-      ? "Show Less"
-      : "View All Products";
-
-    viewAllButton.setAttribute("aria-expanded", String(showingAll));
-  }
-
-  viewAllButton.addEventListener("click", function () {
-    showingAll = !showingAll;
-    updateProducts();
-  });
-
-  updateProducts();
-})();
-</script>
-<!-- NEW PRODUCT HYBRID DESIGN SCRIPT END -->
 
 <!-- Premium Product Enquiry Section -->
 <section id="enquiry">
@@ -3504,7 +3469,6 @@ document.addEventListener("keydown", function(event) {
 })();
 </script>
 
-
 <!-- NEW PRODUCT PAGINATION FUNCTION START -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -3514,20 +3478,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!grid || !prevButton || !nextButton) return;
 
-  const cards = Array.from(grid.querySelectorAll(".product-card"));
   const pageStarts = [0, 6, 12];
   let currentPage = 0;
+  let cards = [];
+
+  function updateCards() {
+    cards = Array.from(grid.querySelectorAll(".product-card"));
+
+    if (cards.length > 0) {
+      showProductPage();
+    }
+  }
 
   function showProductPage() {
-    // Remove the old View All hiding class
-    cards.forEach(function (card) {
-      card.classList.remove("product-hidden");
-    });
-
     const start = pageStarts[currentPage];
     const end = Math.min(start + 7, cards.length);
 
     cards.forEach(function (card, index) {
+      card.classList.remove("product-hidden");
+
       card.classList.toggle(
         "product-page-hidden",
         index < start || index >= end
@@ -3535,7 +3504,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     prevButton.disabled = currentPage === 0;
-    nextButton.disabled = currentPage === pageStarts.length - 1;
+    nextButton.disabled = end >= cards.length;
   }
 
   prevButton.addEventListener("click", function () {
@@ -3552,11 +3521,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  showProductPage();
+  const observer = new MutationObserver(updateCards);
+  observer.observe(grid, { childList: true });
+
+  updateCards();
 });
 </script>
 <!-- NEW PRODUCT PAGINATION FUNCTION END -->
-  
+
 </body>
 </html>
 
