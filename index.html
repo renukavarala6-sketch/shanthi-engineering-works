@@ -3469,6 +3469,7 @@ document.addEventListener("keydown", function(event) {
 })();
 </script>
 
+
 <!-- NEW PRODUCT PAGINATION FUNCTION START -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -3484,23 +3485,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateCards() {
     cards = Array.from(grid.querySelectorAll(".product-card"));
-
-    if (cards.length > 0) {
-      showProductPage();
-    }
+    showProductPage();
   }
 
   function showProductPage() {
+    if (cards.length === 0) return;
+
     const start = pageStarts[currentPage];
     const end = Math.min(start + 7, cards.length);
 
     cards.forEach(function (card, index) {
       card.classList.remove("product-hidden");
 
-      card.classList.toggle(
-        "product-page-hidden",
-        index < start || index >= end
-      );
+      if (index < start || index >= end) {
+        card.style.setProperty("display", "none", "important");
+      } else {
+        card.style.removeProperty("display");
+      }
     });
 
     prevButton.disabled = currentPage === 0;
@@ -3528,6 +3529,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 <!-- NEW PRODUCT PAGINATION FUNCTION END -->
+
 
 </body>
 </html>
