@@ -2960,7 +2960,45 @@ body {
 
 /* PRODUCT CLICK GOLD BORDER END */
 
-  
+  /* PRODUCT CARD SPACING AND HOVER BORDER */
+
+/* Equal space for product names */
+#products .product-button h3 {
+  min-height: 100px !important;
+  padding: 20px 16px !important;
+  margin: 0 !important;
+}
+
+/* White gap between product name and View Details */
+#products .product-button .click-note {
+  margin: 22px 22px 18px !important;
+  width: calc(100% - 44px) !important;
+}
+
+/* Gold border only when mouse moves over View Details */
+#products .product-button .click-note {
+  border: 2px solid transparent !important;
+  transition: border-color 0.25s ease !important;
+}
+
+#products .product-button .click-note:hover {
+  border: 2px solid #f2b632 !important;
+}
+
+/* Keep card border normal */
+#products .product-card:focus-within {
+  border: 1px solid #d99a28 !important;
+  box-shadow: none !important;
+}
+
+/* Mobile spacing */
+@media (max-width: 600px) {
+  #products .product-button h3 {
+    min-height: 90px !important;
+  }
+}
+
+/* END */
   
   </style>
 </head>
