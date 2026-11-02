@@ -2624,6 +2624,88 @@ header .brand img {
 }
 
 /* NEW PRODUCT ARROWS DESIGN END */
+
+/* NEW PRODUCT PAGINATION DESIGN START */
+
+#products #productGrid {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+  overflow: hidden !important;
+  padding: 15px 4px 25px !important;
+  max-width: 100% !important;
+}
+
+/* Hide scrollbar */
+#products #productGrid::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Keep cards neat */
+#products #productGrid .product-card {
+  min-width: 0 !important;
+  width: 100% !important;
+}
+
+/* Pagination arrows */
+.product-scroll-controls {
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 12px !important;
+  margin: 15px 5px !important;
+}
+
+.product-scroll-controls button {
+  width: 46px !important;
+  height: 46px !important;
+  border: 1px solid #c99a3b !important;
+  border-radius: 50% !important;
+  background: #102a43 !important;
+  color: white !important;
+  font-size: 20px !important;
+  cursor: pointer !important;
+  transition: 0.3s ease !important;
+}
+
+.product-scroll-controls button:hover:not(:disabled) {
+  background: #c99a3b !important;
+  color: #102a43 !important;
+  transform: scale(1.08);
+}
+
+.product-scroll-controls button:disabled {
+  opacity: 0.35 !important;
+  cursor: not-allowed !important;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+  #products #productGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  #products #productGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+}
+
+/* Hide old View All button */
+#viewAllProductsBtn {
+  display: none !important;
+}
+
+/* NEW PRODUCT PAGINATION DESIGN END */
+
+/* NEW PRODUCT PAGE HIDE START */
+#products .product-card.product-page-hidden {
+  display: none !important;
+}
+/* NEW PRODUCT PAGE HIDE END */
+
   
   </style>
 </head>
@@ -3422,28 +3504,59 @@ document.addEventListener("keydown", function(event) {
 })();
 </script>
 
-<!-- NEW PRODUCT SCROLL FUNCTION START -->
+
+<!-- NEW PRODUCT PAGINATION FUNCTION START -->
 <script>
-const productGrid = document.getElementById("productGrid");
-const leftArrow = document.getElementById("productScrollLeft");
-const rightArrow = document.getElementById("productScrollRight");
+document.addEventListener("DOMContentLoaded", function () {
+  const grid = document.getElementById("productGrid");
+  const prevButton = document.getElementById("productScrollLeft");
+  const nextButton = document.getElementById("productScrollRight");
 
-leftArrow.addEventListener("click", function () {
-  productGrid.scrollBy({
-    left: -700,
-    behavior: "smooth"
-  });
-});
+  if (!grid || !prevButton || !nextButton) return;
 
-rightArrow.addEventListener("click", function () {
-  productGrid.scrollBy({
-    left: 700,
-    behavior: "smooth"
+  const cards = Array.from(grid.querySelectorAll(".product-card"));
+  const pageStarts = [0, 6, 12];
+  let currentPage = 0;
+
+  function showProductPage() {
+    // Remove the old View All hiding class
+    cards.forEach(function (card) {
+      card.classList.remove("product-hidden");
+    });
+
+    const start = pageStarts[currentPage];
+    const end = Math.min(start + 7, cards.length);
+
+    cards.forEach(function (card, index) {
+      card.classList.toggle(
+        "product-page-hidden",
+        index < start || index >= end
+      );
+    });
+
+    prevButton.disabled = currentPage === 0;
+    nextButton.disabled = currentPage === pageStarts.length - 1;
+  }
+
+  prevButton.addEventListener("click", function () {
+    if (currentPage > 0) {
+      currentPage--;
+      showProductPage();
+    }
   });
+
+  nextButton.addEventListener("click", function () {
+    if (currentPage < pageStarts.length - 1) {
+      currentPage++;
+      showProductPage();
+    }
+  });
+
+  showProductPage();
 });
 </script>
-<!-- NEW PRODUCT SCROLL FUNCTION END -->
-
+<!-- NEW PRODUCT PAGINATION FUNCTION END -->
+  
 </body>
 </html>
 
