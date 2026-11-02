@@ -2905,6 +2905,62 @@ body {
 #products .product-card:hover .click-note {
   background: #1769aa !important;
 }
+
+/* PRODUCT CLICK GOLD BORDER START */
+
+/* Same card height and layout */
+#products .product-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+  border: 1px solid #d99a28 !important;
+  transition: border 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* Gold border when product is clicked or selected */
+#products .product-card:focus-within {
+  border: 3px solid #d99a28 !important;
+  box-shadow: 0 0 0 3px rgba(217, 154, 40, 0.22) !important;
+}
+
+/* Keep product name area equal in every card */
+#products .product-button {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+#products .product-button h3 {
+  box-sizing: border-box !important;
+  min-height: 112px !important;
+  padding: 20px 16px 12px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+}
+
+/* Keep View Details at the same position */
+#products .product-button .click-note {
+  box-sizing: border-box !important;
+  min-height: 55px !important;
+  margin: auto 22px 18px !important;
+  width: calc(100% - 44px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Mobile adjustment */
+@media (max-width: 600px) {
+  #products .product-button h3 {
+    min-height: 90px !important;
+  }
+}
+
+/* PRODUCT CLICK GOLD BORDER END */
+
+  
   
   </style>
 </head>
