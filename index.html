@@ -2414,6 +2414,11 @@ header .brand img {
     </p>
 
     <div id="productGrid" class="product-grid"></div>
+    <!-- NEW PRODUCT HYBRID DESIGN START -->
+<button type="button" id="viewAllProductsBtn">
+  View All Products
+</button>
+<!-- NEW PRODUCT HYBRID DESIGN END -->
     <p id="productError" class="empty-message" hidden>
       Product images could not be loaded. Please check the image filenames
       in your GitHub repository.
@@ -2899,6 +2904,42 @@ document.addEventListener("keydown", function(event) {
 });
 </script>
 
+  <!-- NEW PRODUCT HYBRID DESIGN SCRIPT START -->
+<script>
+(function () {
+  const productGrid = document.getElementById("productGrid");
+  const viewAllButton = document.getElementById("viewAllProductsBtn");
+
+  if (!productGrid || !viewAllButton) return;
+
+  const productCards = productGrid.querySelectorAll(".product-card");
+  const visibleCount = 5;
+  let showingAll = false;
+
+  function updateProducts() {
+    productCards.forEach(function (card, index) {
+      card.classList.toggle(
+        "product-hidden",
+        !showingAll && index >= visibleCount
+      );
+    });
+
+    viewAllButton.textContent = showingAll
+      ? "Show Less"
+      : "View All Products";
+
+    viewAllButton.setAttribute("aria-expanded", String(showingAll));
+  }
+
+  viewAllButton.addEventListener("click", function () {
+    showingAll = !showingAll;
+    updateProducts();
+  });
+
+  updateProducts();
+})();
+</script>
+<!-- NEW PRODUCT HYBRID DESIGN SCRIPT END -->
 
 <!-- Premium Product Enquiry Section -->
 <section id="enquiry">
@@ -3079,67 +3120,6 @@ document.addEventListener("keydown", function(event) {
 })();
 </script>
 
-// NEW PRODUCT HYBRID DESIGN START
-
-(function () {
-    const productGrid = document.getElementById("productGrid");
-
-    if (!productGrid) return;
-
-    let showAllProducts = false;
-    let viewButton = null;
-
-    function updateProductDisplay() {
-        const products = Array.from(productGrid.children)
-            .filter(card => card.classList.contains("product-card"));
-
-        products.forEach((card, index) => {
-            card.classList.toggle(
-                "product-hidden",
-                !showAllProducts && index >= 5
-            );
-        });
-
-        if (products.length <= 5) {
-            if (viewButton) viewButton.style.display = "none";
-            return;
-        }
-
-        if (!viewButton) {
-            viewButton = document.createElement("button");
-            viewButton.id = "viewAllProductsBtn";
-            viewButton.type = "button";
-
-            productGrid.insertAdjacentElement("afterend", viewButton);
-
-            viewButton.addEventListener("click", function () {
-                showAllProducts = !showAllProducts;
-                updateProductDisplay();
-
-                if (!showAllProducts) {
-                    document.getElementById("products")
-                        .scrollIntoView({ behavior: "smooth" });
-                }
-            });
-        }
-
-        viewButton.style.display = "block";
-        viewButton.textContent = showAllProducts
-            ? "Show Less"
-            : "View All Products";
-    }
-
-    const observer = new MutationObserver(updateProductDisplay);
-
-    observer.observe(productGrid, {
-        childList: true
-    });
-
-    updateProductDisplay();
-
-})();
-
-// NEW PRODUCT HYBRID DESIGN END
 
 
 </body>
