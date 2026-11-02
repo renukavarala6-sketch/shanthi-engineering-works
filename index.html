@@ -2332,24 +2332,26 @@ header .brand img {
 /* NEW PRODUCT HYBRID DESIGN END */
 
   /* NEW FIVE PRODUCTS IN ONE ROW START */
-#productGrid {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 20px;
+#products #productGrid {
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 20px !important;
 }
 
 @media (max-width: 900px) {
-    #productGrid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+    #products #productGrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     }
 }
 
 @media (max-width: 600px) {
-    #productGrid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    #products #productGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
 }
 /* NEW FIVE PRODUCTS IN ONE ROW END */
+  
+ 
   </style>
 </head>
 <body>
