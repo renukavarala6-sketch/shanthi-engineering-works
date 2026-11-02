@@ -2707,11 +2707,8 @@ header .brand img {
 /* NEW PRODUCT PAGE HIDE END */
 
 
-/* NEW PRODUCT SIDE ARROWS START */
 
-#products {
-  position: relative !important;
-}
+/* NEW PRODUCT SIDE ARROWS START */
 
 #products .product-scroll-controls {
   position: absolute !important;
@@ -2722,18 +2719,40 @@ header .brand img {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  z-index: 20 !important;
+  z-index: 50 !important;
   pointer-events: none !important;
 }
 
 #products .product-scroll-controls button {
   pointer-events: auto !important;
-  width: 42px !important;
-  height: 42px !important;
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px !important;
   border-radius: 50% !important;
+  background: #10243f !important;
+  color: #ffffff !important;
+  border: 2px solid #d6ad45 !important;
+  opacity: 1 !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25) !important;
+  font-size: 22px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+}
+
+#products .product-scroll-controls button:disabled {
+  background: #10243f !important;
+  color: #ffffff !important;
+  opacity: 0.55 !important;
+  cursor: not-allowed !important;
+}
+
+#products .product-scroll-controls button:not(:disabled):hover {
+  background: #d6ad45 !important;
+  color: #10243f !important;
 }
 
 /* NEW PRODUCT SIDE ARROWS END */
+
 
 
   
