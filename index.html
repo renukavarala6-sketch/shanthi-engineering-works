@@ -2708,13 +2708,26 @@ header .brand img {
 
 
 
+
 /* NEW PRODUCT SIDE ARROWS START */
+
+html,
+body {
+  overflow-x: hidden !important;
+}
+
+#products {
+  position: relative !important;
+  overflow-x: clip !important;
+}
 
 #products .product-scroll-controls {
   position: absolute !important;
   top: 50% !important;
-  left: -35px !important;
-  right: -35px !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
   transform: translateY(-50%) !important;
   display: flex !important;
   justify-content: space-between !important;
@@ -2733,15 +2746,13 @@ header .brand img {
   color: #ffffff !important;
   border: 2px solid #d6ad45 !important;
   opacity: 1 !important;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25) !important;
   font-size: 22px !important;
   font-weight: bold !important;
   cursor: pointer !important;
 }
 
 #products .product-scroll-controls button:disabled {
-  background: #10243f !important;
-  color: #ffffff !important;
   opacity: 0.55 !important;
   cursor: not-allowed !important;
 }
