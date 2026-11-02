@@ -2545,7 +2545,56 @@ header .brand img {
 
 /* NEW PRODUCT REDESIGN FINAL OVERRIDE END */
 
-  
+  /* NEW PRODUCT HORIZONTAL SCROLL START */
+
+#products #productGrid {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 22px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scroll-behavior: smooth !important;
+  padding: 20px 5px 28px !important;
+  max-width: 100% !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: #c99a3b #e8edf2 !important;
+}
+
+#products #productGrid .product-card {
+  display: flex !important;
+  flex: 0 0 calc((100% - 132px) / 7) !important;
+  min-width: 0 !important;
+}
+
+/* Show all product cards */
+#products #productGrid .product-card.product-hidden {
+  display: flex !important;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+  #products #productGrid .product-card {
+    flex-basis: calc((100% - 44px) / 3) !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  #products #productGrid {
+    gap: 14px !important;
+  }
+
+  #products #productGrid .product-card {
+    flex-basis: calc((100% - 14px) / 2) !important;
+  }
+}
+
+/* Hide old View All button because products are already visible */
+#viewAllProductsBtn {
+  display: none !important;
+}
+
+/* NEW PRODUCT HORIZONTAL SCROLL END */
   
   </style>
 </head>
