@@ -3008,6 +3008,26 @@ header {
   width: 100%;
 }
 /* NEW STICKY MENU END */
+
+/* STICKY MENU FIX START */
+
+html,
+body {
+  overflow-x: clip !important;
+}
+
+header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 99999 !important;
+}
+
+header nav {
+  position: static !important;
+}
+
+/* STICKY MENU FIX END */
+
   
   </style>
 </head>
