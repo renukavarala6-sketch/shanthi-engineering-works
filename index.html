@@ -4213,7 +4213,39 @@ header nav {
 }
 
 /* NEW PRODUCT DETAILS LEFT-RIGHT LAYOUT END */
+/* NEW PRODUCT DETAILS BUTTON STYLE START */
 
+.product-detail-row {
+  margin: 14px 0;
+  padding: 12px;
+  background: #f5f8fc;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #243447;
+}
+
+#enquireProductButton {
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px;
+  background: #07345a;
+  color: #ffffff;
+  border: 1px solid #07345a;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#enquireProductButton:hover {
+  background: #ffffff;
+  color: #07345a;
+}
+
+/* NEW PRODUCT DETAILS BUTTON STYLE END */
 
   
   </style>
@@ -4445,6 +4477,23 @@ header nav {
     <div class="modal-info">
       <h2 id="selectedProduct"></h2>
       <p id="modalDescription"></p>
+      <!-- NEW PRODUCT DETAILS START -->
+
+<div class="product-detail-row">
+  <strong>Model Number:</strong>
+  <span id="modalModel">Not specified</span>
+</div>
+
+<div class="product-detail-row">
+  <strong>Specifications:</strong>
+  <span id="modalSpecifications">Not specified</span>
+</div>
+
+<button type="button" id="enquireProductButton">
+  Enquire About This Product →
+</button>
+
+<!-- NEW PRODUCT DETAILS END -->
     </div>
 
   </div>
@@ -4673,7 +4722,15 @@ button.addEventListener("click", function() {
 
   selectedProduct.textContent = product.name;
   modalDescription.textContent = product.description;
+// NEW PRODUCT DETAILS START
 
+document.getElementById("modalModel").textContent =
+  product.model || "Not specified";
+
+document.getElementById("modalSpecifications").textContent =
+  product.specifications || "Not specified";
+
+// NEW PRODUCT DETAILS END
   
   // Munduga unna photos anni clear chestundi
   modalThumbnails.replaceChildren();
@@ -4823,7 +4880,25 @@ function closeModal() {
     modalOpener.focus();
   }
 }
+// NEW PRODUCT ENQUIRY BUTTON START
 
+document.getElementById("enquireProductButton")
+  .addEventListener("click", function() {
+
+    const productName = selectedProduct.textContent;
+    const enquiryProduct = document.getElementById("enquiryProduct");
+
+    enquiryProduct.value = productName;
+
+    closeModal();
+
+    document.getElementById("enquiry").scrollIntoView({
+      behavior: "smooth"
+    });
+
+  });
+
+// NEW PRODUCT ENQUIRY BUTTON END
 
 closeModalButton.addEventListener("click", function (event) {
   event.preventDefault();
