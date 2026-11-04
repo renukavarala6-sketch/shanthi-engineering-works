@@ -3135,7 +3135,46 @@ header nav {
 
 /* APPLICATIONS PROFESSIONAL DESIGN END */
 
-  
+  /* CONTACT IMAGE DESIGN START */
+
+#contact .contact-box {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  max-width: 1100px;
+  padding: 25px;
+  text-align: left;
+}
+
+#contact .contact-box::before {
+  content: "";
+  display: block;
+  flex: 1;
+  min-width: 0;
+  height: 320px;
+  background-image: url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=85");
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+
+#contact .contact-box p {
+  flex: 1;
+}
+
+@media (max-width: 650px) {
+  #contact .contact-box {
+    flex-direction: column;
+  }
+
+  #contact .contact-box::before {
+    width: 100%;
+    flex: none;
+    height: 230px;
+  }
+}
+
+/* CONTACT IMAGE DESIGN END */
   
   </style>
 </head>
