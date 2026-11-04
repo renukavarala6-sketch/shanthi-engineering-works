@@ -3986,6 +3986,55 @@ header nav {
 
 /* PRODUCT NAME DARK BOLD TEXT END */
 
+/* NEW PRODUCT HEADING SLIDESHOW STYLE START */
+
+#products > h2.section-title {
+  display: none !important;
+}
+
+#products .product-heading-showcase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 45px;
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto 25px;
+}
+
+#products .product-heading-showcase h2 {
+  margin: 0 !important;
+  flex: 0 1 auto;
+  white-space: nowrap;
+}
+
+#products .product-heading-showcase img {
+  width: 100px;
+  height: 90px;
+  object-fit: contain;
+  background: #fff;
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+}
+
+@media (max-width: 600px) {
+  #products .product-heading-showcase {
+    gap: 10px;
+  }
+
+  #products .product-heading-showcase img {
+    width: 65px;
+    height: 65px;
+  }
+
+  #products .product-heading-showcase h2 {
+    font-size: 23px !important;
+  }
+}
+
+/* NEW PRODUCT HEADING SLIDESHOW STYLE END */
+
 
   
   
@@ -4064,7 +4113,17 @@ header nav {
 
 
   <section id="products">
-    <h2 class="section-title">Our Products</h2>
+    
+<!-- NEW PRODUCT HEADING SLIDESHOW START -->
+<div class="product-heading-showcase">
+  <img id="headingProductLeft" src="product-01.png" alt="Product preview">
+  <h2 class="section-title">Our Products</h2>
+  <img id="headingProductRight" src="product-02.png" alt="Product preview">
+</div>
+<!-- NEW PRODUCT HEADING SLIDESHOW END -->
+<!-- Original heading remains below -->
+
+    
     <p class="section-intro">
       Explore our products and click on an item to see the larger image
       and product information.
@@ -4905,6 +4964,35 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 <!-- NEW SHOW ALL 16 PRODUCTS END -->
 
+
+<!-- NEW PRODUCT HEADING SLIDESHOW SCRIPT START -->
+<script>
+(function () {
+  const leftImage = document.getElementById("headingProductLeft");
+  const rightImage = document.getElementById("headingProductRight");
+
+  if (!leftImage || !rightImage) return;
+
+  let index = 0;
+
+  function changeHeadingImages() {
+    const leftIndex = index;
+    const rightIndex = (index + 1) % products.length;
+
+    leftImage.src = assetPath(products[leftIndex].image);
+    leftImage.alt = products[leftIndex].name;
+
+    rightImage.src = assetPath(products[rightIndex].image);
+    rightImage.alt = products[rightIndex].name;
+
+    index = (index + 2) % products.length;
+  }
+
+  changeHeadingImages();
+  setInterval(changeHeadingImages, 2000);
+})();
+</script>
+<!-- NEW PRODUCT HEADING SLIDESHOW SCRIPT END -->
 
 
 
