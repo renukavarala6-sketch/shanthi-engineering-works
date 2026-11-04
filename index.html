@@ -3810,6 +3810,84 @@ header nav {
 }
 /* REMOVE OLD EXTRA CONTACT IMAGE END */
 
+
+/* NEW 16 PRODUCT GRID DESIGN START */
+
+#products {
+  background: #F4F7FB !important;
+  padding: 65px 4% !important;
+}
+
+#products .product-grid {
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  gap: 55px 35px !important;
+  max-width: 1450px !important;
+  margin: 60px auto 20px !important;
+}
+
+#products .product-card {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-width: 0 !important;
+}
+
+#products .product-button {
+  width: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  align-items: center !important;
+}
+
+#products .product-button img {
+  width: 100% !important;
+  max-width: 150px !important;
+  height: 150px !important;
+  object-fit: contain !important;
+  background: #FFFFFF !important;
+  display: block !important;
+  margin: 0 auto 25px !important;
+}
+
+#products .product-button h3 {
+  min-height: 55px !important;
+  padding: 8px 3px !important;
+  margin: 0 !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  text-align: center !important;
+  color: #24466F !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+#products .product-button .click-note {
+  display: none !important;
+}
+
+@media (max-width: 1000px) {
+  #products .product-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 650px) {
+  #products .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 35px 18px !important;
+  }
+}
+
+/* NEW 16 PRODUCT GRID DESIGN END */
+
+
+
+
+  
   
   </style>
 </head>
@@ -4694,6 +4772,43 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- NEW PRODUCT PAGINATION FUNCTION END -->
 
 
+
+<!-- NEW SHOW ALL 16 PRODUCTS START -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const grid = document.getElementById("productGrid");
+
+  if (!grid) return;
+
+  // Display all 16 product cards
+  const cards = grid.querySelectorAll(".product-card");
+
+  cards.forEach(function (card) {
+    card.classList.remove("product-hidden");
+    card.style.removeProperty("display");
+  });
+
+  // Hide old pagination arrows
+  const controls = document.querySelector(".product-scroll-controls");
+
+  if (controls) {
+    controls.style.display = "none";
+  }
+
+  // Hide old View All button
+  const viewAllButton = document.getElementById("viewAllProductsBtn");
+
+  if (viewAllButton) {
+    viewAllButton.style.display = "none";
+  }
+});
+</script>
+<!-- NEW SHOW ALL 16 PRODUCTS END -->
+
+
+
+
+  
 </body>
 </html>
 
