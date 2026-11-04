@@ -3175,6 +3175,94 @@ header nav {
 }
 
 /* CONTACT IMAGE DESIGN END */
+
+
+/* CONTACT PAGE IMAGE DESIGN START */
+
+#contact .contact-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+    column-gap: 35px;
+    max-width: 1100px;
+    padding: 28px;
+    text-align: left;
+    border: 1px solid #dce5ee;
+    border-top: 1px solid #dce5ee;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(16, 42, 67, 0.08);
+}
+
+#contact .contact-box::before {
+    content: "";
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    display: block;
+    width: 100%;
+    height: 320px;
+    background-image: url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=85");
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+
+#contact .contact-box p {
+    grid-column: 2;
+    color: #425466;
+    font-size: 16px;
+    line-height: 1.9;
+    margin: 10px 0;
+}
+
+#contact .contact-box p:first-of-type {
+    grid-row: 1;
+}
+
+#contact .contact-box p:last-of-type {
+    grid-row: 2;
+    color: #102a43;
+    font-weight: 600;
+}
+
+#contact .section-title::after {
+    background: #102a43;
+}
+
+@media (max-width: 650px) {
+    #contact .contact-box {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 15px;
+    }
+
+    #contact .contact-box::before {
+        grid-column: 1;
+        grid-row: 1;
+        height: 230px;
+    }
+
+    #contact .contact-box p {
+        grid-column: 1;
+    }
+
+    #contact .contact-box p:first-of-type {
+        grid-row: 2;
+    }
+
+    #contact .contact-box p:last-of-type {
+        grid-row: 3;
+    }
+}
+
+/* CONTACT PAGE IMAGE DESIGN END */
+
+
+
+
+
+
   
   </style>
 </head>
