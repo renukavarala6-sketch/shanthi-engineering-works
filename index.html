@@ -4077,6 +4077,61 @@ header nav {
   }
 }
 /* NEW PRODUCT IMAGES FINAL POSITION END */
+
+/* NEW PRODUCT SIDE LAYOUT START */
+#products .product-feature-layout {
+  display: grid !important;
+  grid-template-columns: 1fr minmax(350px, 2fr) 1fr !important;
+  align-items: center !important;
+  gap: 30px !important;
+  max-width: 1450px !important;
+  margin: 20px auto 45px !important;
+  padding: 0 35px !important;
+}
+
+#products .product-feature-layout .product-feature-image {
+  width: 100% !important;
+  height: 220px !important;
+  object-fit: contain !important;
+  background: #fff !important;
+  padding: 12px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.08) !important;
+}
+
+#products .product-feature-center {
+  text-align: center !important;
+}
+
+#products .product-feature-center .section-title {
+  margin-top: 0 !important;
+}
+
+#products .product-feature-center .section-intro {
+  margin: 15px auto 0 !important;
+}
+
+@media (max-width: 700px) {
+  #products .product-feature-layout {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 15px !important;
+    padding: 0 10px !important;
+  }
+
+  #products .product-feature-center {
+    grid-column: 1 / -1 !important;
+    grid-row: 1 !important;
+  }
+
+  #products .product-feature-layout .product-feature-image {
+    height: 130px !important;
+  }
+}
+/* NEW PRODUCT SIDE LAYOUT END */
+
+
+
+
   
   </style>
 </head>
@@ -5051,7 +5106,41 @@ document.addEventListener("DOMContentLoaded", function () {
 })();
 </script>
 <!-- NEW PRODUCT IMAGES MOVE SCRIPT END -->
+<!-- NEW PRODUCT SIDE LAYOUT SCRIPT START -->
+<script>
+(function () {
+  const section = document.getElementById("products");
+  const showcase = section.querySelector(".product-heading-showcase");
+  const intro = section.querySelector(".section-intro");
+  const left = document.getElementById("headingProductLeft");
+  const right = document.getElementById("headingProductRight");
 
+  if (!section || !showcase || !intro || !left || !right) return;
+
+  const layout = document.createElement("div");
+  layout.className = "product-feature-layout";
+
+  const center = document.createElement("div");
+  center.className = "product-feature-center";
+
+  const heading = showcase.querySelector("h2");
+
+  left.className = "product-feature-image";
+  right.className = "product-feature-image";
+
+  layout.appendChild(left);
+  layout.appendChild(center);
+  layout.appendChild(right);
+
+  center.appendChild(heading);
+  center.appendChild(intro);
+
+  showcase.parentNode.insertBefore(layout, showcase);
+  showcase.style.display = "none";
+
+})();
+</script>
+<!-- NEW PRODUCT SIDE LAYOUT SCRIPT END -->
   
 </body>
 </html>
