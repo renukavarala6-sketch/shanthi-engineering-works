@@ -4128,7 +4128,16 @@ header nav {
   }
 }
 /* NEW PRODUCT SIDE LAYOUT END */
-
+/* NEW TRANSPARENT PRODUCT IMAGES START */
+#products .product-feature-layout .product-feature-image {
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  object-fit: contain !important;
+}
+/* NEW TRANSPARENT PRODUCT IMAGES END */
 
 
 
@@ -5071,23 +5080,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!leftImage || !rightImage) return;
 
-  let index = 0;
+  let index = 2;
+  let changeRight = true;
 
-  function changeHeadingImages() {
-    const leftIndex = index;
-    const rightIndex = (index + 1) % products.length;
+  function changeOneImage() {
+    const product = products[index % products.length];
 
-    leftImage.src = assetPath(products[leftIndex].image);
-    leftImage.alt = products[leftIndex].name;
+    if (changeRight) {
+      rightImage.src = assetPath(product.image);
+      rightImage.alt = product.name;
+    } else {
+      leftImage.src = assetPath(product.image);
+      leftImage.alt = product.name;
+    }
 
-    rightImage.src = assetPath(products[rightIndex].image);
-    rightImage.alt = products[rightIndex].name;
-
-    index = (index + 2) % products.length;
+    index++;
+    changeRight = !changeRight;
   }
 
-  changeHeadingImages();
-  setInterval(changeHeadingImages, 2000);
+  setInterval(changeOneImage, 2000);
 })();
 </script>
 <!-- NEW PRODUCT HEADING SLIDESHOW SCRIPT END -->
