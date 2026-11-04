@@ -3885,6 +3885,94 @@ header nav {
 /* NEW 16 PRODUCT GRID DESIGN END */
 
 
+/* NEW CLEAN 6-COLUMN PRODUCT LAYOUT START */
+
+#products #productGrid {
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  grid-auto-flow: row !important;
+  grid-auto-columns: unset !important;
+  gap: 35px 24px !important;
+  width: 100% !important;
+  max-width: 1500px !important;
+  margin: 50px auto !important;
+  padding: 0 !important;
+}
+
+#products .product-card {
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#products .product-button {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#products .product-button img {
+  width: 100% !important;
+  height: 155px !important;
+  max-width: 180px !important;
+  object-fit: contain !important;
+  background: #FFFFFF !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  margin: 0 auto 12px !important;
+}
+
+#products .product-button h3 {
+  width: 100% !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 5px 2px !important;
+  background: transparent !important;
+  color: #26384A !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-align: center !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+#products .product-button .click-note {
+  display: none !important;
+}
+
+#products .product-scroll-controls,
+#products #viewAllProductsBtn {
+  display: none !important;
+}
+
+@media (max-width: 1000px) {
+  #products #productGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  #products #productGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* NEW CLEAN 6-COLUMN PRODUCT LAYOUT END */
+
 
 
   
