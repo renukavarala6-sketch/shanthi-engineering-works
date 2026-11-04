@@ -3259,6 +3259,317 @@ header nav {
 /* CONTACT PAGE IMAGE DESIGN END */
 
 
+/* REFERENCE APPLICATIONS AND CONTACT DESIGN START */
+
+/* SAME LIGHT BLUE PAGE BACKGROUND */
+#applications,
+#contact {
+  background: #eaf2fb !important;
+  background-image:
+    radial-gradient(circle at 94% 25%, rgba(190,215,242,.35), transparent 25%),
+    linear-gradient(120deg, #e5effb, #f5f8fd) !important;
+}
+
+/* APPLICATIONS SECTION */
+#applications {
+  padding: 24px 4% 34px !important;
+}
+
+#applications .section-title {
+  color: #102f59 !important;
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  margin-bottom: 25px !important;
+}
+
+#applications .section-title::after {
+  background: #e0a52b !important;
+  width: 78px !important;
+  height: 4px !important;
+  margin: 10px auto 0 !important;
+}
+
+#applications .application-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  max-width: 1250px !important;
+  margin: 0 auto !important;
+}
+
+#applications .application-item {
+  position: relative !important;
+  min-height: 132px !important;
+  padding: 25px 18px 20px 92px !important;
+  background: rgba(255,255,255,.94) !important;
+  border: 1px solid #e1eaf5 !important;
+  border-top: 0 !important;
+  border-radius: 13px !important;
+  box-shadow: 0 8px 22px rgba(20,55,95,.09) !important;
+  text-align: left !important;
+}
+
+#applications .application-item::before {
+  position: absolute;
+  left: 23px;
+  top: 27px;
+  font-size: 39px;
+  color: #0875b8;
+  line-height: 1;
+}
+
+#applications .application-item:nth-child(1)::before {
+  content: "♧";
+}
+
+#applications .application-item:nth-child(2)::before {
+  content: "◇";
+}
+
+#applications .application-item:nth-child(3)::before {
+  content: "⚗";
+}
+
+#applications .application-item h3 {
+  color: #102f59 !important;
+  font-size: 19px !important;
+  font-weight: 800 !important;
+  margin: 3px 0 9px !important;
+}
+
+#applications .application-item p {
+  color: #405a7d !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  margin: 0 !important;
+}
+
+#applications .application-item:hover {
+  transform: translateY(-3px);
+  border-top: 0 !important;
+}
+
+/* CONTACT SECTION */
+#contact {
+  padding: 12px 1.5% 45px !important;
+}
+
+#contact .section-title {
+  color: #102f59 !important;
+  font-size: 40px !important;
+  font-weight: 800 !important;
+  margin: 0 auto 24px !important;
+  padding-bottom: 0 !important;
+}
+
+#contact .section-title::after {
+  background: #e0a52b !important;
+  width: 78px !important;
+  margin: 8px auto 0 !important;
+}
+
+/* Hide old text visually, but keep the original HTML */
+#contact .contact-box > p {
+  display: none !important;
+}
+
+/* MAIN CONTACT PANEL */
+#contact .contact-box {
+  display: grid !important;
+  grid-template-columns: 1.05fr 1fr !important;
+  max-width: 1500px !important;
+  min-height: 490px !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+  overflow: hidden !important;
+  background: rgba(255,255,255,.72) !important;
+  border: 1px solid #dce8f6 !important;
+  border-top: 1px solid #dce8f6 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 10px 30px rgba(16,48,85,.10) !important;
+  text-align: left !important;
+}
+
+/* LEFT BUSINESS MEETING IMAGE */
+#contact .reference-contact-image {
+  min-height: 490px;
+  background-image: url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=90");
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+  position: relative;
+  z-index: 1;
+}
+
+/* DIAGONAL NAVY DIVIDER */
+#contact .reference-contact-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8%;
+  height: 100%;
+  background: #07548b;
+  clip-path: polygon(75% 0, 100% 0, 25% 100%, 0 100%);
+}
+
+/* RIGHT CONTENT */
+#contact .reference-contact-info {
+  padding: 34px 35px 30px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #102f59;
+  background: linear-gradient(110deg, rgba(255,255,255,.75), #f1f6fd);
+}
+
+#contact .reference-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #0875b8;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+#contact .reference-eyebrow span {
+  height: 2px;
+  flex: 1;
+  background: #8db9df;
+}
+
+#contact .reference-contact-info h2 {
+  color: #102f59 !important;
+  font-size: clamp(25px, 3vw, 34px) !important;
+  font-weight: 800 !important;
+  margin: 0 0 12px !important;
+}
+
+#contact .reference-description,
+#contact .reference-welcome {
+  color: #29476f !important;
+  font-size: 17px !important;
+  line-height: 1.65 !important;
+  margin: 0 0 15px !important;
+}
+
+#contact .reference-welcome {
+  margin-top: 2px !important;
+}
+
+/* PHONE EMAIL LOCATION */
+#contact .reference-contact-details {
+  display: flex;
+  align-items: center;
+  margin: 24px 0 30px;
+  gap: 0;
+}
+
+#contact .reference-detail {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 12px;
+  color: #102f59;
+  text-decoration: none;
+  border-right: 2px solid #8db0d5;
+}
+
+#contact .reference-detail:first-child {
+  padding-left: 0;
+}
+
+#contact .reference-detail:last-child {
+  border-right: 0;
+}
+
+#contact .reference-detail-icon {
+  flex-shrink: 0;
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #102f59;
+  color: white;
+  font-size: 21px;
+}
+
+#contact .reference-detail strong {
+  display: block;
+  color: #102f59;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+#contact .reference-detail small {
+  display: block;
+  color: #526d91;
+  font-size: 13px;
+}
+
+/* GET IN TOUCH BUTTON */
+#contact .reference-contact-button {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  padding: 13px 28px;
+  border-radius: 30px;
+  background: #102f59;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 5px 13px rgba(16,47,89,.18);
+  transition: .25s ease;
+}
+
+#contact .reference-contact-button:hover {
+  background: #0875b8;
+  transform: translateY(-2px);
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 850px) {
+  #applications .application-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  #contact .contact-box {
+    grid-template-columns: 1fr !important;
+  }
+
+  #contact .reference-contact-image {
+    min-height: 280px;
+    clip-path: none;
+  }
+
+  #contact .reference-contact-image::after {
+    display: none;
+  }
+
+  #contact .reference-contact-info {
+    padding: 28px 22px;
+  }
+
+  #contact .reference-contact-details {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  #contact .reference-detail {
+    flex: 1 1 100%;
+    border-right: 0;
+    padding: 5px 0;
+  }
+}
+
+/* REFERENCE APPLICATIONS AND CONTACT DESIGN END */
+
 
 
 
@@ -3392,6 +3703,67 @@ header nav {
         please contact Shanthi Engineering Works and Consultants.
       </p>
       <p>We welcome your product-related enquiries.</p>
+      
+<!-- EXACT CONTACT DESIGN CONTENT START -->
+<div class="reference-contact-layout">
+
+  <div class="reference-contact-image"></div>
+
+  <div class="reference-contact-info">
+
+    <div class="reference-eyebrow">
+      LET'S CONNECT
+      <span></span>
+    </div>
+
+    <h2>We're Here to Help You</h2>
+
+    <p class="reference-description">
+      For product details, specifications and enquiries,
+      please contact Shanthi Engineering Works and Consultants.
+    </p>
+
+    <p class="reference-welcome">
+      We welcome your product-related enquiries.<br>
+      Our team looks forward to hearing from you.
+    </p>
+
+    <div class="reference-contact-details">
+
+      <a href="tel:0000000000" class="reference-detail">
+        <span class="reference-detail-icon">☎</span>
+        <span>
+          <strong>0000000000</strong>
+          <small>Call Us</small>
+        </span>
+      </a>
+
+      <a href="mailto:info@shanthi.example" class="reference-detail">
+        <span class="reference-detail-icon">✉</span>
+        <span>
+          <strong>info@shanthi.example</strong>
+          <small>Email Us</small>
+        </span>
+      </a>
+
+      <div class="reference-detail">
+        <span class="reference-detail-icon">●</span>
+        <span>
+          <strong>Hyderabad, India</strong>
+          <small>Our Office</small>
+        </span>
+      </div>
+
+    </div>
+
+    <a href="#enquiry" class="reference-contact-button">
+      Get in Touch <span>→</span>
+    </a>
+
+  </div>
+</div>
+<!-- EXACT CONTACT DESIGN CONTENT END -->
+
     </div>
   </section>
 </main>
