@@ -4035,8 +4035,48 @@ header nav {
 
 /* NEW PRODUCT HEADING SLIDESHOW STYLE END */
 
+/* NEW PRODUCT IMAGES BOTTOM STYLE START */
+#products #productImagesBottom {
+  display: none;
+}
 
-  
+#products .product-heading-showcase {
+  margin-top: 20px !important;
+  margin-bottom: 15px !important;
+}
+
+#products .product-heading-showcase img {
+  width: 180px !important;
+  height: 150px !important;
+  object-fit: contain !important;
+}
+/* NEW PRODUCT IMAGES BOTTOM STYLE END */
+  /* NEW PRODUCT IMAGES FINAL POSITION START */
+#products #productImagesBottom {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 100px !important;
+  margin: 20px auto 25px !important;
+}
+
+#products #productImagesBottom img {
+  width: 180px !important;
+  height: 150px !important;
+  object-fit: contain !important;
+}
+
+@media (max-width: 600px) {
+  #products #productImagesBottom {
+    gap: 20px !important;
+  }
+
+  #products #productImagesBottom img {
+    width: 120px !important;
+    height: 110px !important;
+  }
+}
+/* NEW PRODUCT IMAGES FINAL POSITION END */
   
   </style>
 </head>
@@ -4069,6 +4109,7 @@ header nav {
     </p>
     <a href="#products">Explore Our Products</a>
     <a href="#enquiry">Request a Quote</a>
+   
   </section>
 
   <section class="home-benefits">
@@ -4129,7 +4170,9 @@ header nav {
       and product information.
       Select a product to view the image on the left and details on the right.
     </p>
-
+<!-- NEW PRODUCT IMAGES BOTTOM POSITION START -->
+<div id="productImagesBottom"></div>
+<!-- NEW PRODUCT IMAGES BOTTOM POSITION END -->
     
    <!-- NEW PRODUCT SCROLL ARROWS START -->
 <div class="product-scroll-controls">
@@ -4994,7 +5037,20 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 <!-- NEW PRODUCT HEADING SLIDESHOW SCRIPT END -->
 
+<!-- NEW PRODUCT IMAGES MOVE SCRIPT START -->
+<script>
+(function () {
+  const leftImage = document.getElementById("headingProductLeft");
+  const rightImage = document.getElementById("headingProductRight");
+  const bottomArea = document.getElementById("productImagesBottom");
 
+  if (leftImage && rightImage && bottomArea) {
+    bottomArea.appendChild(leftImage);
+    bottomArea.appendChild(rightImage);
+  }
+})();
+</script>
+<!-- NEW PRODUCT IMAGES MOVE SCRIPT END -->
 
   
 </body>
