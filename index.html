@@ -4777,7 +4777,30 @@ header nav {
 }
 
 
+/* NEW FIX: SHOW PRODUCT IMAGES DIRECTLY */
+#products .product-card,
+#products .product-button {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
 
+#products .product-button img,
+#products .product-card img {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    mix-blend-mode: normal !important;
+    object-fit: contain !important;
+}
+
+#products .product-button h3,
+#products .product-button .click-note {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
 
 
 
