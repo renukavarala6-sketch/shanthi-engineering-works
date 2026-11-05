@@ -5124,6 +5124,171 @@ header nav {
 }
 
 
+/* NEW INDUSTRIAL ABOUT DESIGN */
+
+#about .about-premium-content > :not(.about-industrial-v2) {
+  display: none !important;
+}
+
+#about .about-industrial-v2 {
+  display: block;
+  width: 100%;
+  background: #ffffff;
+  color: #243447;
+  padding: 65px 7%;
+}
+
+#about .about-v2-main {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: 55px;
+  max-width: 1250px;
+  margin: auto;
+}
+
+#about .about-v2-label {
+  color: #52718b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+#about .about-v2-content h2 {
+  color: #102f49;
+  font-size: clamp(28px, 3.5vw, 43px);
+  line-height: 1.2;
+  margin: 18px 0;
+}
+
+#about .about-v2-content p {
+  color: #657586;
+  font-size: 15px;
+  line-height: 1.9;
+  margin: 12px 0;
+}
+
+#about .about-v2-button {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 13px 23px;
+  background: #123b59;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+#about .about-v2-button:hover {
+  background: #245b7e;
+}
+
+#about .about-v2-image {
+  width: 100%;
+  height: 390px;
+  overflow: hidden;
+  background: #edf1f4;
+}
+
+#about .about-v2-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#about .about-v2-highlights {
+  max-width: 1250px;
+  margin: 65px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #dce3e9;
+  border-bottom: 1px solid #dce3e9;
+}
+
+#about .about-v2-highlight {
+  padding: 28px 25px;
+  border-right: 1px solid #dce3e9;
+}
+
+#about .about-v2-highlight:last-child {
+  border-right: none;
+}
+
+#about .about-v2-highlight span {
+  color: #668198;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#about .about-v2-highlight h3 {
+  color: #173b56;
+  font-size: 18px;
+  margin: 12px 0 8px;
+}
+
+#about .about-v2-highlight p {
+  color: #718091;
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+#about .about-v2-commitment {
+  max-width: 1250px;
+  margin: 35px auto 0;
+  padding: 28px 32px;
+  background: #f3f6f8;
+  border-left: 4px solid #315c78;
+}
+
+#about .about-v2-commitment h3 {
+  color: #173b56;
+  font-size: 19px;
+  margin: 0 0 10px;
+}
+
+#about .about-v2-commitment p {
+  color: #647586;
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+@media (max-width: 800px) {
+  #about .about-v2-main {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  #about .about-v2-image {
+    height: 300px;
+  }
+
+  #about .about-v2-highlights {
+    grid-template-columns: 1fr;
+  }
+
+  #about .about-v2-highlight {
+    border-right: none;
+    border-bottom: 1px solid #dce3e9;
+  }
+
+  #about .about-v2-highlight:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 500px) {
+  #about .about-industrial-v2 {
+    padding: 40px 6%;
+  }
+
+  #about .about-v2-image {
+    height: 230px;
+  }
+}
+
 
 
 
@@ -5359,6 +5524,77 @@ header nav {
 </div>
 
 <!-- ADDITIONAL ABOUT SECTIONS END -->
+  
+<!-- NEW INDUSTRIAL ABOUT DESIGN START -->
+
+<div class="about-industrial-v2">
+
+  <div class="about-v2-main">
+
+    <div class="about-v2-content">
+      <span class="about-v2-label">ABOUT OUR COMPANY</span>
+
+      <h2>Industrial Safety &amp;<br>
+      Water Treatment Solutions</h2>
+
+      <p>
+        Shanthi Engineering Works and Consultants focuses on
+        industrial safety equipment, chlorine handling products,
+        gas leak detection systems and water treatment solutions.
+      </p>
+
+      <p>
+        We help customers explore suitable industrial products
+        through clear information and enquiry support.
+      </p>
+
+      <a href="#products" class="about-v2-button">
+        Explore Our Products →
+      </a>
+    </div>
+
+    <div class="about-v2-image">
+      <img
+        src="/shanthi-engineering-works/Industrial%20Water%20Treatment%20Facility.png"
+        alt="Industrial Water Treatment Facility">
+    </div>
+
+  </div>
+
+  <div class="about-v2-highlights">
+
+    <div class="about-v2-highlight">
+      <span>01</span>
+      <h3>Industrial Safety</h3>
+      <p>Equipment for industrial safety requirements.</p>
+    </div>
+
+    <div class="about-v2-highlight">
+      <span>02</span>
+      <h3>Chlorine Handling</h3>
+      <p>Products for chlorine handling applications.</p>
+    </div>
+
+    <div class="about-v2-highlight">
+      <span>03</span>
+      <h3>Water Treatment</h3>
+      <p>Equipment for water treatment applications.</p>
+    </div>
+
+  </div>
+
+  <div class="about-v2-commitment">
+    <h3>Our Commitment</h3>
+    <p>
+      Supporting industrial requirements with a focus on
+      product information, safety and customer communication.
+    </p>
+  </div>
+
+</div>
+
+<!-- NEW INDUSTRIAL ABOUT DESIGN END -->
+
 <!-- NEW PREMIUM ABOUT PAGE END -->
 </div>
 
