@@ -4868,7 +4868,88 @@ header nav {
     transform: translateY(-4px);
 }
 
+/* PROFESSIONAL FOUR COLUMN FOOTER */
 
+.main-footer {
+    background: #102b4c;
+    color: #ffffff;
+    padding: 45px 5% 15px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 35px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-column h3 {
+    color: #d6a84f;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.footer-column a,
+.footer-column p {
+    display: block;
+    color: #e2e8f0;
+    font-size: 14px;
+    text-decoration: none;
+    margin-bottom: 13px;
+    line-height: 1.6;
+}
+
+.footer-column a:hover {
+    color: #e6bd70;
+    padding-left: 4px;
+}
+
+.footer-social-icons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-social-icons a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #102b4c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: 0.3s ease;
+}
+
+.footer-social-icons a:hover {
+    background: #d6a84f;
+    transform: translateY(-4px);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #52677e;
+    margin-top: 35px;
+    padding-top: 18px;
+    font-size: 13px;
+    color: #dce5ef;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+}
 
   
   
@@ -5727,20 +5808,68 @@ document.addEventListener("keydown", function(event) {
     </form>
   </div>
 </section>
-  <div class="footer-connect">
-    <h3>Connect With Us</h3>
+  <footer class="main-footer">
 
-    <div class="footer-social-icons">
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <div class="footer-container">
+
+    <!-- Services -->
+    <div class="footer-column">
+      <h3>Services We Provide</h3>
+      <a href="#products">Water Treatment Solutions</a>
+      <a href="#products">Chlorination Systems</a>
+      <a href="#products">Chlorine Gas Leak Detection</a>
+      <a href="#products">Industrial Safety Solutions</a>
+      <a href="#products">Automation Solutions</a>
     </div>
-</div>
 
-<footer style="text-align:center;padding:20px;">
-  © 2026 Shanthi Engineering Works and Consultants. All rights reserved.
+    <!-- Quick Links -->
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <a href="#home">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#products">Products</a>
+      <a href="#applications">Applications</a>
+      <a href="#enquiry">Enquiry</a>
+    </div>
+
+    <!-- Contact Us -->
+    <div class="footer-column">
+      <h3>Contact Us</h3>
+      <p>Phone: Add your phone number</p>
+      <p>Email: Add your email address</p>
+      <p>Address: Add your office address</p>
+    </div>
+
+    <!-- Connect With Us -->
+    <div class="footer-column">
+      <h3>Connect With Us</h3>
+
+      <div class="footer-social-icons">
+        <a href="#" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="#" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Shanthi Engineering Works and Consultants.
+    All rights reserved.
+  </div>
+
 </footer>
+
+
 
 <div id="imageLightbox" class="image-lightbox" aria-hidden="true">
   <button type="button" class="lightbox-close" aria-label="Close image">×</button>
