@@ -5482,7 +5482,23 @@ header nav {
     gap: 8px;
   }
 }
+/* FINAL ABOUT PAGE - SHOW ONLY APPROVED DESIGN */
 
+#about .about-premium-content {
+  display: block !important;
+  width: 100%;
+}
+
+#about .about-premium-content > *:not(.about-final-design) {
+  display: none !important;
+}
+
+#about .about-premium-content > .about-final-design {
+  display: block !important;
+  width: 100%;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
 
 
 
