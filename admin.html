@@ -886,10 +886,10 @@ productForm.onsubmit = async (event) => {
 
   } catch (error) {
 
-    console.error(error);
+    console.error("Firebase Login Error:", error);
 
     message.textContent =
-      "Save failed. Check Firestore security rules and database settings.";
+      "Login Error: " + error.code + " - " + error.message;
 
   } finally {
 
