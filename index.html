@@ -5612,6 +5612,52 @@ header nav {
     margin: 0 !important;
     box-sizing: border-box !important;
 }
+
+
+
+
+/* PRODUCT SEARCH BOX START */
+.product-search-wrap {
+  width: 100%;
+  max-width: 480px;
+  margin: 20px auto 25px;
+  position: relative;
+}
+
+#productSearch {
+  width: 100%;
+  padding: 14px 20px;
+  border: 1px solid #c9c9c9;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #222;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#productSearch:focus {
+  border-color: #c49a45;
+  box-shadow: 0 0 0 3px rgba(196, 154, 69, 0.12);
+}
+
+#productSearch::placeholder {
+  color: #888;
+}
+/* PRODUCT SEARCH BOX END */
+
+
+
+
+
+
+
+
+
+
+
+
   
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -6010,7 +6056,15 @@ header nav {
 <!-- NEW PRODUCT HEADING SLIDESHOW END -->
 <!-- Original heading remains below -->
 
-    
+    <!-- PRODUCT SEARCH BOX START -->
+<div class="product-search-wrap" id="productSearchWrap">
+  <input
+    type="search"
+    id="productSearch"
+    placeholder="Search products..."
+    aria-label="Search products">
+</div>
+<!-- PRODUCT SEARCH BOX END -->
     <p class="section-intro">
       Explore our products and click on an item to see the larger image
       and product information.
