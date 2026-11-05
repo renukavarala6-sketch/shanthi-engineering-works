@@ -4985,6 +4985,144 @@ header nav {
 
 
 
+/* ADDITIONAL ABOUT SECTIONS - PROFESSIONAL DESIGN */
+
+#about .about-overview {
+  padding: 70px 9%;
+  text-align: center;
+  background: #ffffff;
+}
+
+#about .about-overview h2 {
+  color: #07345a;
+  font-size: clamp(25px, 3vw, 34px);
+  margin: 8px 0 20px;
+}
+
+#about .about-overview p {
+  max-width: 850px;
+  margin: 12px auto;
+  color: #596a7a;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+#about .about-values {
+  padding: 75px 7%;
+  background: #f7f9fb;
+}
+
+#about .about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+#about .about-value-card {
+  background: #ffffff;
+  padding: 30px 24px;
+  border: 1px solid #e6ebf0;
+  border-top: 3px solid #b58a42;
+  transition: 0.3s ease;
+}
+
+#about .about-value-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(7, 52, 90, 0.09);
+}
+
+#about .about-value-card span {
+  color: #b58a42;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+#about .about-value-card h3 {
+  color: #07345a;
+  font-size: 19px;
+  margin: 18px 0 10px;
+}
+
+#about .about-value-card p {
+  color: #647386;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+#about .about-industries {
+  padding: 75px 7%;
+  background: #ffffff;
+}
+
+#about .about-industries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+#about .about-industry-card {
+  position: relative;
+  padding: 30px 23px;
+  min-height: 190px;
+  background: #f3f6f9;
+  border: 1px solid #e5ebf1;
+  transition: 0.3s ease;
+}
+
+#about .about-industry-card:hover {
+  background: #ffffff;
+  border-color: #b58a42;
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(7, 52, 90, 0.08);
+}
+
+#about .about-industry-number {
+  color: #b58a42;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+#about .about-industry-card h3 {
+  color: #07345a;
+  font-size: 17px;
+  margin: 20px 0 10px;
+}
+
+#about .about-industry-card p {
+  color: #647386;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  #about .about-values-grid,
+  #about .about-industries-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  #about .about-overview,
+  #about .about-values,
+  #about .about-industries {
+    padding: 45px 6%;
+  }
+
+  #about .about-values-grid,
+  #about .about-industries-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #about .about-value-card,
+  #about .about-industry-card {
+    min-height: auto;
+  }
+}
+
 
 
 
@@ -5136,6 +5274,91 @@ header nav {
     <li>Solutions for industrial requirements</li>
   </ul>
 </div>
+  <!-- ADDITIONAL ABOUT SECTIONS START -->
+
+<div class="about-overview">
+  <span class="about-tag">ABOUT OUR COMPANY</span>
+  <h2>Practical Solutions for Industrial Requirements</h2>
+  <p>
+    Shanthi Engineering Works and Consultants focuses on
+    industrial safety equipment, chlorine handling products,
+    gas leak detection systems and water treatment solutions.
+  </p>
+  <p>
+    We help customers explore relevant products and connect
+    with our team for product information and enquiries.
+  </p>
+</div>
+
+<div class="about-values">
+  <div class="about-section-heading">
+    <span class="about-tag">WHAT GUIDES US</span>
+    <h2>Our Core Values</h2>
+    <p>Principles that guide our approach to industrial products and customer support.</p>
+  </div>
+
+  <div class="about-values-grid">
+    <div class="about-value-card">
+      <span>01</span>
+      <h3>Safety</h3>
+      <p>Giving importance to industrial safety requirements.</p>
+    </div>
+
+    <div class="about-value-card">
+      <span>02</span>
+      <h3>Quality Focus</h3>
+      <p>Supporting informed product selection through clear information.</p>
+    </div>
+
+    <div class="about-value-card">
+      <span>03</span>
+      <h3>Reliability</h3>
+      <p>Maintaining clear communication with customers.</p>
+    </div>
+
+    <div class="about-value-card">
+      <span>04</span>
+      <h3>Customer Support</h3>
+      <p>Helping customers explore suitable products.</p>
+    </div>
+  </div>
+</div>
+
+<div class="about-industries">
+  <div class="about-section-heading">
+    <span class="about-tag">APPLICATION AREAS</span>
+    <h2>Industries We Serve</h2>
+    <p>Product categories relevant to different industrial applications.</p>
+  </div>
+
+  <div class="about-industries-grid">
+    <div class="about-industry-card">
+      <div class="about-industry-number">01</div>
+      <h3>Water Treatment Plants</h3>
+      <p>Water treatment and chlorination-related equipment.</p>
+    </div>
+
+    <div class="about-industry-card">
+      <div class="about-industry-number">02</div>
+      <h3>Chemical Industries</h3>
+      <p>Chlorine handling and industrial safety requirements.</p>
+    </div>
+
+    <div class="about-industry-card">
+      <div class="about-industry-number">03</div>
+      <h3>Manufacturing Facilities</h3>
+      <p>Industrial equipment and workplace safety requirements.</p>
+    </div>
+
+    <div class="about-industry-card">
+      <div class="about-industry-number">04</div>
+      <h3>Industrial Infrastructure</h3>
+      <p>Safety and water management equipment applications.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ADDITIONAL ABOUT SECTIONS END -->
 <!-- NEW PREMIUM ABOUT PAGE END -->
 </div>
 
