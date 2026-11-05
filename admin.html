@@ -33,6 +33,12 @@ input, textarea, button {
   box-sizing: border-box;
   padding: 12px;
   margin: 8px 0;
+  font-family: Arial, sans-serif;
+}
+
+input, textarea {
+  border: 1px solid #ccd8e8;
+  border-radius: 5px;
 }
 
 button {
@@ -125,6 +131,7 @@ textarea {
 .product-item p {
   overflow-wrap: anywhere;
   white-space: pre-wrap;
+  line-height: 1.5;
 }
 
 .product-actions {
@@ -151,6 +158,13 @@ textarea {
 #cancelEditBtn {
   display: none;
 }
+
+label {
+  display: block;
+  color: #10233f;
+  font-weight: bold;
+  margin-top: 12px;
+}
 </style>
 </head>
 
@@ -163,7 +177,7 @@ textarea {
   <input id="email" type="email" placeholder="Admin Email" required>
   <input id="password" type="password" placeholder="Password" required>
 
-  <button id="loginBtn">Login</button>
+  <button id="loginBtn" type="button">Login</button>
 
   <p id="message" role="status"></p>
 
@@ -173,10 +187,15 @@ textarea {
 
     <form id="productForm">
 
-      <input id="name" placeholder="Product Name" required>
+      <label>Product Name</label>
+      <input
+        id="name"
+        type="text"
+        placeholder="Enter Product Name"
+        required
+      >
 
       <label>Main Product Image</label>
-
       <input
         id="image"
         type="url"
@@ -185,10 +204,9 @@ textarea {
       >
 
       <label>Extra Product Images</label>
-
       <textarea
         id="extraImages"
-        placeholder="Paste extra image URLs here.&#10;One URL per line."
+        placeholder="Paste extra image URLs here. One URL per line."
       ></textarea>
 
       <p class="hint">
@@ -200,21 +218,31 @@ textarea {
         <img id="preview" alt="Product image preview">
 
         <div class="gallery-controls">
-
           <button type="button" id="prevBtn">❮</button>
-
           <span id="imageCounter">0 / 0</span>
-
           <button type="button" id="nextBtn">❯</button>
-
         </div>
 
       </div>
 
+      <label>Model Number</label>
+      <input
+        id="model"
+        type="text"
+        placeholder="Enter Model Number"
+      >
+
+      <label>Product Description</label>
       <textarea
         id="description"
-        placeholder="Product Description"
+        placeholder="Enter Product Description"
         required
+      ></textarea>
+
+      <label>Product Specifications</label>
+      <textarea
+        id="specifications"
+        placeholder="Enter Product Specifications. One specification per line."
       ></textarea>
 
       <button id="addBtn" type="submit">Add Product</button>
@@ -233,13 +261,15 @@ textarea {
 
       <h2>Manage Products</h2>
 
-      <button id="refreshBtn" type="button">Refresh Products</button>
+      <button id="refreshBtn" type="button">
+        Refresh Products
+      </button>
 
       <div id="productsContainer"></div>
 
     </div>
 
-    <button id="logoutBtn">Logout</button>
+    <button id="logoutBtn" type="button">Logout</button>
 
   </div>
 
@@ -247,9 +277,11 @@ textarea {
 
 <script type="module">
 
+// Import Firebase App
 import { initializeApp }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
+// Import Firebase Authentication
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -257,6 +289,7 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+// Import Firestore functions
 import {
   getFirestore,
   collection,
@@ -271,7 +304,7 @@ import {
 
 // Firebase connection settings
 const firebaseConfig = {
-  apiKey: "AIzaSyADHkR1H2zyHUp5SBDWbpMKJpCtsZFNneo",
+  apiKey: "AIzaSyADHkR1H2zyHk5SBDWbpMKJpCtsZFNneo",
   authDomain: "shanthi-engineering-works.firebaseapp.com",
   projectId: "shanthi-engineering-works",
   storageBucket: "shanthi-engineering-works.firebasestorage.app",
@@ -287,7 +320,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-// Admin details
+// Admin email
 const adminEmail = "renukavarala6@gmail.com";
 
 
@@ -300,6 +333,10 @@ const addBtn = document.getElementById("addBtn");
 
 const imageInput = document.getElementById("image");
 const extraImagesInput = document.getElementById("extraImages");
+
+const modelInput = document.getElementById("model");
+const descriptionInput = document.getElementById("description");
+const specificationsInput = document.getElementById("specifications");
 
 const preview = document.getElementById("preview");
 const prevBtn = document.getElementById("prevBtn");
@@ -380,7 +417,6 @@ function showGalleryImage() {
 
     preview.removeAttribute("src");
     preview.style.display = "none";
-
     imageCounter.textContent = "0 / 0";
 
     return;
@@ -388,7 +424,6 @@ function showGalleryImage() {
   }
 
   preview.style.display = "block";
-
   preview.src = galleryImages[currentImageIndex];
 
   imageCounter.textContent =
@@ -453,13 +488,11 @@ function resetProductForm() {
   editingProductId = null;
 
   formHeading.textContent = "Add New Product";
-
   addBtn.textContent = "Add Product";
 
   cancelEditBtn.style.display = "none";
 
   galleryImages = [];
-
   currentImageIndex = 0;
 
   showGalleryImage();
@@ -505,17 +538,26 @@ async function loadProducts() {
       const title = document.createElement("h3");
       title.textContent = product.name || "Unnamed Product";
 
+      const modelText = document.createElement("p");
+      modelText.textContent =
+        "Model Number: " + (product.model || "Not specified");
+
       const description = document.createElement("p");
       description.textContent =
-        product.description || "No description available.";
+        "Description: " +
+        (product.description || "No description available.");
+
+      const specificationsText = document.createElement("p");
+      specificationsText.textContent =
+        "Specifications: " +
+        (product.specifications || "Not specified");
 
       const extraCount = Array.isArray(product.extraImages)
         ? product.extraImages.length
         : 0;
 
       const imageCount = document.createElement("p");
-      imageCount.textContent =
-        `Extra images: ${extraCount}`;
+      imageCount.textContent = `Extra images: ${extraCount}`;
 
       const actions = document.createElement("div");
       actions.className = "product-actions";
@@ -537,7 +579,15 @@ async function loadProducts() {
 
       actions.append(editButton, deleteButton);
 
-      item.append(image, title, description, imageCount, actions);
+      item.append(
+        image,
+        title,
+        modelText,
+        description,
+        specificationsText,
+        imageCount,
+        actions
+      );
 
       productsContainer.appendChild(item);
 
@@ -573,11 +623,16 @@ function editProduct(productId, product) {
       ? product.extraImages.join("\n")
       : "";
 
-  document.getElementById("description").value =
+  modelInput.value =
+    product.model || "";
+
+  descriptionInput.value =
     product.description || "";
 
-  formHeading.textContent = "Edit Product";
+  specificationsInput.value =
+    product.specifications || "";
 
+  formHeading.textContent = "Edit Product";
   addBtn.textContent = "Update Product";
 
   cancelEditBtn.style.display = "block";
@@ -727,8 +782,11 @@ productForm.onsubmit = async (event) => {
 
   const name = document.getElementById("name").value.trim();
 
-  const description =
-    document.getElementById("description").value.trim();
+  const model = modelInput.value.trim();
+
+  const description = descriptionInput.value.trim();
+
+  const specifications = specificationsInput.value.trim();
 
   const imageURL = imageInput.value.trim();
 
@@ -783,7 +841,11 @@ productForm.onsubmit = async (event) => {
 
       extraImages: uniqueExtraImages,
 
-      description: description
+      model: model,
+
+      description: description,
+
+      specifications: specifications
 
     };
 
