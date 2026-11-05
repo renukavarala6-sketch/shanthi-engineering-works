@@ -4802,10 +4802,71 @@ header nav {
     box-shadow: none !important;
 }
 
+/* FOOTER SOCIAL ICONS */
+.footer-social-icons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.footer-social-icons a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #102b4c;
+    font-size: 19px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-social-icons a:hover {
+    background: #e9bd72;
+    color: #102b4c;
+    transform: translateY(-4px);
+}
 
 
+.footer-connect {
+    text-align: center;
+    padding: 25px 20px 10px;
+}
 
+.footer-connect h3 {
+    color: #d6a84f;
+    font-size: 20px;
+    margin-bottom: 16px;
+}
 
+.footer-social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-social-icons a {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #102b4c;
+    font-size: 19px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.footer-social-icons a:hover {
+    background: #d6a84f;
+    transform: translateY(-4px);
+}
 
 
 
@@ -5666,6 +5727,16 @@ document.addEventListener("keydown", function(event) {
     </form>
   </div>
 </section>
+  <div class="footer-connect">
+    <h3>Connect With Us</h3>
+
+    <div class="footer-social-icons">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+</div>
 
 <footer style="text-align:center;padding:20px;">
   © 2026 Shanthi Engineering Works and Consultants. All rights reserved.
