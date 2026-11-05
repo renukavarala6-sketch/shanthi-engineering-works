@@ -750,13 +750,12 @@ loginBtn.onclick = async () => {
     message.textContent = "Login successful.";
 
     await loadProducts();
+} catch (error) {
 
-  } catch (error) {
-
-    console.error(error);
+    console.error("Firebase Login Error:", error);
 
     message.textContent =
-      "Login failed. Check credentials and Firebase settings.";
+      "Login Error: " + error.code + " - " + error.message;
 
   } finally {
 
