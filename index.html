@@ -5499,7 +5499,86 @@ header nav {
   visibility: visible !important;
   opacity: 1 !important;
 }
+/* FINAL ABOUT DESIGN - IMAGE POSITION CORRECTION */
 
+#about .about-final-hero {
+  display: grid !important;
+  grid-template-columns: 0.9fr 1.1fr !important;
+  gap: 35px !important;
+  align-items: center !important;
+  min-height: 470px !important;
+  padding: 45px 5% !important;
+}
+
+#about .about-final-text {
+  min-width: 0 !important;
+  padding: 20px 0 !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+#about .about-final-hero-image {
+  width: 100% !important;
+  height: 350px !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+#about .about-final-hero-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* FEATURE BAND - REMOVE NUMBERS */
+
+#about .about-final-feature span {
+  display: none !important;
+}
+
+/* COMMITMENT - THREE IMAGES SIDE BY SIDE */
+
+#about .about-final-commitment {
+  display: grid !important;
+  grid-template-columns: 0.85fr 1.15fr !important;
+  gap: 40px !important;
+  align-items: center !important;
+}
+
+#about .about-final-gallery {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  grid-template-rows: 265px !important;
+  gap: 12px !important;
+  width: 100% !important;
+}
+
+#about .about-final-gallery img {
+  width: 100% !important;
+  height: 265px !important;
+  object-fit: cover !important;
+  border-radius: 10px !important;
+}
+
+#about .about-final-gallery img:first-child {
+  grid-row: auto !important;
+}
+
+@media (max-width: 800px) {
+  #about .about-final-hero,
+  #about .about-final-commitment {
+    grid-template-columns: 1fr !important;
+  }
+
+  #about .about-final-gallery {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: 180px 180px !important;
+  }
+
+  #about .about-final-gallery img {
+    height: 180px !important;
+  }
+}
 
 
 
@@ -5669,19 +5748,18 @@ header nav {
 
   <div class="about-values-grid">
     <div class="about-value-card">
-      <span>01</span>
+    
       <h3>Safety</h3>
       <p>Giving importance to industrial safety requirements.</p>
     </div>
 
     <div class="about-value-card">
-      <span>02</span>
       <h3>Quality Focus</h3>
       <p>Supporting informed product selection through clear information.</p>
     </div>
 
     <div class="about-value-card">
-      <span>03</span>
+    
       <h3>Reliability</h3>
       <p>Maintaining clear communication with customers.</p>
     </div>
