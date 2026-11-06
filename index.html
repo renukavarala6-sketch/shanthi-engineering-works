@@ -5669,7 +5669,32 @@ header nav {
   margin-bottom: 7px;
 }
 
+/* PRODUCT CATEGORY DROPDOWN STYLE START */
 
+.products-dropdown {
+  position: relative;
+  display: inline-flex;
+  gap: 0;
+  align-items: center;
+}
+
+.products-dropdown button {
+  display: block;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.products-dropdown button:hover {
+  color: #c49a45;
+}
+
+/* PRODUCT CATEGORY DROPDOWN STYLE END */
 
 
 
@@ -5694,6 +5719,14 @@ header nav {
     <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#products">Products</a>
+    <!-- PRODUCT CATEGORY DROPDOWN START -->
+<div class="products-dropdown">
+  <button type="button" data-category="all">All Products</button>
+  <button type="button" data-category="chlorine">Chlorine Safety</button>
+  <button type="button" data-category="personal">Personal Safety</button>
+  <button type="button" data-category="emergency">Emergency Equipment</button>
+</div>
+<!-- PRODUCT CATEGORY DROPDOWN END -->
     <a href="#applications">Applications</a>
     <a href="#contact">Contact</a>
     <a href="#enquiry">Enquiry</a>
