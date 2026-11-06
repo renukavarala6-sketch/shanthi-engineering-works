@@ -5669,7 +5669,45 @@ header nav {
   margin-bottom: 7px;
 }
 
+/* PRODUCTS CATEGORY DROPDOWN START */
 
+.products-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.products-menu-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 210px;
+  background: #ffffff;
+  border: 1px solid #e0e8ef;
+  border-radius: 8px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+  padding: 8px 0;
+  z-index: 9999;
+}
+
+.products-menu:hover .products-menu-list {
+  display: block;
+}
+
+.products-menu-list a {
+  display: block;
+  padding: 11px 16px;
+  color: #102a43;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.products-menu-list a:hover {
+  background: #f3f7fa;
+  color: #c49a45;
+}
+
+/* PRODUCTS CATEGORY DROPDOWN END */
 
 
 
@@ -5694,6 +5732,14 @@ header nav {
     <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#products">Products</a>
+    <div class="products-menu">
+  <div class="products-menu-list">
+    <a href="#products" data-category="all">All Products</a>
+    <a href="#products" data-category="chlorine">Chlorine Safety</a>
+    <a href="#products" data-category="personal">Personal Safety</a>
+    <a href="#products" data-category="emergency">Emergency Equipment</a>
+  </div>
+</div>
     <a href="#applications">Applications</a>
     <a href="#contact">Contact</a>
     <a href="#enquiry">Enquiry</a>
