@@ -5740,6 +5740,33 @@ header nav {
 }
 
 
+/* PRODUCT DROPDOWN VISIBILITY FIX START */
+
+header nav {
+  overflow: visible !important;
+}
+
+.products-nav-item {
+  position: relative !important;
+}
+
+.products-nav-item .products-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 210px;
+  background: #ffffff;
+  z-index: 99999;
+}
+
+.products-nav-item:hover > .products-dropdown,
+.products-nav-item:focus-within > .products-dropdown {
+  display: block !important;
+}
+
+/* PRODUCT DROPDOWN VISIBILITY FIX END */
+
 
 
 
