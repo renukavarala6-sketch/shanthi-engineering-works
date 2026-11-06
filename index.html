@@ -5647,7 +5647,27 @@ header nav {
 }
 /* PRODUCT SEARCH BOX END */
 
+/* Hide old Services column without deleting HTML */
+.footer-container > .footer-column:first-child {
+  display: none !important;
+}
 
+/* New Service Categories Styling */
+.footer-column h4 {
+  color: #c49a45;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 14px 0 6px;
+}
+
+.footer-column h4:first-of-type {
+  margin-top: 10px;
+}
+
+.footer-column a {
+  display: block;
+  margin-bottom: 7px;
+}
 
 
 
@@ -6776,6 +6796,25 @@ document.addEventListener("keydown", function(event) {
   <a href="#products">Industrial Gas Monitoring Systems</a>
 </div>
 
+<!-- Services & Categories -->
+<div class="footer-column">
+  <h3>Services We Provide</h3>
+
+  <h4>Industrial Safety</h4>
+  <a href="#products">Safety Equipment</a>
+  <a href="#products">Safety Shower</a>
+  <a href="#products">Breathing Apparatus</a>
+
+  <h4>Chlorine Safety</h4>
+  <a href="#products">Chlorine Emergency Kits</a>
+  <a href="#products">Chlorine Handling Equipment</a>
+
+  <h4>Gas Detection</h4>
+  <a href="#products">Industrial Gas Monitoring Systems</a>
+  <a href="#products">Chlorine Leak Detectors</a>
+</div>
+
+    
     <!-- Quick Links -->
     <div class="footer-column">
       <h3>Quick Links</h3>
